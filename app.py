@@ -22,6 +22,7 @@ A také podle toho mi vrátíte výsledek:
 3. Objem a plochu a součet hran
 '''
 
+st.header('Moje aplikace')
 tvar = st.selectbox('Vyberte si tvar', ['čtverec', 'obdélník', 'kvádr'])
 if tvar == 'čtverec':
     strana_ctverce = st.number_input('Zadejte stranu čtverce', min_value = 0.5)
