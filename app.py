@@ -1,9 +1,4 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
-import requests
-import json
-import datetime
 
 '''
 Napište aplikaci, která vám dovolí vybrat si jednu ze 3 možností:
