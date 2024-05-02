@@ -177,6 +177,7 @@ Vypište délku seznamu jmen z úkolu 5.
 
 st.markdown("""
 ---
+### Komponenty
 Jelikož jsme se naučili pracovat se seznamy, můžeme se podívat na další streamlit komponenty, které potřebovali seznamy. \\
 Jedná se o `st.selectbox()` a `st.multiselect()`. \\
 Obě komponenty potřebují seznam, ze kterého se bude vybírat. \\
@@ -224,7 +225,7 @@ st.write(f"Vybral jsi {jmeno}")
 st.markdown("""
 ---
 Seznamy jsou velmi důležitou částí Pythonu, protože na nich stojí cykly, které jsou klíčovou součástí programování. \\
-Co totiž umí stroj nejlépe a mnohem lépe než člověk? Opakovat věci. \\
+Co totiž umí stroj nejlépe a mnohem lépe než člověk? Opakovat věci. 
 
 A to si nyní ukážeme v další lekci
 """)

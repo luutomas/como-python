@@ -121,7 +121,7 @@ if st.toggle("Zobrazit řešení", key = "toggle_1"):
 
 st.markdown("""
 ---
-Podmínky mohou mít ale více větví, než jen `if` a `else` a to pomocí klíčového slova `elif`. \\
+Podmínky mohou mít více úrovní než jen dvě a to pomocí klíčového slova `elif`. \\
 Například pokud chceme zjistit, zda je číslo menší než 5, rovno 5 nebo větší než 5, můžeme napsat následující:
 ```
 cislo = st.number_input("Zadejte číslo", key = "cislo_2")
@@ -169,11 +169,11 @@ if st.toggle("Zobrazit řešení", key = "toggle_3"):
 st.markdown("""
 ---
 
-Podmínkování je základním stavebním kamenem programování a je důležité si ho osvojit. \\
+Podmínkování je základním stavebním kamenem programování a je důležité si je osvojit. \\
 Podmínky se dají kombinovat a skládat dohromady a vytvářet tak složité programy. \\
 Pro prvotní nástřel těchto algoritmů se doporučuje vzít tužku, papír a nakreslit si strom akcí, co chcete udělat s podmínkami.
 
-Nejtěžší je uchopit problém a rozdělit ho na menší části, které se dají řešit jednoduše pomocí podmínek. \\
+Nejtěžší je uchopit problém a rozdělit ho na menší části, které se dají řešit jednochými podmínkami. \\
 
 Zkusíme si pár příkladů na procvičení:
 """
@@ -265,15 +265,14 @@ Rok je přestupný pokud:
 - pokud je dělitelný 100 tak musí být dělitelný 400
 """)
 
+st.subheader("Komponenty pro interakci")
 st.markdown("""
----
 Tím, že jsme se naučili podmínky, tak můžeme se naučit další komponenty, které na tom byly závislé:
 | Komponenta | Popis |
 |------------|-------|
 | st.button() | Tlačítko, které může být stisknuto |
 | st.checkbox() | Zaškrtávací políčko |
 | st.toggle() | Přepínač |
-| st.download_button() | Tlačítko pro stažení souboru |
 
 
 Tyto komponenty se používají k interakci s uživatelem a mohou být použity v kombinaci s podmínkami.

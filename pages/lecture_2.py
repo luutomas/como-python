@@ -2,7 +2,7 @@ import streamlit as st
 st.set_page_config(page_title="COMO Python", page_icon=":snake:", layout="centered", initial_sidebar_state="collapsed")
 st.header("Lekce č. 2")
 
-st.subheader("Proměnné a cesta k nim")
+st.subheader("Opakování k proměnnám")
 st.markdown("""
 V programování patří tzv. proměnné k základním znalostem. \\
 Z matematiky si vzpomeňme, že proměnná je něco, co se mění a není to "číslo". \\
@@ -35,6 +35,7 @@ st.write(moje_jablka)
 st.markdown(""" --- """)
 
 st.markdown("""
+Krátké opakování: \\
 Proměnné v Pythonu se zapisují pomocí rovnítka `=` a názvy proměnné se píší bez mezer a s malými písmeny. \\
 Pokud je třeba mezera tak pak se používá `_` podtržítko. \\
 
@@ -54,12 +55,12 @@ honzovo_jablka = 1
 celkem_jablek = moje_jablka + honzovo_jablka
 st.write(celkem_jablek)
 
-st.markdown(""" --- """)
+st.subheader("Proměnné s čísly")
 st.markdown("""
 S čísli ale můžete provádět veškeré operace, které znáte z matematiky.
 ```
 moje_jablka = 5
-honzovo_jablka = 1
+honzovo_jablka = 2
 
 celkem_jablek = moje_jablka + honzovo_jablka # sčítání
 st.write(f"celkem: {celkem_jablek}")
@@ -72,6 +73,9 @@ st.write(f"soucin {soucin_jablek}")
 
 podil_jablek = moje_jablka / honzovo_jablka  # dělení
 st.write(f"podil: {podil_jablek}")
+
+podil_jablek_zaokrouhlen = round(moje_jablka / honzovo_jablka,0)  # zaokrouhlit
+st.write(f"podil_zaokrouhlen: {podil_jablek_zaokrouhlen}")
 
 module_jablek = moje_jablka % honzovo_jablka # modulo -> dělení, kdy výsledek je zbytek
 st.write(f"modulo: {module_jablek}")
@@ -89,7 +93,7 @@ a výsledky:
 """)
 
 moje_jablka = 5
-honzovo_jablka = 1
+honzovo_jablka = 2
 
 celkem_jablek = moje_jablka + honzovo_jablka # sčítání
 st.write(f"celkem: {celkem_jablek}")
@@ -102,6 +106,9 @@ st.write(f"soucin {soucin_jablek}")
 
 podil_jablek = moje_jablka / honzovo_jablka  # dělení
 st.write(f"podil: {podil_jablek}")
+
+podil_jablek_zaokrouhlen = round(moje_jablka / honzovo_jablka,0)  # zaokrouhlit
+st.write(f"podil_zaokrouhlen: {podil_jablek_zaokrouhlen}")
 
 module_jablek = moje_jablka % honzovo_jablka # modulo -> dělení, kdy výsledek je zbytek
 st.write(f"modulo: {module_jablek}")
@@ -116,16 +123,16 @@ moje_jablka_stejna_jako_honzova_jablka = moje_jablka == honzovo_jablka # porovn�
 st.write(f"Máme stejně? {moje_jablka_stejna_jako_honzova_jablka}")
 
 st.markdown("""
-Všimněte si také těch zajímavých # značek -> ty slouží jako **komentáře**, tedy kód, který se nevykonává, ale slouží k vysvětlení kódu. \\
-Je doporučené abyste si to poznamenávali právě do vašich kódů, abyste se v nich lépe vyznali v budoucnosti.\\
-A také si všimněte jak jsme rovnou aplikovali f stringy, které nám umožňují vypisovat proměnné přímo do textu.
-
-Také si všimněte odpovědí u porovnávní. Výsledkem porovnání je vždy **True** nebo **False** tedy **Pravda** nebo **Nepravda**.
+Všimněte si zde několika věcí:
+1. text za # -> ty slouží jako **komentáře**, tedy kód, který Python neumí číst ale pro vás slouží k vysvětlení - používejte pro své účely a dobro
+2. Aplikaci **f-stringů** v odpovědi - mějte na paměti a také využívejte
+3. Odpovědi u porovnání - vždy **True** nebo **False** tedy **Pravda** nebo **Nepravda**.
 """)
-st.markdown(""" --- """)
+
+st.subheader("Číselné vstupy či komponenty")
 st.markdown("""
 Nyní se ukážeme, jak získat od vašich uživatelů čísla např. právě tech jablek, abyste mohli s nimi pracovat. \\
-Používá se k tomu tzv. komponenta. V našem případě to bude st.number_input. \\
+V tomto případě to bude st.number_input, který vám umožní získat číslo od uživatele. \\
 **number** znamená číslo a **input** znamená vstup, tedy vstup čísla. st indikuje pouze to, že je to z knihovny streamlit, kterou jsme si zkrátili na začátku kódu jako **st**.
 
 Nyní sestavím kód, který mi umožní získat počet jablek, které mám a Honza a vypíše mi je do konzole.
@@ -145,10 +152,12 @@ st.write(celkem_jablek)
 
 st.markdown(""" --- """)
 st.markdown("""
-Každá komponenta má mnoho parametrů, které můžete nastavit. Toto se aktualizije vždy na stránkách streamlitu, kde si můžete přečíst, co všechno můžete nastavit.
+Každá komponenta má mnoho parametrů, které můžete nastavit. \\
+Tyto komponenty se neustále zlepšují a mění a to se aktualizuje vždy na stránkách streamlitu, kde si můžete přečíst, co všechno můžete nastavit.
 
 https://docs.streamlit.io/develop/api-reference/widgets/st.number_input
 
+Níže je vypsaná definice komponenty  st.number_input:
 ```
 st.number_input(label, min_value=None, max_value=None, value="min", step=None, 
 format=None, key=None, help=None, on_change=None, args=None, kwargs=None, *, 
@@ -156,8 +165,9 @@ placeholder=None, disabled=False, label_visibility="visible")
 ```
 Spolu projdeme parametry, které jsou podle nás nejdůležitější a budeme vám je ukazovat na příkladech.
 
-Pro všechny parametry plati, že pokud ten parametr za sebou nemá = něco, tak je povinná a tu musíme specifikovat.
-Pokud má `=None`, tak je nepovinná a pokud ji nezadáme, tak se použije defaultní/výchozí hodnota (což je právě ta `None` což znamená nic).
+- Pro všechny parametry plati, že pokud ten parametr za sebou nemá `= něco`, tak je povinná a tu musíme specifikovat. 
+- Pokud má `=None`, tak je nepovinná a pokud ji nezadáme, tak se použije defaultní/výchozí hodnota (což je právě ta `None` což znamená nic).
+- Nápodobně pokud má `=0` tak je také nepovinná a pokud ji nezadáme, tak se použije 0.
 
 
 | Název | Popis |
@@ -174,8 +184,8 @@ Pokud má `=None`, tak je nepovinná a pokud ji nezadáme, tak se použije defau
 | args | argumenty, které se předají funkci on_change - pokročilé, nebudeme řešit|
 | kwargs | klíčové argumenty, které se předají funkci on_change - pokročilé, nebudeme řešit|
 
-Nyní tedy s těmito znalostmi bych chtěl zlepšit náš předchozí kód, aby byl více uživatelsky přívětivý.
-Nastavím, aby krok byl 1, aby uživatel nemohl zadat záporné hodnoty a aby se mu zobrazila nápověda, co má dělat.
+Nyní tedy s těmito znalostmi zlepšíme tu komponentu, aby byla pro uživatele hezčí.
+Nastavím, aby krok byl 1 (nebudu dávat části jabka), aby uživatel nemohl zadat záporné hodnoty (nebude zadávat, že má -1 jablek) a aby se mu zobrazila nápověda, co má případně udělat.
 ```
 moje_jablka = st.number_input("Zadejte počet jablek", min_value=0, step=1, 
     help="Zadejte počet jablek, které máte", key = "moje_jablka_2")
@@ -186,9 +196,9 @@ st.write(celkem_jablek)
 ```
 """)
 moje_jablka = st.number_input("Zadejte počet jablek", min_value=0, step=1, 
-    help="Zadejte počet jablek, které máte", key = "moje_jablka_2")
+    help="Zadejte počet jablek, které máte abychom je sečetli", key = "moje_jablka_2")
 honzovo_jablka = st.number_input("Zadejte počet Honzových jablek", min_value=0, step=1, 
-    help="Zadejte počet jablek, které má Honza", key = "honzovo_jablka_2")
+    help="Zadejte počet jablek, které má Honza abychom je sečetli", key = "honzovo_jablka_2")
 celkem_jablek = moje_jablka + honzovo_jablka
 st.write(celkem_jablek)
 

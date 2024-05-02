@@ -4,12 +4,12 @@ st.header("Lekce č. 1")
 
 st.subheader("Proměnné a krátká cesta k nim")
 st.markdown("""
-V programování patří tzv. proměnné k základním znalostem. \\
-Z matematiky si vzpomeňme, že proměnná je něco, co se mění a není to "číslo". \\
+V programování patří tzv. proměnné k základním kamenuům. \\
+Z matematiky si vzpomeňme, že proměnná je něco, co se může měnit. \\
 Jak už nejednou bylo řečeno: Matematika mi šla do té doby, než se začali používat písmena. 
 
-Pro nás ale proměnná nebude tak nic strašného. Představte si to jako adresu, nebo odkaz, na který budete odkazovat. \\
-Např. Místo toho, aby jste si pamatovali, že máte 5 jablka, si pamatujete, že máte 5 jablka na adrese `moje_jablka` a to tímto způsobem:
+Pro nás ale proměnná nebude tak strašná. Představte si to jako adresu, nebo odkaz, na který budete odkazovat. \\
+Např. Místo toho, abyste pamatovali, že máte 5 jablek, si pamatujete, že máte 5 jablek na adrese `moje_jablka` a to tímto způsobem:
 
 ```
 moje_jablka = 5
@@ -27,17 +27,38 @@ moje_jablka = 5
 st.write(moje_jablka)
 ```
 
-""")
-st.subheader("Stringy")
-st.markdown("""
-Základní kostka v programování jsou tzv. stringy neboli řetěžce. \\
-Budeme v kurzu používat spíš název stringy, jelikož slovo řetězec sám o sobě není tak vyjadřující. \\
-Defakto stringy jsou texty, písmena, které jsou za sebou a vytváří řetězec. \\
-Stringy mohou být uzavřeny v uvozovkách, ať už jednoduchých nebo dvojitých. \\
-Pro účely kurzy a jednoduchost na CZ klávesnicích se používá dost často dvojité `""` uvozovky. \\
-Pojďme tedy pro účely kurzy s tím pokračovat ale pokud někomu vyhovuje ` '' ` tak ať je použije.
+Proměnné v Pythonu se zapisují pomocí rovnítka `=` a názvy proměnné se píší bez mezer a s malými písmeny a BEZ DIAKRITIKY. \\
+Pokud je třeba mezera tak pak se používá `_` podtržítko. \\
 
-Můžeme vytvořit proměnnou a do ní uložit string. \\
+Proměnné mohou být různých typů a mohou se s nimi různě pracovat. Níže vidíte příklad práci s číselnými proměnnými. \\
+Např. můžete mít proměnnou, `honzovo_jablka`, která bude vědět, kolik má Honza jablek a můžete zjistit kolik jablek mám já s Honzou dohromady.
+```
+moje_jablka = 5
+honzovo_jablka = 1
+celkem_jablek = moje_jablka + honzovo_jablka
+st.write(celkem_jablek)
+```
+a výsledek:
+""")
+
+moje_jablka = 5
+honzovo_jablka = 1
+celkem_jablek = moje_jablka + honzovo_jablka
+st.write(celkem_jablek)
+
+st.markdown(""" --- """)
+st.subheader("Řetěžce neboli Stringy")
+st.markdown("""
+V této lekci se podíváme na proměnné, které jsou textové. \\
+Základní kostka v programování jsou tzv. stringy neboli řetěžce. \\
+Název řetězec pochází z toho, že je to řetězec znaků. 
+
+Stringy se zapisují tak, že jsou uzavřeny v uvozovkách, ať už jednoduchých nebo dvojitých. \\
+Pro účely kurzy a jednoduchost na českých klávesnicích se používají `""` uvozovky. \\
+Pojďme tedy pro účely kurzy s tím pokračovat ale pokud někomu vyhovuje ` '' ` tak ať je použije. \\
+POZOR: Ostatní jazyky tuto výsadu nemají!!!
+
+Pojďme si tedy vytvořit string a vypsat ho. \\
 Například: 
 ```
 jmeno = "Tomáš"
@@ -87,8 +108,8 @@ st.write(jmeno_a_prijmeni)
 
 st.markdown("""
 ---
-Ještě lepší je použít f-stringy, které jsou novinkou od Python 3.6. a které JE MNĚ PŘÍJEMNĚJŠÍ. \\
-F-stringy jsou stringy, které mohou obsahovat proměnné a výrazy, což je neskutečně lepší. 
+Ještě lepší je použít f-stringy, které jsou v Pythonu a jsou mnohem přehlednější na práci. \\
+F-stringy jsou stringy, které se zapisují pomocí `f` před uvozovkami, můžete tam mít různý text a text, který se má měnit tak je vyznačen `{}`. \\
 Pokud bychom chtěli spojit jméno a příjmení pomocí f-stringu, tak to bude vypadat takto:
 ```
 jmeno = "Tomáš"
@@ -105,8 +126,8 @@ st.write(jmeno_a_prijmeni)
 
 st.markdown("""
 ----
-Je to mnohem čiestější a přehlednější. \\
-A sílá je právě v tom, že dokážete spojovat i čísla k tomu např. \\
+Je to mnohem čistější a přehlednější. \\
+A sílá je právě v tom, že dokážete spojovat i čísla k tomu např.
 ```
 vek = 28
 jmeno = "Tomáš"
@@ -120,8 +141,9 @@ jmeno = "Tomáš"
 jmeno_vek = f"{jmeno} je starý {vek} let."
 st.write(jmeno_vek)
 
+
+st.subheader("Textové vstupy a komponenty")
 st.markdown("""
----
 Nyní si ukážeme jak vytvořit vstup pro uživatele. \\
 Používá se k tomu tzv. komponenta. Komponenta je něco, co se přepoužívá někde jinde. 
 
@@ -270,76 +292,99 @@ Mezi často využívané funkce, které budete potřebovat když budete pracovat
 - `endswith()` - zda končí řetězec na něco
 - `find()` - najít pozici řetězce
 - `join()` - spojení řetězců
-```
-libovolny_retezec = "Magistrát města Mostu "
-st.write(len(libovolny_retezec))
-st.write(libovolny_retezec.lower())
-st.write(libovolny_retezec.upper())
-st.write(libovolny_retezec.capitalize())
 
-st.write(libovolny_retezec.replace("Magistrát města", "Dycky"))
-
-st.write(libovolny_retezec.startswith("Mag"))
-st.write(libovolny_retezec.endswith("Mostu")) # pozor na mezery
-
-st.write(libovolny_retezec.strip())
-st.write(libovolny_retezec.strip().endswith("Mostu"))
-
-st.write(libovolny_retezec.find("Mostu"))
-```
-A výsledky vidíte níže
+Příklady jak to využít naleznete níže.
 """)
 
 libovolny_retezec = "Magistrát města Mostu "
 st.code("""
-st.write(len(libovolny_retezec))
+libovolny_retezec = "Magistrát města Mostu "
+delka_retezce = len(libovolny_retezec)
+st.write(delka_retezce)
 """)
 st.write(len(libovolny_retezec))
 st.write("---")
 st.code("""
-st.write(libovolny_retezec.lower())
+libovolny_retezec = "Magistrát města Mostu "
+retezec_mala_pismena = libovolny_retezec.lower()
+st.write(retezec_mala_pismena)
 """)
 st.write(libovolny_retezec.lower())
 st.write("---")
 st.code("""
-st.write(libovolny_retezec.upper())
+libovolny_retezec = "Magistrát města Mostu "
+retezec_velka_pismena = libovolny_retezec.upper()
+st.write(retezec_velka_pismena)
 """)
 st.write(libovolny_retezec.upper())
 st.write("---")
 st.code("""
-st.write(libovolny_retezec.capitalize())
+libovolny_retezec = "Magistrát města Mostu "
+retezec_prvni_velke = libovolny_retezec.capitalize()
+st.write(retezec_prvni_velke)
 """)
 st.write(libovolny_retezec.capitalize())
 st.write("---")
 st.code("""
-st.write(libovolny_retezec.replace("Magistrát města", "Dycky"))
+libovolny_retezec = "Magistrát města Mostu "
+retezec_nahrazeny = libovolny_retezec.replace("Magistrát města", "Dycky")
+st.write(retezec_nahrazeny)
 """)
 st.write(libovolny_retezec.replace("Magistrát města", "Dycky"))
 st.write("---")
 st.code("""
-st.write(libovolny_retezec.startswith("Mag"))
+libovolny_retezec = "Magistrát města Mostu "
+retezec_zacinajici = libovolny_retezec.startswith("Mag")
+st.write(retezec_zacinajici)
 """)
 st.write(libovolny_retezec.startswith("Mag"))
 st.write("---")
 st.code("""
-st.write(libovolny_retezec.endswith("Mostu") # pozor na mezery)
+libovolny_retezec = "Magistrát města Mostu "
+retezec_koncici = libovolny_retezec.endswith("Mostu")
+st.write(retezec_koncici) # pozor na mezery
 """)
 st.write(libovolny_retezec.endswith("Mostu")) 
 st.write("---")
 st.code("""
-st.write(libovolny_retezec.strip())
+libovolny_retezec = "Magistrát města Mostu "
+retezec_ocisteny = libovolny_retezec.strip()
+st.write(retezec_ocisteny)
 """)
 st.write(libovolny_retezec.strip())
 st.write("---")
 st.code("""
-st.write(libovolny_retezec.strip().endswith("Mostu"))
+libovolny_retezec = "Magistrát města Mostu "
+retezec_ocisteny = libovolny_retezec.strip()
+retezec_ocisteny_koncici = retezec_ocisteny.endswith("Mostu")
+st.write(retezec_ocisteny_koncici)
 """)
 st.write(libovolny_retezec.strip().endswith("Mostu"))
 st.write("---")
 st.code("""
-st.write(libovolny_retezec.find("Mostu"))
+libovolny_retezec = "Magistrát města Mostu "
+retezec_nalezeny = libovolny_retezec.find("Mostu")
+st.write(retezec_nalezeny)
 """)
 st.write(libovolny_retezec.find("Mostu"))
+st.write("---")
+st.code("""
+libovolny_retezec_1 = "Magistrát"
+libovolny_retezec_2 = "města"
+libovolny_retezec_3 = "Mostu"
+retezec_spojeny_s_mezerou = " ".join([libovolny_retezec_1, libovolny_retezec_2, libovolny_retezec_3])
+retezec_spojeny_pomlckou = "-".join([libovolny_retezec_1, libovolny_retezec_2, libovolny_retezec_3])
+st.write(retezec_spojeny_s_mezerou)
+st.write(retezec_spojeny_pomlckou)
+""")
+
+libovolny_retezec_1 = "Magistrát"
+libovolny_retezec_2 = "města"
+libovolny_retezec_3 = "Mostu"
+retezec_spojeny_s_mezerou = " ".join([libovolny_retezec_1, libovolny_retezec_2, libovolny_retezec_3])
+retezec_spojeny_pomlckou = "-".join([libovolny_retezec_1, libovolny_retezec_2, libovolny_retezec_3])
+st.write(retezec_spojeny_s_mezerou)
+st.write(retezec_spojeny_pomlckou)
 
 st.markdown("""
 ---

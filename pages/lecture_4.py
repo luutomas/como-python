@@ -66,7 +66,7 @@ Např. pokud bych chtěl zjistit všechny jídla, které mám v seznamu, tak byc
 seznam_jidel = jídla.keys()
 st.write(seznam_jidel)
 ```
-A dostanu seznam jidel (hlouběji se do seznamů podíváme později):
+A dostanu seznam jidel (hlouběji se na seznamy podíváme později):
 """)
 jidla = {
     "hamburger": 99,
@@ -110,7 +110,7 @@ jidla = {
 seznam_jidel_a_cen = jidla.items()
 st.write(seznam_jidel_a_cen)
 ```
-A dostanu dvojice klíč-hodnota (hlouběji se do seznamů podíváme později):
+A dostanu dvojice klíč-hodnota (hlouběji se na seznamy a n-tice podíváme později):
 """)
 jidla = {
     "hamburger": 99,
@@ -207,34 +207,32 @@ poledni_menu = {
 """)
 
 st.markdown("""
----
-### Úkol 1
+#### Úkol 1
 Pomocí `[]` získejte cenu sendviče a vypište ji.
 
-### Úkol 2
+#### Úkol 2
 Pomocí `get()` získejte cenu steaku a pokud to nenajde tak vypište 500
 
-### Úkol 3
+#### Úkol 3
 Pomocí [] přidejte do menu položku kuřecí nudle za 99
 
-### Úkol 4
+#### Úkol 4
 Vypište mi všechny položky v menu tedy názvy jídel.
 
-### Úkol 5
+#### Úkol 5
 Vypište mi všechny ceny v menu.
 
-### Úkol 6
+#### Úkol 6
 Vypište mi všechny položky a ceny v menu.
 
-### Úkol 7
+#### Úkol 7
 Smažte položku hamburger z menu.
 
 """)
 
+st.subheader("JSON")
 st.markdown("""
---- 
 Struktura slovníků je velmi podobná JSON, který je zkratkou pro JavaScript Object Notation. \\
-JSON je způsob, jak ukládat data na webu a je to jeden z nejčastějších způsobů, jak data přenášet mezi různými službami. \\
 JSON je de fakto slovník, který je zapsaný v textové podobě a je to jeden z nejlepších způsobů, **jak ukládat data a posílat data**. \\
 My můžeme tedy také slovníky ukládat a pak je používat. \\
 Pojďme si to zkusit spolu.
@@ -299,11 +297,29 @@ Nyní když se podívate na ten souboru, tak tam bude nové jídlo.
 
 Ukázali jsme si tedy základní práci se slovníky a jak je ukládat a načítat z JSON souborů.
 
----
+Pojďme si to zkusit na příkladu. Máte následující slovník:
+```
+menu = {
+    "hamburger": 99,
+    "pizza": 149,
+    "sendvič": 59,
+    "kebab": 89,
+    "pho": 79,
+    "řízek": 119,
+    "knedlo-vepřo-zelo": 139
+    }
+```
+### Úkol 8
+Uložte tento slovník do souboru `menu.json` a poté ho načtěte a vypište.
 
+### Úkol 9
+Přidejte do menu položku kuřecí nudle za 99 a uložte to zpět do souboru `menu.json`
+
+### Úkol 10
+Podívejte do `menu.json`, že tam kuřecí nudle jsou.
 """)
 
-
+st.subheader("API")
 st.markdown("""
 Abychom si krátce ukázali, jak funguje výměna dat na webu, tak si ukážeme, jaké data získáme pokud si zavoláme Pokemon API. \\
 API je zkratka pro Application Programming Interface a je to způsob, jak můžeme získat data z jiných služeb. \\
@@ -338,5 +354,5 @@ st.image(foto)
 
 st.markdown("""
 Je tedy vždy velmi důležité se naučit pracovat s dokumentací a s výstupem, který dostanete. \\
-Vždy se snažte zjistit, co vám API vrací a jak s tím můžete pracovat. \\
+Vždy se snažte zjistit, co vám API vrací a jak s tím můžete pracovat.
 """)
