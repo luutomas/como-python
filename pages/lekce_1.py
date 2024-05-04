@@ -194,9 +194,9 @@ Pokud bych tedy chtěl vytvořit textový vstup, kde bude defaultní hodnota "Jm
 ```
 jmeno = st.text_input("Zadejte jméno", value="Jméno", key="jmeno_2")
 prijmeni = st.text_input("Zadejte příjmení", value="Příjmení", key="prijmeni_2")
-mesto = st.text_input("Zadejte město", value="Město", key="mesto_2", placeholder="Napište město", type = "password")
+mesto = st.text_input("Zadejte město", value="Most", key="mesto_2", placeholder="Napište město", type = "password")
 jmeno_a_prijmeni_mesto = f"{jmeno} {prijmeni} {mesto}"
-st.write(jmeno_a_prijmeni)
+st.write(jmeno_a_prijmeni_mesto)
 ```
 """)
 
@@ -253,7 +253,7 @@ if st.toggle("Zobrazit řešení 3"):
 st.markdown("""
 ---
 ### Úkol 4
-Spojte ty 4 textové vstupy dohromady proměnné spojeni_pomoci_plus a spojte je pomocí `+` znaménka.
+Spojte ty 3 textové vstupy dohromady proměnné spojeni_pomoci_plus a spojte je pomocí `+` znaménka.
 """)
 if st.toggle("Zobrazit řešení 4"):
     jmeno_a_prijmeni_mesto = jmeno + " " + prijmeni + " " + mesto
@@ -267,7 +267,7 @@ if st.toggle("Zobrazit řešení 4"):
 st.markdown("""
 ---
 ### Úkol 5
-Spojte ty 4 textové vstupy dohromady proměnné spojeni_pomoci_fstring a spojte je pomocí f-stringu.
+Spojte ty 3 textové vstupy dohromady proměnné spojeni_pomoci_fstring a spojte je pomocí f-stringu.
 """)
 if st.toggle("Zobrazit řešení 5"):
     jmeno_a_prijmeni_mesto = f"{jmeno} {prijmeni} {mesto}"
