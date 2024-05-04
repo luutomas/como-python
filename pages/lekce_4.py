@@ -205,101 +205,7 @@ poledni_menu = {
     }
 ```
 """)
-
-st.markdown("""
-#### Úkol 1
-Pomocí `[]` získejte cenu sendviče a vypište ji.
-
-#### Úkol 2
-Pomocí `get()` získejte cenu steaku a pokud to nenajde tak vypište 500
-
-#### Úkol 3
-Pomocí [] přidejte do menu položku kuřecí nudle za 99
-
-#### Úkol 4
-Vypište mi všechny položky v menu tedy názvy jídel.
-
-#### Úkol 5
-Vypište mi všechny ceny v menu.
-
-#### Úkol 6
-Vypište mi všechny položky a ceny v menu.
-
-#### Úkol 7
-Smažte položku hamburger z menu.
-
-""")
-
-st.subheader("JSON")
-st.markdown("""
-Struktura slovníků je velmi podobná JSON, který je zkratkou pro JavaScript Object Notation. \\
-JSON je de fakto slovník, který je zapsaný v textové podobě a je to jeden z nejlepších způsobů, **jak ukládat data a posílat data**. \\
-My můžeme tedy také slovníky ukládat a pak je používat. \\
-Pojďme si to zkusit spolu.
-Pro manipulaci s JSON používáme knihovnu `json` a pro načtení a zápis do souboru používáme funkce `load` a `dump`.
-To vypadá takto:
-```
-import json
-json.load(cesta_k_souboru)
-json.dump(cesta_k_souboru, data)
-```
-Pojďme to spolu zkusit.
-Nejdříve uložím náš jídelní lístek do souboru `jidla.json`:
-```
-jidla = {
-    "hamburger": 99,
-    "pizza": 149,
-    "sendvič": 59
-    }
-with open("jidla.json", "w") as f:
-    json.dump(jidla, f)
-```
-""")
-import json
-jidla = {
-    "hamburger": 99,
-    "pizza": 149,
-    "sendvič": 59
-    }
-with open("jidla.json", "w") as f:
-    json.dump(jidla, f)
-
-st.markdown("""
----
-Nově budeme mít soubor `jidla.json` a můžeme si ho načíst pomocí:
-```
-with open("jidla.json", "r") as f:
-    nactena_jidla = json.load(f)
-st.write(nactena_jidla)
-```
-Viz výsledek:
-""")
-
-with open("jidla.json", "r") as f:
-    nactena_jidla = json.load(f)
-st.write(nactena_jidla)
-
-st.markdown("""
----
-Nyní přidáme do našeho menu nové jídlo a uložíme to zpět do souboru:
-```
-nactena_jidla["kebab"] = 89
-with open("jidla.json", "w") as f:
-    json.dump(nactena_jidla, f)
-``` 
-""")
-nactena_jidla["kebab"] = 89
-with open("jidla.json", "w") as f:
-    json.dump(nactena_jidla, f)
-
-st.markdown("""
-Nyní když se podívate na ten souboru, tak tam bude nové jídlo.
-
-Ukázali jsme si tedy základní práci se slovníky a jak je ukládat a načítat z JSON souborů.
-
-Pojďme si to zkusit na příkladu. Máte následující slovník:
-```
-menu = {
+poledni_menu = {
     "hamburger": 99,
     "pizza": 149,
     "sendvič": 59,
@@ -308,51 +214,556 @@ menu = {
     "řízek": 119,
     "knedlo-vepřo-zelo": 139
     }
+st.markdown("""
+### Úkol 1
+Pomocí `[]` získejte cenu sendviče a vypište ji.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_1"):
+    ### Úkol 1
+    sendvic = poledni_menu["sendvič"]
+    st.write(f"Cena sendviče je {sendvic}")
+
+    if st.toggle("Zobrazit kód", key = "kod_1"):
+        st.code("""
+            ### Úkol 1
+            sendvic = poledni_menu["sendvič"]
+            st.write(f"Cena sendviče je {sendvic}")
+            """)
+
+st.markdown("""
+---
+### Úkol 2
+Pomocí `get()` získejte cenu steaku a pokud to nenajde tak vypište 500
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_2"):
+    ### Úkol 2
+    steak = poledni_menu.get("steak", 500)
+    st.write(f"Cena steaku je {steak}")
+
+    if st.toggle("Zobrazit kód", key = "kod_2"):
+        st.code("""
+            ### Úkol 2
+            steak = poledni_menu.get("steak", 500)
+            st.write(f"Cena steaku je {steak}")
+            """)
+
+st.markdown("""
+---
+### Úkol 3
+Pomocí [] přidejte do menu položku kuřecí nudle za 99 a vypište nové menu.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_3"):
+    ### Úkol 3
+    poledni_menu["kuřecí nudle"] = 99
+    st.write(poledni_menu)
+
+    if st.toggle("Zobrazit kód", key = "kod_3"):
+        st.code("""
+            ### Úkol 3
+            poledni_menu["kuřecí nudle"] = 99
+            st.write(poledni_menu)
+            """)
+
+st.markdown("""
+---
+### Úkol 4
+Vypište mi všechny položky v menu tedy názvy jídel.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_4"):
+    ### Úkol 4
+    polozky = poledni_menu.keys()
+    st.write(polozky)
+
+    if st.toggle("Zobrazit kód", key = "kod_4"):
+        st.code("""
+            ### Úkol 4
+            polozky = poledni_menu.keys()
+            st.write(polozky)
+            """)
+st.markdown("""
+
+### Úkol 5
+Vypište všechny ceny v menu.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_5"):
+    ### Úkol 5
+    ceny = poledni_menu.values()
+    st.write(ceny)
+
+    if st.toggle("Zobrazit kód", key = "kod_5"):
+        st.code("""
+            ### Úkol 5
+            ceny = poledni_menu.values()
+            st.write(ceny)
+            """)
+st.markdown("""
+---
+### Úkol 6
+Vypište mi všechny položky a ceny v menu.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_6"):
+    ### Úkol 6
+    polozky_a_ceny = poledni_menu.items()
+    st.write(polozky_a_ceny)
+
+    if st.toggle("Zobrazit kód", key = "kod_6"):
+        st.code("""
+            ### Úkol 6
+            polozky_a_ceny = poledni_menu.items()
+            st.write(polozky_a_ceny)
+            """)
+
+st.markdown("""
+---
+### Úkol 7
+Smažte položku hamburger z menu a vypište nové menu.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_7"):
+    ### Úkol 7
+    del poledni_menu["hamburger"]
+    st.write(poledni_menu)
+
+    if st.toggle("Zobrazit kód", key = "kod_7"):
+        st.code("""
+            ### Úkol 7
+            del poledni_menu["hamburger"]
+            st.write(poledni_menu)
+            """)
+
+st.markdown("""
+---
+### Vnořené slovníky
+Slovníky mohou být vnořené, což znamená, že můžeme mít slovník uvnitř slovníku. \\
+Např. pokud budu mít restaurace a pro každou restauraci budu mít informace ohledně jejich menu tak to bude vypadat takto:
 ```
+restaurace = {
+    "KFC" : {
+        "kuřecí křidélka": 99,
+        "kuřecí strips": 129
+        },
+    "McDonalds" : {
+        "hamburger": 79,
+        "cheeseburger": 89
+        }
+    }
+```
+Pak tedy pokud se chci dostat na cenu kuřecího stripsu tak musím: 
+```
+cena_kfc_kureci_strips = restaurace["KFC"]["kuřecí strips"]
+st.write(f"Cena kuřecího stripsu v KFC je {cena_kfc_kureci_strips}")
+```
+Tedy pak dostanu tento výsledek.
+""")
+
+restaurace = {
+    "KFC" : {
+        "kuřecí křidélka": 99,
+        "kuřecí strips": 129
+        },
+    "McDonalds" : {
+        "hamburger": 79,
+        "cheeseburger": 89
+        }
+    }
+cena_kfc_kureci_strips = restaurace["KFC"]["kuřecí strips"]
+st.write(f"Cena kuřecího stripsu v KFC je {cena_kfc_kureci_strips}")
+
+st.markdown("""
+---
+Pojďme si to procvičit na příkladu.
 ### Úkol 8
-Uložte tento slovník do souboru `menu.json` a poté ho načtěte a vypište.
+Vytvořte slovník s názvem `restaurace` a do něj vložte následující data:
+Budete mít 3 restaurace a jejich následájící menu:
+- Bilbo
+    - Řizek za 100
+    - Vepřový guláš za 120
+- Lagarto
+    - Avokádový toast za 130
+    - Tacos za 150
+- Panda
+    - Sushi za 200
+    - Ramen za 180
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_8"):
+    ### Úkol 8
+    restaurace = {
+        "Bilbo" : {
+            "řízek": 100,
+            "vepřový guláš": 120
+            },
+        "Lagarto" : {
+            "avokádový toast": 130,
+            "tacos": 150
+            },
+        "Panda" : {
+            "sushi": 200,
+            "ramen": 180
+            }
+        }
+    st.write(restaurace)
 
+    if st.toggle("Zobrazit kód", key = "kod_8"):
+        st.code("""
+            ### Úkol 8
+            restaurace = {
+                "Bilbo" : {
+                    "řízek": 100,
+                    "vepřový guláš": 120
+                    },
+                "Lagarto" : {
+                    "avokádový toast": 130,
+                    "tacos": 150
+                    },
+                "Panda" : {
+                    "sushi": 200,
+                    "ramen": 180
+                    }
+                }
+            st.write(restaurace)
+            """)
+
+st.markdown("""
+---
 ### Úkol 9
-Přidejte do menu položku kuřecí nudle za 99 a uložte to zpět do souboru `menu.json`
+Máte menu z minulého úkolu. Zjistěte cenu avokádového toastu v restauraci Lagarto.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_9"):
+    ### Úkol 9
+    cena_avokadovy_toast = restaurace["Lagarto"]["avokádový toast"]
+    st.write(f"Cena avokádového toastu v Lagarto je {cena_avokadovy_toast}")
 
+    if st.toggle("Zobrazit kód", key = "kod_9"):
+        st.code("""
+            ### Úkol 9
+            cena_avokadovy_toast = restaurace["Lagarto"]["avokádový toast"]
+            st.write(f"Cena avokádového toastu v Lagarto je {cena_avokadovy_toast}")
+            """)
+
+st.markdown("""
+---
 ### Úkol 10
-Podívejte do `menu.json`, že tam kuřecí nudle jsou.
+Máte menu z minulého úkolu. Přidejte do restaurace Bilbo nové jídlo řízek s bramborem za 150.
 """)
+if st.toggle("Zobrazit řešení", key = "reseni_10"):
+    ### Úkol 10
+    restaurace["Bilbo"]["řízek s bramborem"] = 150
+    st.write(restaurace)
 
-st.subheader("API")
-st.markdown("""
-Abychom si krátce ukázali, jak funguje výměna dat na webu, tak si ukážeme, jaké data získáme pokud si zavoláme Pokemon API. \\
-API je zkratka pro Application Programming Interface a je to způsob, jak můžeme získat data z jiných služeb. \\
-V tomto případě si zavoláme službu, která nám vrátí data o pokemonech. \\
-Použijeme knihovnu `requests`, která nám umožní zavolat API a získat data. \\
-Pojďme si to zkusit.
-```
-import requests
-response = requests.get("https://pokeapi.co/api/v2/pokemon/1")
-data = response.json()
-st.write(data)
-```
-""")
-
-import requests
-response = requests.get("https://pokeapi.co/api/v2/pokemon/pikachu")
-data = response.json()
-st.write(data)
+    if st.toggle("Zobrazit kód", key = "kod_10"):
+        st.code("""
+            ### Úkol 10
+            restaurace["Bilbo"]["řízek s bramborem"] = 150
+            st.write(restaurace)
+            """)
 
 st.markdown("""
-Na první pohled Vás to může vyděsit ale nic to není. \\
-My jsme zatím používali jednoduché slovníky ale v reálu se používají složitější slovníky, které obsahují další slovníky a seznamy. \\
-To je způsob, jak se ukládají data na webu a jak se s nimi pracuje. \\
-Např. pokud bych si chtěl najít fotku pikachu tak bych napsal:
-```
-foto = data["sprites"]["front_default"]
-st.image(foto)
-```
+---
+### Úkol 11
+Máte menu z minulého úkolu. Smažte z restaurace Panda položku sushi.
 """)
-foto = data["sprites"]["front_default"]
-st.image(foto)
+if st.toggle("Zobrazit řešení", key = "reseni_11"):
+    ### Úkol 11
+    del restaurace["Panda"]["sushi"]
+    st.write(restaurace)
+
+    if st.toggle("Zobrazit kód", key = "kod_11"):
+        st.code("""
+            ### Úkol 11
+            del restaurace["Panda"]["sushi"]
+            st.write(restaurace)
+            """)
+st.markdown("""
+---
+### Úkol 12
+Máte menu z minulého úkolu. Vypište všechny restaurace.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_12"):
+    ### Úkol 12
+    restaurace_nazvy = restaurace.keys()
+    st.write(restaurace_nazvy)
+    if st.toggle("Zobrazit kód", key = "kod_12"):
+        st.code("""
+            ### Úkol 12
+            restaurace_nazvy = restaurace.keys()
+            st.write(restaurace_nazvy)
+            """)
 
 st.markdown("""
-Je tedy vždy velmi důležité se naučit pracovat s dokumentací a s výstupem, který dostanete. \\
-Vždy se snažte zjistit, co vám API vrací a jak s tím můžete pracovat.
+---
+### Úkol 13
+Máte menu z minulého úkolu. Vypište všechny jídla v restauraci Lagarto.
 """)
+if st.toggle("Zobrazit řešení", key = "reseni_13"):
+    ### Úkol 13
+    jidla_lagarto = restaurace["Lagarto"].keys()
+    st.write(jidla_lagarto)
+
+    if st.toggle("Zobrazit kód", key = "kod_13"):
+        st.code("""
+            ### Úkol 13
+            jidla_lagarto = restaurace["Lagarto"].keys()
+            st.write(jidla_lagarto)
+            """)
+
+st.markdown("""
+---
+### Úkol 14
+Máte menu z minulého úkolu. Vypište všechny ceny v restauraci Bilbo.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_14"):
+    ### Úkol 14
+    ceny_bilbo = restaurace["Bilbo"].values()
+    st.write(ceny_bilbo)
+
+    if st.toggle("Zobrazit kód", key = "kod_14"):
+        st.code("""
+            ### Úkol 14
+            ceny_bilbo = restaurace["Bilbo"].values()
+            st.write(ceny_bilbo)
+            """)
+
+st.markdown("""
+---
+### Úkol 15
+Máte menu z minulého úkolu. Vypište všechny jídla a ceny v restauraci Panda.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_15"):
+    ### Úkol 15
+    jidla_a_ceny_panda = restaurace["Panda"].items()
+    st.write(jidla_a_ceny_panda)
+
+    if st.toggle("Zobrazit kód", key = "kod_15"):
+        st.code("""
+            ### Úkol 15
+            jidla_a_ceny_panda = restaurace["Panda"].items()
+            st.write(jidla_a_ceny_panda)
+            """)
+
+st.markdown("""
+---
+Pojďme nyní zkombinovat se streamlit komponenty. 
+
+### Úkol 16
+Máte menu z minulého úkolu. Chcete od uživatele jak položku tak i cenu. Tuto položku přidáte tlačítkem st.button do menu restaurace Panda
+a poté si nechte vypsat nové menu.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_16"):
+    ### Úkol 16
+    polozka = st.text_input("Zadejte název položky", key = "polozka_16")
+    cena = st.number_input("Zadejte cenu položky", key = "cena_16")
+    if st.button("Přidat položku"):
+        restaurace["Panda"][polozka] = cena
+        st.write(restaurace)
+
+    if st.toggle("Zobrazit kód", key = "kod_16"):
+        st.code("""
+            ### Úkol 16
+            polozka = st.text_input("Zadejte název položky")
+            cena = st.number_input("Zadejte cenu položky")
+            if st.button("Přidat položku"):
+                restaurace["Panda"][polozka] = cena
+                st.write(restaurace)
+            """)
+
+st.markdown("""
+---
+### Úkol 17
+Máte menu z minulého úkolu. 
+Nechte si ho vypsat. \\
+Chcete od uživatele jméno restaurace a název jídla a po stisknutí tlačítka st.button se vypíše cena tohoto jídla.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_17"):
+    ### Úkol 17
+    st.write(restaurace)
+    restaurace_jmeno = st.text_input("Zadejte název restaurace", key = "restaurcae_17")
+    jidlo = st.text_input("Zadejte název jídla", key = "jidlo_17")
+    if st.button("Zjistit cenu"):
+        cena = restaurace[restaurace_jmeno][jidlo]
+        st.write(f"Cena jídla {jidlo} v restauraci {restaurace_jmeno} je {cena}")
+
+    if st.toggle("Zobrazit kód", key = "kod_17"):
+        st.code("""
+            ### Úkol 17
+            st.write(restaurace)
+            restaurace_jmeno = st.text_input("Zadejte název restaurace")
+            jidlo = st.text_input("Zadejte název jídla")
+            if st.button("Zjistit cenu"):
+                cena = restaurace[restaurace_jmeno][jidlo]
+                st.write(f"Cena jídla {jidlo} v restauraci {restaurace_jmeno} je {cena}")
+            """)
+
+st.markdown("""
+---
+Trochu zatočíme a ukážeme si skvělou funkci try a except. \\
+Pokud se vám někdy stane, že se vám program zastaví kvůli chybě, tak můžete použít try a except, 
+které vám umožní zachytit chybu a pokračovat dál. \\
+Např v předchozím příkladu když bych zadal nesprávné jméno restaurace nebo napsali špatný jméno jídla tak by mi to vyhodilo chybu. \\
+Pokud chci tuto chybu zachytit tak můžu napsat:
+```
+st.write(restaurace)
+restaurace_jmeno = st.text_input("Zadejte název restaurace")
+jidlo = st.text_input("Zadejte název jídla")
+if st.button("Zjistit cenu"):
+    try:
+        cena = restaurace[restaurace_jmeno][jidlo]
+        st.write(f"Cena jídla {jidlo} v restauraci {restaurace_jmeno} je {cena}")
+    except:
+        st.write("Něco se pokazilo")
+```
+""")
+st.write(restaurace)
+restaurace_jmeno = st.text_input("Zadejte název restaurace", key = "restaurace_17_try")
+jidlo = st.text_input("Zadejte název jídla", key = "jidlo_17_try")
+if st.button("Zjistit cenu", key = "button_17_try"):
+    try:
+        cena = restaurace[restaurace_jmeno][jidlo]
+        st.write(f"Cena jídla {jidlo} v restauraci {restaurace_jmeno} je {cena}")
+    except:
+        st.write("Něco se pokazilo")
+
+st.markdown("""
+---
+Toto jenom používejte opatrně a s rozmyslem. \\
+Může se stát, že chybu nezachytíte a program bude pokračovat dál a může se stát, že se vám to zasekne. \\
+Používejte to tedy jenom tam, kde je to opravdu potřeba. \\
+Pojďme si to zkusit na příkladu.
+### Úkol 18
+Máte menu z minulého úkolu.
+Nechte si ho vypsat. \\
+Chcete od uživatele jméno restaurace a chcete vypsat všechna jídla v této restauraci. \\
+Pokud se něco pokazí tak vypište "Něco se pokazilo".
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_18"):
+    st.write(restaurace)
+    restaurace_jmeno = st.text_input("Zadejte název restaurace", key = "restaurace_18_try")
+    if st.button("Zjistit jídla", key= "button_18_try"):
+        try:
+            jidla = restaurace[restaurace_jmeno].keys()
+            st.write(jidla)
+        except:
+            st.write("Něco se pokazilo")
+    if st.toggle("Zobrazit kód", key = "kod_18"):
+        st.code("""
+            ### Úkol 18
+            st.write(restaurace)
+            restaurace_jmeno = st.text_input("Zadejte název restaurace")
+            if st.button("Zjistit jídla"):
+                try:
+                    jidla = restaurace[restaurace_jmeno].keys()
+                    st.write(jidla)
+                except:
+                    st.write("Něco se pokazilo")
+            """)
+
+st.markdown("""
+---
+Nyní do toho všeho zkusíme dát ještě podmínky. \\
+
+### Úkol 19
+Máte menu z minulého úkolu. \\
+Nechte si ho vypsat. \\
+Chcete od uživatele jméno restaurace. \\
+Pokud jméno restaurace je v seznamu tak vypište všechna jídla v této restauraci. \\
+Pokud jméno restaurace není v seznamu tak vypište "Restaurace není v seznamu".
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_19"):
+    st.write(restaurace)
+    restaurace_jmeno = st.text_input("Zadejte název restaurace", key = "restaurace_19_try")
+    if st.button("Zjistit jídla", key= "button_19_try"):
+        if restaurace_jmeno in restaurace:
+            jidla = restaurace[restaurace_jmeno].keys()
+            st.write(jidla)
+        else:
+            st.write("Restaurace není v seznamu")
+    if st.toggle("Zobrazit kód", key = "kod_19"):
+        st.code("""
+            ### Úkol 19
+            st.write(restaurace)
+            restaurace_jmeno = st.text_input("Zadejte název restaurace")
+            if st.button("Zjistit jídla"):
+                if restaurace_jmeno in restaurace:
+                    jidla = restaurace[restaurace_jmeno].keys()
+                    st.write(jidla)
+                else:
+                    st.write("Restaurace není v seznamu")
+            """)
+
+st.markdown("""
+---
+Vidíte, že nemusíte již používat try a except. Toto je také jeden způsobů, jak to udělat. \\
+Try a Except jsou spíš jedny z pokročilejších funkcí, které se hodí, když víte, že se může něco pokazit a pokud
+jsou případy, kdy if-else na to nestačí. Pokud ale if-else stačí tak je lepší použít if-else. \\
+""")
+
+st.markdown("""
+---
+### Úkol 20
+Máte menu z minulého úkolu. \\
+Chcete od uživate název jídla a cenu do menu restaurace Bilbo. \\
+Pokud je jídlo již v menu tak vypište "Jídlo je již v menu". \\
+Pokud není a cena je větší než 0 a vypište nové menu.
+Pokud není a cena je rovno 0 vypište "Cena musí být větší než 0.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_20"):
+    polozka = st.text_input("Zadejte název položky", key = "polozka_20")
+    cena = st.number_input("Zadejte cenu položky", key = "cena_20")
+    if st.button("Přidat položku", key = "button_20"):
+        if polozka in restaurace["Bilbo"]:
+            st.write("Jídlo je již v menu")
+        elif cena > 0:
+            restaurace["Bilbo"][polozka] = cena
+            st.write(restaurace)
+        else:
+            st.write("Cena musí být větší než 0")
+
+    if st.toggle("Zobrazit kód", key = "kod_20"):
+        st.code("""
+            ### Úkol 20
+            polozka = st.text_input("Zadejte název položky")
+            cena = st.number_input("Zadejte cenu položky")
+            if st.button("Přidat položku"):
+                if polozka in restaurace["Bilbo"]:
+                    st.write("Jídlo je již v menu")
+                elif cena > 0:
+                    restaurace["Bilbo"][polozka] = cena
+                    st.write(restaurace)
+                else:
+                    st.write("Cena musí být větší než 0")
+            """)
+
+st.markdown("""
+---
+### Úkol 21
+Máte menu z minulého úkolu. \\
+Chcete od uživatele název jídla a cenu do menu restaurace McDonalds. \\
+Pokud je jídlo již v menu tak vypište "Jídlo je již v menu". \\
+Pokud není a cena je větší než 20 a vypište nové menu.
+Pokud není a cena je menší než 20 vypište "Cena musí být větší než 20.
+""")
+if st.toggle("Zobrazit řešení", key = "reseni_21"):
+    polozka = st.text_input("Zadejte název položky", key = "polozka_21")
+    cena = st.number_input("Zadejte cenu položky", key = "cena_21")
+    if st.button("Přidat položku", key = "button_21"):
+        if polozka in restaurace["McDonalds"]:
+            st.write("Jídlo je již v menu")
+        elif cena > 0:
+            restaurace["McDonalds"][polozka] = cena
+            st.write(restaurace)
+        else:
+            st.write("Cena musí být větší než 0")
+
+    if st.toggle("Zobrazit kód", key = "kod_21"):
+        st.code("""
+            ### Úkol 21
+            polozka = st.text_input("Zadejte název položky")
+            cena = st.number_input("Zadejte cenu položky")
+            if st.button("Přidat položku"):
+                if polozka in restaurace["McDonalds"]:
+                    st.write("Jídlo je již v menu")
+                elif cena > 0:
+                    restaurace["McDonalds"][polozka] = cena
+                    st.write(restaurace)
+                else:
+                    st.write("Cena musí být větší než 0")
+            """)
+

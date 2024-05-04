@@ -1,231 +1,369 @@
 import streamlit as st
-st.set_page_config(page_title="COMO Python", page_icon=":snake:", layout="centered", initial_sidebar_state="collapsed")
-st.header("Lekce č.5")
 
-st.subheader("Seznamy, sety a n-tice")
+st.header("JSON")
 st.markdown("""
-Mezi další kličovou datovou strukturu patří seznamy. Sety a n-tice jsou podobné seznamům, ale mají několik rozdílů. \\
-Seznam je datová struktura, která ukládá data v pořadí, podobně jako seznam v reálném životě. \\
-V Pythonu se seznam zapisuje pomocí hranatých závorek `[]` nebo zaobalením něčeho, co by se dalo převést na seznam pomocí `list()`. \\
-Např. seznam s názvy jídel může vypadat takto:
+Struktura slovníků je velmi podobná JSON, který je zkratkou pro JavaScript Object Notation. \\
+JSON je de fakto slovník, který je zapsaný v textové podobě a je to jeden z nejlepších způsobů, **jak ukládat data a posílat data**. \\
+My můžeme tedy také slovníky ukládat a pak je používat. \\
+Pojďme si to zkusit spolu.
+Pro manipulaci s JSON používáme knihovnu `json` a pro načtení a zápis do souboru používáme funkce `load` a `dump`.
+To vypadá takto:
 ```
-jidla = ["hamburger", "pizza", "sendvič"]
+import json
+json.load(cesta_k_souboru)
+json.dump(cesta_k_souboru, data)
 ```
-Pokud bych chtěl získat první jídlo v seznamu, tak bych napsal:
-```
-prvni_jidlo = jidla[0]
-st.write(f"První jídlo je {prvni_jidlo}") # Všimněte si f-string v odpovědi
-```
-a tedy výsledek:
-""")
-jidla = ["hamburger", "pizza", "sendvič"]
-prvni_jidlo = jidla[0]
-st.write(f"První jídlo je {prvni_jidlo}") # Všimněte si f-string v odpovědi
-
-st.markdown("""
----
-Všimněte si, že indexování v Pythonu začíná od 0. \\
-Sety jsou datová struktura, která ukládá data bez pořadí a bez duplicit. \\
-V Pythonu se set zapisuje pomocí složených závorek `{}` ale inicializuje pomocí `set()` protože složené závorky jsou dle domluvy vyhrazené pro slovníky. \\
-Např. set s názvy jídel může vypadat takto:
-```
-jidla = set(["hamburger", "pizza", "sendvič"])
-```
-Všimněte si, že set je inicializován pomocí `set()` a v ní je seznam jídel. \\
-Tohle je velmi časté používání setů, protože se takto odstraní duplicitní hodnoty. \\
-Např. máme seznam s jídlem:
-```
-seznam_jidel = ["hamburger", "pizza", "sendvič", "hamburger", "pizza"]
-set_jidel = set(seznam_jidel)
-```
-""")
-
-seznam_jidel = ["hamburger", "pizza", "sendvič", "hamburger", "pizza"]
-set_jidel = set(seznam_jidel)
-st.write(seznam_jidel)
-st.write(set_jidel)
-
-st.markdown("""
----
-N-tice jsou datová struktura, která ukládá data v pořadí, ale nemůžeme je měnit. \\
-V Pythonu se n-tice zapisuje pomocí kulatých závorek `()`. \\
-Nelze měnit ani nelze vzít "první" pozici jako u seznamu. \\
-Např. n-tice s názvy jídel může vypadat takto:
-```
-hamburger = ("hamburger", 115)
-sendvič = ("sendvič", 59)
-pizza = ("pizza", 149)
-```
-Všimněte si, že n-tice jsou právě výsledkem operace na slovníky .items() např.:
+Pojďme to spolu zkusit.
+Nejdříve uložím náš jídelní lístek do souboru `jidla.json`:
 ```
 jidla = {
-    "hamburger": 115,
-    "sendvič": 59,
-    "pizza": 149
-}
-st.write(jidla.items())
-st.write(list(jidla.items())[0])
+    "hamburger": 99,
+    "pizza": 149,
+    "sendvič": 59
+    }
+with open("jidla.json", "w") as f:
+    json.dump(jidla, f)
 ```
-Výsledkem dostáváme LIST s n-ticemi, kdy každá n-tice má název a cenu. \\
-Tedy pak můžeme manipulovat s listem např. 
 """)
-
+import json
 jidla = {
-    "hamburger": 115,
-    "sendvič": 59,
-    "pizza": 149
-}
-st.write(jidla.items())
-st.write(list(jidla.items())[0])
+    "hamburger": 99,
+    "pizza": 149,
+    "sendvič": 59
+    }
+with open("jidla.json", "w") as f:
+    json.dump(jidla, f)
 
 st.markdown("""
 ---
-Pro naší práci bude nejdůležiější práce se seznamy a s nimi budeme pokračovat. \\
-Pro sety a n-tice si pouze třeba uvědomit, že existují a že pomocí set() můžeme odstranit duplicitní hodnoty ze seznamu.
-
-Mezi nejdůležitější funkce, které můžete se seznamem provádět patří:
-| Funkce | Popis |
-|--------|-------|
-| `append()` | Přidá prvek na konec seznamu |
-| `insert()` | Přidá prvek na zvolenou pozici |
-| `remove()` | Odebere prvek ze seznamu |
-| `pop()` | Odebere prvek na zvolené pozici |
-| `clear()` | Smaže celý seznam |
-| `sort()` | Seřadí seznam |
-| `reverse()` | Otočí pořadí seznamu |
-| `index()` | Vrátí pozici prvku |
-| `count()` | Vrátí počet prvků |
-| `copy()` | Zkopíruje seznam |
-| `extend()` | Rozšíří seznam o další seznam |
-| `len()` | Vrátí délku seznamu |
----
-
-Pojďme si je ukázat v akci:
+Nově budeme mít soubor `jidla.json` a můžeme si ho načíst pomocí:
 ```
-menu = ["hamburger", "pizza", "sendvič"]
-menu = ["hamburger", "pizza", "sendvič"]
-
-menu.append("pho")
-st.write(f"Po appendu: {menu}")
-
-menu.insert(1, "gyros")
-st.write(f"Po insertu: {menu}")
-
-menu.remove("pizza")
-st.write(f"Po remove: {menu}")
-
-menu.pop(0)
-st.write(f"Po pop: {menu}")
-
-menu.sort()
-st.write(f"Po sort: {menu}")
-
-menu.reverse()
-st.write(f"Po reverse: {menu}")
+with open("jidla.json", "r") as f:
+    nactena_jidla = json.load(f)
+st.write(nactena_jidla)
 ```
+Viz výsledek:
 """)
 
-menu = ["hamburger", "pizza", "sendvič"]
-menu = ["hamburger", "pizza", "sendvič"]
-
-menu.append("pho")
-st.write(f"Po appendu: {menu}")
-
-menu.insert(1, "gyros")
-st.write(f"Po insertu: {menu}")
-
-menu.remove("pizza")
-st.write(f"Po remove: {menu}")
-
-menu.pop(0)
-st.write(f"Po pop: {menu}")
-
-menu.sort()
-st.write(f"Po sort: {menu}")
-
-menu.reverse()
-st.write(f"Po reverse: {menu}")
+with open("jidla.json", "r") as f:
+    nactena_jidla = json.load(f)
+st.write(nactena_jidla)
 
 st.markdown("""
 ---
-Zkuste nyní sami pár úloh:
-Máte seznam jmen:
+Nyní přidáme do našeho menu nové jídlo a uložíme to zpět do souboru:
 ```
-jmena = ["Adéla", "Albert", "Míša", "Jára", "David", "Martin", "Oksana"]
-```
+nactena_jidla["kebab"] = 89
+with open("jidla.json", "w") as f:
+    json.dump(nactena_jidla, f)
+``` 
+""")
+nactena_jidla["kebab"] = 89
+with open("jidla.json", "w") as f:
+    json.dump(nactena_jidla, f)
 
+st.markdown("""
+Nyní když se podívate na ten souboru, tak tam bude nové jídlo.
+
+Ukázali jsme si tedy základní práci se slovníky a jak je ukládat a načítat z JSON souborů.
+
+Pojďme si to zkusit na příkladu. Máte následující slovník:
+```
+menu = {
+    "hamburger": 99,
+    "pizza": 149,
+    "sendvič": 59,
+    "kebab": 89,
+    "pho": 79,
+    "řízek": 119,
+    "knedlo-vepřo-zelo": 139
+    }
+```
 ### Úkol 1
-Přidejte do seznamu jméno Tomáš.
+Uložte tento slovník do souboru `menu.json` a poté ho načtěte a vypište. \\
+Ověřte, že existuje soubor `menu.json` a že obsahuje správná data.
+""")
+if st.toggle("Zobrazit řešení", False, key = "reseni_1"):
+    menu = {
+        "hamburger": 99,
+        "pizza": 149,
+        "sendvič": 59,
+        "kebab": 89,
+        "pho": 79,
+        "řízek": 119,
+        "knedlo-vepřo-zelo": 139
+        }
+    with open("menu.json", "w") as f:
+        json.dump(menu, f)
+    with open("menu.json", "r") as f:
+        nactene_menu = json.load(f)
+    st.write(nactene_menu)
+    if st.toggle("Zobrazit kód", False, key = "kod_1"):
+        st.code("""
+        menu = {
+            "hamburger": 99,
+            "pizza": 149,
+            "sendvič": 59,
+            "kebab": 89,
+            "pho": 79,
+            "řízek": 119,
+            "knedlo-vepřo-zelo": 139
+            }
+        with open("menu.json", "w") as f:
+            json.dump(menu, f)
+        """)
 
+st.markdown("""
+---
 ### Úkol 2
-Seřaďte seznam jmen. 
+Přidejte do menu položku kuřecí nudle za 99 a uložte to zpět do souboru `menu.json`.
+Ověřte, že se změna provedla správně i v souboru.
+""")
+if st.toggle("Zobrazit řešení", False, key = "reseni_9"):
+    with open("menu.json", "r") as f:
+        menu = json.load(f)
+    menu["kuřecí nudle"] = 99
+    with open("menu.json", "w") as f:
+        json.dump(menu, f)
+    with open("menu.json", "r") as f:
+        nactene_menu = json.load(f)
+    st.write(nactene_menu)
+    if st.toggle("Zobrazit kód", False, key = "kod_9"):
+        st.code("""
+        with open("menu.json", "r") as f:
+            menu = json.load(f)
+        menu["kuřecí nudle"] = 99
+        with open("menu.json", "w") as f:
+            json.dump(menu, f)
+        """)
 
+st.markdown("""
+---
 ### Úkol 3
-Odeberte z listu jméno David.
+Chcete od uživatele zadat nové jídlo a cenu. \\
+Přidejte ho do menu poté, co zmáčknou tlačítko přidat do menu. \\
+Ověřte, že se změna provedla správně i v souboru.
+""")
+if st.toggle("Zobrazit řešení", False, key = "reseni_3"):
+    with open("menu.json", "r") as f:
+        menu = json.load(f)
+    nove_jidlo = st.text_input("Název jídla")
+    cena = st.number_input("Cena")
+    if st.button("Přidat do menu"):
+        menu[nove_jidlo] = cena
+        with open("menu.json", "w") as f:
+            json.dump(menu, f)
+        with open("menu.json", "r") as f:
+            nactene_menu = json.load(f)
+        st.write(nactene_menu)
+    if st.toggle("Zobrazit kód", False, key = "kod_3"):
+        st.code("""
+        with open("menu.json", "r") as f:
+            menu = json.load(f)
+        nove_jidlo = st.text_input("Název jídla")
+        cena = st.number_input("Cena")
+        if st.button("Přidat do menu"):
+            menu[nove_jidlo] = cena
+            with open("menu.json", "w") as f:
+                json.dump(menu, f)
+            with open("menu.json", "r") as f:
+                nactene_menu = json.load(f)
+            st.write(nactene_menu)
+        """)
 
+st.markdown("""
+---
+Důvod proč je třeba toto ukládat je v případě, kdy vlastně budete chtít aby ten člověk uložil nějaké informace někam a pak se k nim mohl dostat znovu. 
+To je jeden z nejčastějších způsobů, jak ukládat data a jak s nimi pracovat. 
+Jelikož pokud např. bychom chtěli ukládat data do proměnné, tak bychom je ztratili po ukončení programu. \\
+Toto si ukážeme úplně nejlépe na tomto příkladu:
 ### Úkol 4
-Pžidejte do seznamu jméno Adéla znovu.
+1. Vytvořte si nový page a pojmenujte ho `lekce_znamky.py`. \\
+2. Vytvořte ve své složce nový soubor `znamky.json`. \\
+3. Načtěte tento soubor pomocí tohoto příkazu:
+```
+try:
+    with open("znamky.json", "r") as f:
+        znamky = json.load(f)
+except:
+    znamky = {}
+```
+4. Vypište si tento slovník pomocí `st.write(znamky)`. \\
+5. Chcete od uživatele, aby zadal jméno a znamku. \\
+6. Po stisknutí tlačítka: Přidejte toto jméno a znamku do slovníku a uložte to do souboru `znamky.json`. \\
+7. Ověřte, že se změna provedla správně i v souboru.
+8. Zkuste zadat jméno a známku pro 3 lidi a ověřte, že se to uložilo správně.
+""")
+if st.toggle("Zobrazit řešení", False, key = "reseni_4"):
+    try:
+        with open("znamky.json", "r") as f:
+            znamky = json.load(f)
+    except:
+        znamky = {}
+    jmeno = st.text_input("Jméno")
+    znamka = st.number_input("Znamka")
+    if st.button("Přidat znamku"):
+        znamky[jmeno] = znamka
+        with open("znamky.json", "w") as f:
+            json.dump(znamky, f)
+        with open("znamky.json", "r") as f:
+            nactene_znamky = json.load(f)
+        st.write(nactene_znamky)
+    if st.toggle("Zobrazit kód", False, key = "kod_4"):
+        st.code("""
+        with open("znamky.json", "w") as f:
+            json.dump({}, f)
+        with open("znamky.json", "r") as f:
+            znamky = json.load(f)
+        jmeno = st.text_input("Jméno")
+        znamka = st.number_input("Znamka")
+        if st.button("Přidat znamku"):
+            znamky[jmeno] = znamka
+            with open("znamky.json", "w") as f:
+                json.dump(znamky, f)
+            with open("znamky.json", "r") as f:
+                nactene_znamky = json.load(f)
+            st.write(nactene_znamky)
+        """)
 
+st.subheader("API")
+st.markdown("""
+Abychom si krátce ukázali, jak funguje výměna dat na webu, tak si ukážeme, jaké data získáme pokud si zavoláme Pokemon API. \\
+API je zkratka pro Application Programming Interface a je to způsob, jak můžeme získat data z jiných služeb. \\
+V tomto případě si zavoláme službu, která nám vrátí data o pokemonech. \\
+Použijeme knihovnu `requests`, která nám umožní zavolat API a získat data. \\
+Pojďme si to zkusit.
+```
+import requests
+response = requests.get("https://pokeapi.co/api/v2/pokemon/1")
+data = response.json()
+st.write(data)
+```
+""")
+
+import requests
+response = requests.get("https://pokeapi.co/api/v2/pokemon/pikachu")
+data = response.json()
+st.write(data)
+
+st.markdown("""
+Na první pohled Vás to může vyděsit ale nic to není. \\
+My jsme zatím používali jednoduché slovníky ale v reálu se používají složitější slovníky, které obsahují další slovníky a seznamy (seznamy jsme ještě neprobírali ale budeme). \\
+To je způsob, jak se ukládají data na webu a jak se s nimi pracuje. \\
+Např. pokud bych si chtěl najít fotku pikachu tak bych napsal:
+```
+foto = data["sprites"]["front_default"]
+st.image(foto)
+```
+""")
+foto = data["sprites"]["front_default"]
+st.image(foto)
+
+st.markdown("""
+Je tedy vždy velmi důležité se naučit pracovat s dokumentací a s výstupem, který dostanete. \\
+Je totiž možné, že budete muset si nechat vyjet výstup z jednoho API a poslat ho do druhého. \\
+Například tato API mi vrací vtipy o Chuck Norrisovi.
+```
+import requests
+response = requests.get("https://api.chucknorris.io/jokes/random")
+data = response.json()
+st.write(data)
+```
+""")
+response = requests.get("https://api.chucknorris.io/jokes/random")
+data = response.json()
+st.write(data)
+
+st.markdown("""
+Když jsem si prostudoval ale dokumentaci na stránkách https://api.chucknorris.io/
+tak jsem zjistil, že mohu získat vtipy o Chuck Norrisovi podle kategorie. \\
+Potřebuju ale zjisti, jaké kategorie jsou k dispozici. \\
+To zjistím pomocí:
+```
+response = requests.get("https://api.chucknorris.io/jokes/categories")
+data = response.json()
+st.write(data)
+```
+""")
+response = requests.get("https://api.chucknorris.io/jokes/categories")
+data = response.json()
+st.write(data)
+
+st.markdown("""
+A nyní si mohu vybrat kategorii a získat vtip z této kategorie. \\
+Např. kategorie `dev`:
+```
+response = requests.get("https://api.chucknorris.io/jokes/random?category=music")
+data = response.json()
+st.write(data)
+```
+Můžu dokonce tu skupinu dát jako proměnnou pomocí f-stringu takto:
+```
+kategorie = "dev"
+response = requests.get(f"https://api.chucknorris.io/jokes/random?category={kategorie}")
+data = response.json()
+st.write(data)
+""")
+response = requests.get("https://api.chucknorris.io/jokes/random?category=music")
+data = response.json()
+st.write(data)
+
+st.markdown("""
 ### Úkol 5
-Vytvořte ze seznamu set a vypište ho. \\
-Vytvořte ze setu seznam a vypište ho.
+Zkuste si zavolat API na stránce https://api.chucknorris.io/ a získat vtip o Chuck Norrisovi. \\
+Chcete po uživateli napsat kategorii a získat vtip z této kategorie.\\
+Použijte k tomu try-except v případě že uživatel zadá špatnou kategorii. \\
+""")
+if st.toggle("Zobrazit řešení", False, key = "reseni_5"):
+    kategorie = st.text_input("Kategorie")
+    try:
+        response = requests.get(f"https://api.chucknorris.io/jokes/random?category={kategorie}")
+        data = response.json()
+        st.write(data)
+    except:
+        st.write("Špatná kategorie")
+    if st.toggle("Zobrazit kód", False, key = "kod_5"):
+        st.code("""
+        kategorie = st.text_input("Kategorie")
+        try:
+            response = requests.get(f"https://api.chucknorris.io/jokes/random?category={kategorie}")
+            data = response.json()
+            st.write(data)
+        except:
+            st.write("Špatná kategorie")
+        """)
 
+st.markdown("""
+---
 ### Úkol 6
-Vypište délku seznamu jmen z úkolu 5.
-
+Zkuste si podobný úkol na této API
+1. Z této adresy získejte a podívejte se jaké páry jsou k dispozici: https://www.frankfurter.app/currencies
+2. Vyberte si jeden měnu a nadefinujte tuto měnu pod proměnnou `mena_volby` (nejlépe to bude CZK)
+3. Získejte poslední data o směnném kurzu tohoto páru pomocí: https://www.frankfurter.app/latest?from={mena_volby}
+4. Zobrazte si data.
 """)
+if st.toggle("Zobrazit řešení", False, key = "reseni_6"):
+    request = requests.get("https://www.frankfurter.app/currencies")
+    data = request.json()
+    st.write(data)
+    mena_volby = "CZK"
+    request = requests.get(f"https://www.frankfurter.app/latest?from={mena_volby}")
+    data = request.json()
+    st.write(data)
+    if st.toggle("Zobrazit kód", False, key = "kod_6"):
+        st.code("""
+        request = requests.get("https://www.frankfurter.app/currencies")
+        data = request.json()
+        st.write(data)
+        mena_volby = "CZK"
+        request = requests.get(f"https://www.frankfurter.app/latest?from={mena_volby}")
+        data = request.json()
+        st.write(data)
+        """)
 
 st.markdown("""
----
-### Komponenty
-Jelikož jsme se naučili pracovat se seznamy, můžeme se podívat na další streamlit komponenty, které potřebovali seznamy. \\
-Jedná se o `st.selectbox()` a `st.multiselect()`. \\
-Obě komponenty potřebují seznam, ze kterého se bude vybírat. \\
-Parametry pro `st.selectbox()`:
-| Parametr | Popis |
-|----------|-------|
-| **label** | Popisek pro komponentu |
-| **options** | Seznam možností |
-| **index** | Index vybrané možnosti |
-| **key** | Klíč pro komponentu |
-| **help** | Nápověda pro komponentu |
-| on_change | Funkce, která se spustí při změně |
-| args | Argumenty pro funkci on_change |
-| kwargs | Keyword argumenty pro funkci on_change |
-| help | Nápověda pro komponentu |
-| help_tooltip | Tooltip pro nápovědu |
-
-Parametry pro `st.multiselect()`:
-| Parametr | Popis |
-|----------|-------|
-| **label** | Popisek pro komponentu |
-| **options** | Seznam možností |
-| **default** | Defaultní hodnota |
-| **index** | Index vybrané možnosti |
-| **key** | Klíč pro komponentu |
-| **help** | Nápověda pro komponentu |
-
-
-Např. máme seznam jmen:
-```
-jmena = ["Adéla", "Albert", "Míša", "Jára", "David", "Martin", "Oksana"]
-```
-a chceme, aby uživatel vybral jedno jméno:
-```
-jmeno = st.selectbox("Vyber jméno", jmena)
-st.write(f"Vybral jsi {jmeno}")
-```
-a tedy výsledek:
+Práce s API je jenom jedna z mnoho způsobů jak získávat data. \\
+Data z API nemusí chodit jenom jako JSON ale také jako XML nebo i dokonce CSV. \\
+Pro naše účely nyní jsme si ukázali základní postupy jak získávat data z API a jak s nimi pracovat. \\
 """)
-jmena = ["Adéla", "Albert", "Míša", "Jára", "David", "Martin", "Oksana"]
-jmeno = st.selectbox("Vyber jméno", options = jmena, index = 3)
-st.write(f"Vybral jsi {jmeno}")
 
-
-st.markdown("""
----
-Seznamy jsou velmi důležitou částí Pythonu, protože na nich stojí cykly, které jsou klíčovou součástí programování. \\
-Co totiž umí stroj nejlépe a mnohem lépe než člověk? Opakovat věci. 
-
-A to si nyní ukážeme v další lekci
-""")
