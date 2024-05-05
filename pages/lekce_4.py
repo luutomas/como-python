@@ -384,22 +384,22 @@ Budete mít 3 restaurace a jejich následájící menu:
     - Sushi za 200
     - Ramen za 180
 """)
+restaurace = {
+    "Bilbo" : {
+        "řízek": 100,
+        "vepřový guláš": 120
+        },
+    "Lagarto" : {
+        "avokádový toast": 130,
+        "tacos": 150
+        },
+    "Panda" : {
+        "sushi": 200,
+        "ramen": 180
+        }
+    }
 if st.toggle("Zobrazit řešení", key = "reseni_8"):
     ### Úkol 8
-    restaurace = {
-        "Bilbo" : {
-            "řízek": 100,
-            "vepřový guláš": 120
-            },
-        "Lagarto" : {
-            "avokádový toast": 130,
-            "tacos": 150
-            },
-        "Panda" : {
-            "sushi": 200,
-            "ramen": 180
-            }
-        }
     st.write(restaurace)
 
     if st.toggle("Zobrazit kód", key = "kod_8"):
@@ -512,6 +512,7 @@ Máte menu z minulého úkolu. Vypište všechny ceny v restauraci Bilbo.
 """)
 if st.toggle("Zobrazit řešení", key = "reseni_14"):
     ### Úkol 14
+    st.write(restaurace)
     ceny_bilbo = restaurace["Bilbo"].values()
     st.write(ceny_bilbo)
 
