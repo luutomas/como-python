@@ -741,9 +741,15 @@ Pokud je jídlo již v menu tak vypište "Jídlo je již v menu". \\
 Pokud není a cena je větší než 20 a vypište nové menu.
 Pokud není a cena je menší než 20 vypište "Cena musí být větší než 20.
 """)
+st.write(restaurace)
 if st.toggle("Zobrazit řešení", key = "reseni_21"):
     polozka = st.text_input("Zadejte název položky", key = "polozka_21")
     cena = st.number_input("Zadejte cenu položky", key = "cena_21")
+
+    if "McDonalds" not in restaurace:
+        restaurace["McDonalds"] = {}
+        st.write(restaurace)
+
     if st.button("Přidat položku", key = "button_21"):
         if polozka in restaurace["McDonalds"]:
             st.write("Jídlo je již v menu")
@@ -756,9 +762,14 @@ if st.toggle("Zobrazit řešení", key = "reseni_21"):
     if st.toggle("Zobrazit kód", key = "kod_21"):
         st.code("""
             ### Úkol 21
-            polozka = st.text_input("Zadejte název položky")
-            cena = st.number_input("Zadejte cenu položky")
-            if st.button("Přidat položku"):
+            polozka = st.text_input("Zadejte název položky", key = "polozka_21")
+            cena = st.number_input("Zadejte cenu položky", key = "cena_21")
+
+            if "McDonalds" not in restaurace:
+                restaurace["McDonalds"] = {}
+                st.write(restaurace)
+
+            if st.button("Přidat položku", key = "button_21"):
                 if polozka in restaurace["McDonalds"]:
                     st.write("Jídlo je již v menu")
                 elif cena > 0:
