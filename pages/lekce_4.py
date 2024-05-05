@@ -199,7 +199,7 @@ poledni_menu = {
     "pizza": 149,
     "sendvič": 59,
     "kebab": 89,
-    "pho": 79
+    "pho": 79,
     "řízek": 119,
     "knedlo-vepřo-zelo": 139
     }

@@ -339,7 +339,7 @@ st.markdown("""
 Zkuste si podobný úkol na této API
 1. Z této adresy získejte a podívejte se jaké páry jsou k dispozici: https://www.frankfurter.app/currencies
 2. Vyberte si jeden měnu a nadefinujte tuto měnu pod proměnnou `mena_volby` (nejlépe to bude CZK)
-3. Získejte poslední data o směnném kurzu tohoto páru pomocí: https://www.frankfurter.app/latest?from={mena_volby}
+3. Získejte poslední data o směnném kurzu této měny vůči ostatním pomocí: https://www.frankfurter.app/latest?from={mena_volby}
 4. Zobrazte si data.
 """)
 if st.toggle("Zobrazit řešení", False, key = "reseni_6"):
@@ -362,8 +362,53 @@ if st.toggle("Zobrazit řešení", False, key = "reseni_6"):
         """)
 
 st.markdown("""
+---
+### Úkol 7
+Zkuste si ještě další úkol s API a zkusíte si zavolat API, které potřebuje klíč.
+1. Vytvořte novou page s názvem `lekce_api.py`.
+2. Zaregistrujte se na této strance: https://www.alphavantage.co/support/#api-key
+3. Získáný API klíč si u vás uložte do proměnné `api_key`.
+4. Z této dokumentace použijte tzv endpoint: Daily Adjusted který má podobu: 
+```
+f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol_firmy}&apikey={api_klic}"
+```
+5. Po uživateli chcete, aby zadal symbol firmy a získali jste data o této firmě.
+6. Vytvořte tlačítko pro získání dat. 
+6. Po stisknutí předchozího tlačítka se spustí, try-except, který bude chtít získat data o této firmě a zobrazte je.
+7. Pokud máte správně data, zjistěte cenu této akcie ze dne 2024-05-03 pod klíčem "5. adjusted close".
+""")
+if st.toggle("Zobrazit řešení", False, key = "reseni_7"):
+    api_key = "demo"
+    symbol_firmy = st.text_input("Symbol firmy")
+    if st.button("Získat data", key= "btn_reseni_7"):
+        try:
+            request = requests.get(f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol_firmy}&apikey={api_key}")
+            data = request.json()
+            st.write(data)
+            cena = data["Time Series (Daily)"]["2024-05-03"]["5. adjusted close"]
+            st.write(f"Cena akcie {symbol_firmy} ze dne 2024-05-03 je {cena}")
+        except:
+            st.write("Špatný symbol firmy")
+    if st.toggle("Zobrazit kód", False, key = "kod_7"):
+        st.code("""
+            api_key = "demo"
+            symbol_firmy = st.text_input("Symbol firmy")
+            if st.button("Získat data", key= "btn_reseni_7"):
+                try:
+                    request = requests.get(f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol_firmy}&apikey={api_key}")
+                    data = request.json()
+                    st.write(data)
+                    cena = data["Time Series (Daily)"]["2024-05-03"]["5. adjusted close"]
+                    st.write(f"Cena akcie {symbol_firmy} ze dne 2024-05-03 je {cena}")
+                except:
+                    st.write("Špatný symbol firmy")
+            """)
+
+
+st.markdown("""
+---
 Práce s API je jenom jedna z mnoho způsobů jak získávat data. \\
 Data z API nemusí chodit jenom jako JSON ale také jako XML nebo i dokonce CSV. \\
-Pro naše účely nyní jsme si ukázali základní postupy jak získávat data z API a jak s nimi pracovat. \\
+Pro naše účely nyní jsme si ukázali základní postupy jak získávat data z API a případně umíme pracovat pokud to jsou JSON. 
 """)
 
