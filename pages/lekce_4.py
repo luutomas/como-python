@@ -461,9 +461,9 @@ st.markdown("""
 ### Úkol 11
 Máte menu z minulého úkolu. Smažte z restaurace Panda položku sushi.
 """)
+del restaurace["Panda"]["sushi"]
 if st.toggle("Zobrazit řešení", key = "reseni_11"):
     ### Úkol 11
-    del restaurace["Panda"]["sushi"]
     st.write(restaurace)
 
     if st.toggle("Zobrazit kód", key = "kod_11"):
