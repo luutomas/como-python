@@ -1,4 +1,5 @@
 import streamlit as st
+import json 
 
 st.header("Domácí úkol")
 st.markdown("""
@@ -29,5 +30,106 @@ a zkuste použít některé z nich v této aplikaci.
 - prijmeni
 - věk
 - muž
+
 4.Pomocí těchto vstupu pak vypište ve druhém sloupci informace o uživateli.
+
+## Domácí úkol 3
+Zkuste si vytvořit aplikaci, která bude mít následující funkce: 
+1. Vytvořte aplikaci, kde bude textové pole a tlačítko.
+2. Pomocí této první části budete moci zadat text, který se uloží do texty.json. Klíč bude vždycky číslo, které bude o 1 vyšší než předchozí klíč a začíná se od 0.
+3. Vytvořte druhou část, kde bude textové pole a tlačítko.
+4. Pomocí této části budete moci načísty texty.json a vypsat texty, které se aspoň shodují v nějaké části s textem, který jste zadali. \\
+Napříkla: v texty.json máte uložené texty:
+```
+{
+    "0" : "Ahoj jak se máš?",
+    "1" : "Dobrý den",
+    "2" : "Jak se máš?"
+}
+```
+Pokud zadáte do textového pole "Jak", tak vám aplikace vypíše text pod klíčem 0 a pod klíčem 2. \\
+Dávejte ale pozor na velikost písmen, tedy "Jak" a "jak" se neshodují. \\
+Také dávejte pozor, že do JSON se všechno převede do písmen. Takže bude třeba, aby jste s tím počítali, když budete přidávat klíče do JSONu a pracovat s nimi. \\
+Dávejte taky pozor, že pokud texty.json bude prázdný tak tam žádný klíč není a nebudete moci nic načíst.
+5. Nakonec vytvořte tlačítko, které vymaže texty.json.
+
+Tato úloha patří v k velmi náročným a pravdpěodobně budete muset hledat i mimo naší lekce. \\
+Na hodině se k ní nebudu vyjadřovat ale pokud by chtěl někdo ohledně toho řešit tak můžeme při části, kde máme procvičování, se na to individuálně podívat. \\
+Budete muset používat i for cyklus a podmínky pro hledání textu. \\
+Pokud to bude na vás příliš těžké tak stačí udělat jenom body:
+1, 2 a 5. Tedy zápis a výmaz textu.
+
+---
 """)
+
+if st.toggle("Ukázat řešení"):
+    with open("texty.json", "r") as f:
+            data = json.load(f)
+    text = st.text_input("Textové pole pro zadání textu")
+    btn_add_text = st.button("Uložit text")
+    if btn_add_text:
+        try:
+            posledni_klic = int(max(data.keys())) + 1
+        except:
+            posledni_klic = 0
+        data[posledni_klic] = text
+        with open("texty.json", "w") as f:
+            json.dump(data, f)
+        st.success("Text byl uložen")
+    st.write("---")
+    search_text = st.text_input("Textové pole pro vyhledání textu")
+    btn_search = st.button("Vyhledat text")
+    if btn_search:
+        nalezen = False
+        for k, v in data.items():
+            if search_text.lower() in v.lower():
+                nalezen = True
+                st.write(f"Klíč: {k}, Text: {v}")
+        if nalezen:
+            st.success("Text nalezen")
+        else:
+            st.error("Text nebyl nalezen")
+
+    st.write("---")
+    btn_delete = st.button("Vymazat texty")
+    if btn_delete:
+        with open("texty.json", "w") as f:
+            json.dump({}, f)
+        st.success("Texty byly vymazány")
+    
+    if st.toggle("Ukázat kód"):
+        st.code("""
+    with open("texty.json", "r") as f:
+            data = json.load(f)
+    text = st.text_input("Textové pole pro zadání textu")
+    btn_add_text = st.button("Uložit text")
+    if btn_add_text:
+        try:
+            posledni_klic = int(max(data.keys())) + 1
+        except:
+            posledni_klic = 0
+        data[posledni_klic] = text
+        with open("texty.json", "w") as f:
+            json.dump(data, f)
+        st.success("Text byl uložen")
+    st.write("---")
+    search_text = st.text_input("Textové pole pro vyhledání textu")
+    btn_search = st.button("Vyhledat text")
+    if btn_search:
+        nalezen = False
+        for k, v in data.items():
+            if search_text.lower() in v.lower():
+                nalezen = True
+                st.write(f"Klíč: {k}, Text: {v}")
+        if nalezen:
+            st.success("Text nalezen")
+        else:
+            st.error("Text nebyl nalezen")
+
+    st.write("---")
+    btn_delete = st.button("Vymazat texty")
+    if btn_delete:
+        with open("texty.json", "w") as f:
+            json.dump({}, f)
+        st.success("Texty byly vymazány")
+        """)
