@@ -54,11 +54,12 @@ Dávejte taky pozor, že pokud texty.json bude prázdný tak tam žádný klíč
 5. Nakonec vytvořte tlačítko, které vymaže texty.json.
 
 Tato úloha patří v k velmi náročným a pravdpěodobně budete muset hledat i mimo naší lekce. \\
-Na hodině se k ní nebudu vyjadřovat ale pokud by chtěl někdo ohledně toho řešit tak můžeme při části, kde máme procvičování, se na to individuálně podívat. \\
 Budete muset používat i for cyklus a podmínky pro hledání textu. \\
-Pokud to bude na vás příliš těžké tak stačí udělat jenom body:
-1, 2 a 5. Tedy zápis a výmaz textu.
+Na hodině se k této úloze vyjádřím, pokud zbyde čas poté, co probereme cykly. \\
+Pokud to bude na vás příliš těžké tak stačí udělat jenom body: 
 
+1., 2. a 5.  \\
+Tedy zápis a výmaz textu.
 ---
 """)
 
