@@ -1,4 +1,5 @@
 import streamlit as st
+import json
 st.set_page_config(page_title="COMO Python", page_icon=":snake:", layout="centered", initial_sidebar_state="collapsed")
 st.header("Lekce č.5")
 
@@ -286,4 +287,17 @@ Aktualizujte aplikaci tak, aby uživatel mohl vybrat i typ platby a vypište vyb
 ### Úkol 5
 Pokud uživatel vybere typ platby `kupon`, tak přepočítejte celkovou cenu objednávky tak, aby uživatel dostal 10% slevu. A na závěr vypište novou cenu objednávky.
 """)
+
+if st.toggle("Ukázat řešení"):
+    with open("nove_menu.json", "r") as f:
+        menu = json.load(f)
+
+    jidla = list(menu["jídla"].keys())
+    napoje = list(menu["nápoje"].keys())
+    typ_platby = menu["typ platby"]
+
+    jidlo = st.selectbox("Vyber jídlo", jidla)
+    napoj = st.selectbox("Vyber nápoj", napoje)
+    platba = st.selectbox("Vyber typ platby", typ_platby)
+
     

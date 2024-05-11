@@ -1,0 +1,13 @@
+{
+    "jídle": {
+        "hamburger": 115,
+        "pizza": 149,
+        "sendvič": 59
+    },
+    "nápoje": {
+        "cola": 35,
+        "pivo": 45,
+        "voda": 25
+    },
+    "typ platby": ["hotově", "kartou", "kupon"]
+}
