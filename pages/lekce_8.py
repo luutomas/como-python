@@ -106,3 +106,30 @@ if st.button("Zvyš správný počet"):
 st.write(f"Správný počet: {st.session_state.spravny_pocet}")
 """)
 
+st.markdown("---")
+st.subheader("Jak přistupovat k hodnotám session state a jak je měnit")
+
+st.markdown("""
+Máme definovaný session state `nazev_kurzu` a máme 3 možnosti, jak z něj získat hodnotu a 2 možnosti, jak hodnotu změnit.
+1. `st.session_state["nazev_kurzu"]`
+2. `st.session_state.nazev_kurzu`
+3. `st.session_state.get("nazev_kurzu")`
+""")
+
+if "nazev_kurzu" not in st.session_state:
+    st.session_state.nazev_kurzu = "COMO Python"
+
+st.write(f"1. {st.session_state['nazev_kurzu']}")
+st.write(f"2. {st.session_state.nazev_kurzu}")
+st.write(f"3. {st.session_state.get('nazev_kurzu')}")
+
+st.markdown("""
+1. a 2. možnost jsou ekvivalentní a obě vrátí hodnotu z session state. \\
+3. možnost je bezpečnější, protože pokud klíč v session state neexistuje, tak vrátí `None` místo chyby.
+
+Pro změnu hodnoty v session state můžeme použít 1. a 2. možnost, stačí pouze pomocí `=` přiřadit novou hodnotu. \\
+Pokud session state klíč již existuje, tak se hodnota přepíše, pokud neexistuje, tak se vytvoří nový klíč s hodnotou.
+""")
+
+
+
