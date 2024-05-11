@@ -278,7 +278,7 @@ Na základě vybraného jídla a nápoje vypište celkovou cenu objednávky, ale
 
 if st.toggle("Nápověda pro úkol 3"):
     st.markdown("""
-        Pro vyhledávání ve slovníku můžete tedy využít funkci `get()` a jako defaultní hodnotu nastavit 0. \\      
+        Pro vyhledávání ve slovníku můžete tedy využít funkci `get()` a jako defaultní hodnotu nastavit 0.   
         """)
 
 st.markdown("""            
