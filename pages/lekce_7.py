@@ -104,7 +104,7 @@ Oba dva cykly můžeme ukončit pomocí `break`. \\
 Např. cyklus `for` může vypadat takto:
 ```
 for kazde_cislo in range(10):
-    if kazde_cislo == 5:
+    if kazde_cislo == 3:
         break
     st.write(f"Opakuji {kazde_cislo}.")
 ```
