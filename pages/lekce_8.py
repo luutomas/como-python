@@ -90,6 +90,8 @@ if st.button("Zvyš chybný počet"):
 st.write(f"Chybný počet: {st.session_state.chybny_pocet}")
 """)
 
+st.markdown("---")
+
 st.success("Správná definice session state:")
 if "spravny_pocet" not in st.session_state:
     st.session_state.spravny_pocet = 0
