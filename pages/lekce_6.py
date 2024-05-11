@@ -276,6 +276,8 @@ Na základě vybraného jídla a nápoje vypište celkovou cenu objednávky.
             
 ### Úkol 4
 Do jsonu přidejte další kategorii `typ platby` a do ní jako hodnotu seznam možných plateb (hotově, kartou, kupon). \\
+*Všimněte si, že jako hodnotu ve slovníku můžete mít jen další vnořený slovník, ale i seznam.* \\
+*Ale pozor na to, že klíč musí být **VŽDY STRING.*** \\
 Aktualizujte aplikaci tak, aby uživatel mohl vybrat i typ platby a vypište vybraný typ platby.
             
 ### Úkol 5
