@@ -296,8 +296,45 @@ if st.toggle("Ukázat řešení"):
     napoje = list(menu["nápoje"].keys())
     typ_platby = menu["typ platby"]
 
-    jidlo = st.selectbox("Vyber jídlo", jidla)
-    napoj = st.selectbox("Vyber nápoj", napoje)
-    platba = st.selectbox("Vyber typ platby", typ_platby)
+    vybrane_jidlo = st.selectbox("Vyber jídlo", jidla, index = None, key="vybrane_jidlo", placeholder="Vyber jídlo")
+    vybrany_napoj = st.selectbox("Vyber nápoj", napoje, index = None, key="vybrany_napoj", placeholder="Vyber nápoj")
+    vybrana_platba = st.selectbox("Vyber typ platby", typ_platby, index = None, key="vybrana_platba", placeholder="Vyber typ platby")
+
+    st.write(f"Vybral jsi jídlo: {vybrane_jidlo}")
+    st.write(f"Vybral jsi nápoj: {vybrany_napoj}")
+    st.write(f"Vybral jsi platbu: {vybrana_platba}")
+
+    cena = menu["jídla"][vybrane_jidlo] + menu["nápoje"][vybrany_napoj]
+    st.write(f"Celková cena objednávky je {cena}")
+
+    if vybrana_platba == "kupon":
+        cena = cena * 0.9
+        st.write(f"Po slevě je cena objednávky {cena}")
+
+    if st.toggle("Ukázat kód"):
+        st.code("""
+            with open("nove_menu.json", "r") as f:
+                menu = json.load(f)
+
+            jidla = list(menu["jídla"].keys())
+            napoje = list(menu["nápoje"].keys())
+            typ_platby = menu["typ platby"]
+
+            vybrane_jidlo = st.selectbox("Vyber jídlo", jidla, index = None, key="vybrane_jidlo", placeholder="Vyber jídlo")
+            vybrany_napoj = st.selectbox("Vyber nápoj", napoje, index = None, key="vybrany_napoj", placeholder="Vyber nápoj")
+            vybrana_platba = st.selectbox("Vyber typ platby", typ_platby, index = None, key="vybrana_platba", placeholder="Vyber typ platby")
+
+            st.write(f"Vybral jsi jídlo: {vybrane_jidlo}")
+            st.write(f"Vybral jsi nápoj: {vybrany_napoj}")
+            st.write(f"Vybral jsi platbu: {vybrana_platba}")
+
+            cena = menu["jídla"][vybrane_jidlo] + menu["nápoje"][vybrany_napoj]
+            st.write(f"Celková cena objednávky je {cena}")
+
+            if vybrana_platba == "kupon":
+                cena = cena * 0.9
+                st.write(f"Po slevě je cena objednávky {cena}")
+        """)
+        
 
     
