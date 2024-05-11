@@ -272,7 +272,7 @@ Pozor na to, že se změnou struktury jsonu nám nebude fungovat předchozí sel
 Na závěr vypište vybrané jídlo a nápoj.
 
 ### Úkol 3
-Na základě vybraného jídla a nápoje vypište celkovou cenu objednávky. \\
+Na základě vybraného jídla a nápoje vypište celkovou cenu objednávky.
             
 ### Úkol 4
 Do jsonu přidejte další kategorii `typ platby` a do ní jako hondontu seznam možných plateb (hotově, kartou, kupon). \\
