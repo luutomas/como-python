@@ -246,8 +246,7 @@ Např.:
 Soubor si uložte jako `menu.json`, načtěte do aplikace a vytvořte pro uživatele select box pro výběr tak, aby si mohl vybrat jako více položek.
 
 ### Úkol 2
-Upravte json tak, aby byly položky uložené v kategoriích `jídla` a `nápoje`. \\
-
+Upravte json tak, aby byly položky uložené v kategoriích `jídla` a `nápoje`.
 """)
 
 if st.toggle("Nápověda pro úkol 2"):
@@ -273,6 +272,13 @@ Pozor na to, že se změnou struktury jsonu nám nebude fungovat předchozí sel
 Na závěr vypište vybrané jídlo a nápoj.
 
 ### Úkol 3
-Na základě vybraného jídla a nápoje vypište celkovou cenu objednávky. \\            
+Na základě vybraného jídla a nápoje vypište celkovou cenu objednávky. \\
+            
+### Úkol 4
+Do jsonu přidejte další kategorii `typ platby` a do ní jako hondontu seznam možných plateb (hotově, kartou, kupon). \\
+Aktualizujte aplikaci tak, aby uživatel mohl vybrat i typ platby a vypište vybraný typ platby.
+            
+### Úkol 5
+Pokud uživatel vybere typ platby `kupon`, tak přepočítejte celkovou cenu objednávky tak, aby uživatel dostal 10% slevu. A na závěr vypište novou cenu objednávky.
 """)
     
