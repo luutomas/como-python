@@ -31,7 +31,7 @@ st.code("st.write(st.session_state)")
 st.write(st.session_state)
 
 st.markdown("""
-Se session state tedy můžeme pracovat stejně jako se slovníkem a můžeme na něj volat metody jako `.get()`, `.keys()`, `.values()`, ".items()" atd. \\
+Se session state tedy můžeme pracovat stejně jako se slovníkem a můžeme na něj volat metody jako `.get()`, `.keys()`, `.values()`, `.items()` atd. \\
 Oproti slovníkům má ale jednu výhodu a to, že k hodnotám v session state můžeme přistupovat i pomocí tečkové notace - `st.session_state.moje_hodnota`.
 """)
 
@@ -79,16 +79,15 @@ aby při opětovném spouštení kódu, způsobeným interakcí uživatele, nedo
 """)
 
 st.error("Chybná definice session state:")
-
-st.write(f"Chybný počet: {st.session_state.chybny_pocet}")
+st.session_state.chybny_pocet = 0
 if st.button("Zvyš chybný počet"):
     st.session_state.chybny_pocet += 1
-st.session_state.chybny_pocet = 0
+st.write(f"Chybný počet: {st.session_state.chybny_pocet}")
 st.code("""
-st.write(f"Chybný počet: {st.session_state.chybny_pocet}")
+st.session_state.chybny_pocet = 0
 if st.button("Zvyš chybný počet"):
     st.session_state.chybny_pocet += 1
-st.session_state.chybny_pocet = 0
+st.write(f"Chybný počet: {st.session_state.chybny_pocet}")
 """)
 
 st.success("Správná definice session state:")
