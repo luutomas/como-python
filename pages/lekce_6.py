@@ -311,7 +311,7 @@ if st.toggle("Ukázat řešení"):
     st.write(f"Vybral jsi nápoj: {vybrany_napoj}")
     st.write(f"Vybral jsi platbu: {vybrana_platba}")
 
-    cena = menu["jídla"][vybrane_jidlo] + menu["nápoje"][vybrany_napoj]
+    cena = menu["jídla"].get(vybrane_jidlo, 0) + menu["nápoje"].get(vybrany_napoj, 0)
     st.write(f"Celková cena objednávky je {cena}")
 
     if vybrana_platba == "kupon":
@@ -335,7 +335,7 @@ if st.toggle("Ukázat řešení"):
             st.write(f"Vybral jsi nápoj: {vybrany_napoj}")
             st.write(f"Vybral jsi platbu: {vybrana_platba}")
 
-            cena = menu["jídla"][vybrane_jidlo] + menu["nápoje"][vybrany_napoj]
+            cena = menu["jídla"].get(vybrane_jidlo, 0) + menu["nápoje"].get(vybrany_napoj, 0)
             st.write(f"Celková cena objednávky je {cena}")
 
             if vybrana_platba == "kupon":
