@@ -229,3 +229,23 @@ Co totiž umí stroj nejlépe a mnohem lépe než člověk? Opakovat věci.
 
 A to si nyní ukážeme v další lekci
 """)
+
+st.markdown("""
+---
+### Úkol 1
+Zkuste si nadefinovat json, který bude obsahovat seznam jídel a jejich cenu. \\
+Pro začátek nám postačí, aby měl json 3 jídla a 3 nápoje, včetně cen. \\
+Např.:
+```json
+{
+    "hambruger": 115,
+    "pizza": 149,
+    "sendvič": 59,
+    "cola": 35,
+    "pivo": 45,
+    "voda": 25
+}
+```
+Soubor si uložte jako `menu.json`, načtěte do aplikace a vytvořte pro uživatele select box pro výběr tak, aby si mohl vybrat jako více položek. \\
+            
+""")
