@@ -273,8 +273,15 @@ Pozor na to, že se změnou struktury jsonu nám nebude fungovat předchozí sel
 Na závěr vypište vybrané jídlo a nápoj.
 
 ### Úkol 3
-Na základě vybraného jídla a nápoje vypište celkovou cenu objednávky.
-            
+Na základě vybraného jídla a nápoje vypište celkovou cenu objednávky, ale dejte si pozor na to, že pokud nebude vybráno jídlo i nápoj, tak kalkulace nebude fungovat.
+""")
+
+if st.toggle("Nápověda pro úkol 3"):
+    st.markdown("""
+        Pro vyhledávání ve slovníku můžete tedy využít funkci `get()` a jako defaultní hodnotu nastavit 0. \\      
+        """)
+
+st.markdown("""            
 ### Úkol 4
 Do jsonu přidejte další kategorii `typ platby` a do ní jako hodnotu seznam možných plateb (hotově, kartou, kupon). \\
 *Všimněte si, že jako hodnotu ve slovníku můžete mít jen další vnořený slovník, ale i seznam.* \\
