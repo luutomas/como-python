@@ -32,7 +32,7 @@ st.write(st.session_state)
 
 st.markdown("""
 Se session state tedy můžeme pracovat stejně jako se slovníkem a můžeme na něj volat metody jako `.get()`, `.keys()`, `.values()`, ".items()" atd. \\
-Oproti slovníkům má ale jednu výhodu a to, že k hodnotám v session state můžeme přistupovat i pomocí tečkové notace - `st.session_state.moje_hodnota`. \\
+Oproti slovníkům má ale jednu výhodu a to, že k hodnotám v session state můžeme přistupovat i pomocí tečkové notace - `st.session_state.moje_hodnota`.
 """)
 
 st.markdown("""
@@ -42,7 +42,7 @@ Další klíčovou vlastností Streamlit session state je možnost sdílení pro
 if "jmena" not in st.session_state:
     st.session_state.jmena = []
 
-nove_jmeno = st.text_input("Zadej nové jméno:")
+nove_jmeno = st.text_input("Zadej nové jméno:", key="zadej_nove_jmeno_2")
 if st.button("Přidej jméno", use_container_width=True):
     st.session_state.jmena.append(nove_jmeno)
 
