@@ -192,8 +192,6 @@ Parametry pro `st.selectbox()`:
 | on_change | Funkce, která se spustí při změně |
 | args | Argumenty pro funkci on_change |
 | kwargs | Keyword argumenty pro funkci on_change |
-| help | Nápověda pro komponentu |
-| help_tooltip | Tooltip pro nápovědu |
 
 Parametry pro `st.multiselect()`:
 | Parametr | Popis |
@@ -201,7 +199,6 @@ Parametry pro `st.multiselect()`:
 | **label** | Popisek pro komponentu |
 | **options** | Seznam možností |
 | **default** | Defaultní hodnota |
-| **index** | Index vybrané možnosti |
 | **key** | Klíč pro komponentu |
 | **help** | Nápověda pro komponentu |
 
@@ -246,6 +243,36 @@ Např.:
     "voda": 25
 }
 ```
-Soubor si uložte jako `menu.json`, načtěte do aplikace a vytvořte pro uživatele select box pro výběr tak, aby si mohl vybrat jako více položek. \\
-            
+Soubor si uložte jako `menu.json`, načtěte do aplikace a vytvořte pro uživatele select box pro výběr tak, aby si mohl vybrat jako více položek.
+
+### Úkol 2
+Upravte json tak, aby byly položky uložené v kategoriích `jídla` a `nápoje`. \\
+
 """)
+
+if st.toggle("Nápověda pro úkol 2"):
+    st.markdown("""
+        Výsledný json by měl vypadat takto:
+        ```json
+        {
+            "jídla": {
+                "hambruger": 115,
+                ...
+            },
+            "nápoje": {
+                "cola": 35,
+                ...
+            }
+        }
+        ```      
+        """)
+    
+st.markdown("""
+Načtěte nový json a vytvořte pro uživatele 2 nové select boxy, kde si bude moci vybrat pouze jedno jídlo a jeden nápoj. \\
+Pozor na to, že se změnou struktury jsonu nám nebude fungovat předchozí select box. \\
+Na závěr vypište vybrané jídlo a nápoj.
+
+### Úkol 3
+Na základě vybraného jídla a nápoje vypište celkovou cenu objednávky. \\            
+""")
+    
