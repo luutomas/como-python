@@ -33,9 +33,14 @@ slovnik_datumu = {
 }
 ```
 ### Úkol 1
-Vypište klíče všech datumů, které nejsou starší více než 1 měsíc.
+Vypište klíče všech datumů, které nejsou starší více než 1 měsíc (30 dnů).
 """)
-
+if st.toggle("Zobrazit výsledek:", key="ukol_1_vysledek"):
+    st.write("1, 2", "4", "6")
+    if st.toggle("Zobrazit kód:", key="ukoly_1_kod"):
+        for datum in slovnik_datumu.values():
+            if dt.datetime.now() - slovnik_datumu[datum] <= dt.timedelta(days=30):
+                st.write(datum)
 st.markdown("""
 ### Úkol 2
 Vypiště klíče všech datumů, které jsou v rozmezí od 1.1.2024 do 31.3.2024.
