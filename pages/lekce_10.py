@@ -113,7 +113,7 @@ if st.toggle("Zobrazit kód", key="ukol_6_kod"):
 
 st.markdown("""
 ### Úkol 7
-Vyspiště pro každý datum ve slovníku, kolik let by bylo člověku, který se narodil 1.4.2024.
+Vyspiště pro každý datum ve slovníku, kolik let by bylo člověku, který se narodil 1.4.2000.
 """)
 
 if st.toggle("Zobrazit kód", key="ukol_7_kod"):
