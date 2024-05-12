@@ -137,7 +137,7 @@ Pokud session state klíč již existuje, tak se hodnota přepíše, pokud neexi
 Smazání session state je velice jednoduché, stačí pouze použít výraz `del` a hned za ním se odkázat na session state, který chceme smazat.
 """)
 
-with st.echo():
+with st.container(border=True):
     del st.session_state.nazev_kurzu
     st.write(st.session_state.get("nazev_kurzu", "Session state nebyl nalezen.")) # Pro demonstraci použijeme .get() aby se nevyvolala chyba
     st.code("""
