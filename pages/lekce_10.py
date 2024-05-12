@@ -24,12 +24,12 @@ st.markdown("""
 Zkopírujte si následující seznam do svého kódu:
 ```python
 slovnik_datumu = [
-    dt.datetime.strptime(2024-04-30 13:00:00, "%Y-%m-%d %H:%M:%S"),
-    dt.datetime.strptime(2024-04-19 9:30:00, "%Y-%m-%d %H:%M:%S"),
-    dt.datetime.strptime(2024-03-28 15:00:00, "%Y-%m-%d %H:%M:%S"),
-    dt.datetime.strptime(2025-06-17 03:30:00, "%Y-%m-%d %H:%M:%S"),
-    dt.datetime.strptime(2023-12-31 19:30:00, "%Y-%m-%d %H:%M:%S"),
-    dt.datetime.strptime(2024-05-10 12:30:00, "%Y-%m-%d %H:%M:%S")
+    dt.datetime.strptime("2024-04-30 13:00:00", "%Y-%m-%d %H:%M:%S"),
+    dt.datetime.strptime("2024-04-19 9:30:00", "%Y-%m-%d %H:%M:%S"),
+    dt.datetime.strptime("2024-03-28 15:00:00", "%Y-%m-%d %H:%M:%S"),
+    dt.datetime.strptime("2025-06-17 03:30:00", "%Y-%m-%d %H:%M:%S"),
+    dt.datetime.strptime("2023-12-31 19:30:00", "%Y-%m-%d %H:%M:%S"),
+    dt.datetime.strptime("2024-05-10 12:30:00", "%Y-%m-%d %H:%M:%S")
 ]
 ```
 ### Úkol 1
