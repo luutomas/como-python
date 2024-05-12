@@ -43,34 +43,34 @@ Další klíčovou vlastností Streamlit session state je možnost sdílení pro
 
 with st.container(border=True):
     if "jmena" not in st.session_state:
-        st.session_state.jmena = []
+        st.session_state["jmena"] = []
 
     nove_jmeno = st.text_input("Zadej nové jméno:", key="zadej_nove_jmeno_2")
     if st.button("Přidej jméno", use_container_width=True):
-        st.session_state.jmena.append(nove_jmeno)
+        st.session_state["jmena"].append(nove_jmeno)
 
-    odstranit_jmeno = st.selectbox("Vyber jméno k odstranění:", st.session_state.jmena, index=None, placeholder="Vyber jméno")
+    odstranit_jmeno = st.selectbox("Vyber jméno k odstranění:", st.session_state["jmena"], index=None, placeholder="Vyber jméno")
     if st.button("Odstraň jméno", use_container_width=True) and odstranit_jmeno:
-        st.session_state.jmena.remove(odstranit_jmeno)
+        st.session_state["jmena"].remove(odstranit_jmeno)
 
     st.markdown("Session state `jmena`:")
-    st.write(st.session_state.jmena)
+    st.write(st.session_state["jmena"])
 
     st.markdown("---")
     st.code("""
     if "jmena" not in st.session_state:
-        st.session_state.jmena = []
+        st.session_state["jmena"] = []
 
-    nove_jmeno = st.text_input("Zadej nové jméno:")
+    nove_jmeno = st.text_input("Zadej nové jméno:", key="zadej_nove_jmeno_2")
     if st.button("Přidej jméno", use_container_width=True):
-        st.session_state.jmena.append(nove_jmeno)
+        st.session_state["jmena"].append(nove_jmeno)
 
-    odstranit_jmeno = st.selectbox("Vyber jméno k odstranění:", st.session_state.jmena, index=None, placeholder="Vyber jméno")
+    odstranit_jmeno = st.selectbox("Vyber jméno k odstranění:", st.session_state["jmena"], index=None, placeholder="Vyber jméno")
     if st.button("Odstraň jméno", use_container_width=True) and odstranit_jmeno:
-        st.session_state.jmena.remove(odstranit_jmeno)
+        st.session_state["jmena"].remove(odstranit_jmeno)
 
     st.markdown("Session state `jmena`:")
-    st.write(st.session_state.jmena)
+    st.write(st.session_state["jmena"])
     """)
 
 st.subheader("Inicializace session state")
@@ -82,10 +82,10 @@ aby při opětovném spouštení kódu, způsobeným interakcí uživatele, nedo
 
 with st.container(border=True):
     st.error("Chybná definice session state:")
-    st.session_state.chybny_pocet = 0
+    st.session_state["chybny_pocet"] = 0
     if st.button("Zvyš chybný počet"):
-        st.session_state.chybny_pocet += 1
-    st.write(f"Chybný počet: {st.session_state.chybny_pocet}")
+        st.session_state["chybny_pocet"] += 1
+    st.write(f"Chybný počet: {st.session_state["chybny_pocet"]}")
     st.code("""
     st.session_state.chybny_pocet = 0
     if st.button("Zvyš chybný počet"):
@@ -96,16 +96,16 @@ with st.container(border=True):
 with st.container(border=True):
     st.success("Správná definice session state:")
     if "spravny_pocet" not in st.session_state:
-        st.session_state.spravny_pocet = 0
+        st.session_state["spravny_pocet"] = 0
     if st.button("Zvyš správný počet"):
-        st.session_state.spravny_pocet += 1
-    st.write(f"Správný počet: {st.session_state.spravny_pocet}")
+        st.session_state["spravny_pocet"] += 1
+    st.write(f"Správný počet: {st.session_state['spravny_pocet']}")
     st.code("""
     if "spravny_pocet" not in st.session_state:
-        st.session_state.spravny_pocet = 0
+        st.session_state["spravny_pocet"] = 0
     if st.button("Zvyš správný počet"):
-        st.session_state.spravny_pocet += 1
-    st.write(f"Správný počet: {st.session_state.spravny_pocet}")
+        st.session_state["spravny_pocet"] += 1
+    st.write(f"Správný počet: {st.session_state['spravny_pocet']}")
     """)
 
 st.subheader("Jak přistupovat k hodnotám session state, jak je měnit a případně i mazat")
@@ -121,11 +121,11 @@ A výsledkem všech tří moožností bude `COMO Python`.
 
 st.code("""
 if "nazev_kurzu" not in st.session_state:
-    st.session_state.nazev_kurzu = "COMO Python"
+    st.session_state["nazev_kurzu"] = "COMO Python"
 """)
 
 if "nazev_kurzu" not in st.session_state:
-    st.session_state.nazev_kurzu = "COMO Python"
+    st.session_state["nazev_kurzu"] = "COMO Python"
 
 st.markdown("""
 Možnost 1 a 2 jsou ekvivalentní a obě vrátí hodnotu z session state. \\
@@ -138,12 +138,16 @@ Smazání session state je velice jednoduché, stačí pouze použít výraz `de
 """)
 
 with st.container(border=True):
-    del st.session_state.nazev_kurzu
+    del st.session_state["nazev_kurzu"]
     st.write(st.session_state.get("nazev_kurzu", "Session state nebyl nalezen.")) # Pro demonstraci použijeme .get() aby se nevyvolala chyba
     st.code("""
-    del st.session_state.nazev_kurzu
+    del st.session_state["nazev_kurzu"]
     st.write(st.session_state.get("nazev_kurzu", "Session state nebyl nalezen.")) # Pro demonstraci použijeme .get() aby se nevyvolala chyba
     """)
+
+st.markdown("""
+
+""")
 
 
 
