@@ -34,7 +34,7 @@ slovnik_datumu = [
 ```
 Datumy už máte rovnou definové jako datetime objekty, takže se převodem nemusíte zabývat a rovnou začít porovnávat.
 ### Úkol 1
-Vypište všechy datumy, které nejsou starší více než 1 měsíc (30 dnů).
+Vypište všechny datumy, které nejsou starší více než 1 měsíc (30 dnů).
 """)
 
 if st.toggle("Zobrazit kód", key="ukol_1_kod"):
@@ -46,7 +46,7 @@ if st.toggle("Zobrazit kód", key="ukol_1_kod"):
 
 st.markdown("""
 ### Úkol 2
-Vypište všechy datumy, které jsou v rozmezí od 1.1.2024 do 31.3.2024.
+Vypište všechny datumy, které jsou v rozmezí od 1.1.2024 do 31.3.2024.
 """)
 
 if st.toggle("Zobrazit kód", key="ukol_2_kod"):
