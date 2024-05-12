@@ -37,24 +37,98 @@ Datumy už máte rovnou definové jako datetime objekty, takže se převodem nem
 Vypište všechy datumy, které nejsou starší více než 1 měsíc (30 dnů).
 """)
 
+if st.toggle("Zobrazit kód", key="ukol_1_kod"):
+    st.code("""
+    for datum in slovnik_datumu:
+        if dt.datetime.now() - datum < dt.timedelta(days=30):
+            st.write(datum)
+    """)
+
 st.markdown("""
 ### Úkol 2
 Vypišty všechy datumy, které jsou v rozmezí od 1.1.2024 do 31.3.2024.
+""")
+
+if st.toggle("Zobrazit kód", key="ukol_2_kod"):
+    st.code("""
+    for datum in slovnik_datumu:
+        if dt.datetime(2024, 1, 1) <= datum <= dt.datetime(2024, 3, 31):
+            st.write(datum)
+    """)
+
+st.markdown("""
 ### Úkol 3
 Vypište všechny datumy, které mají na pozici minut 30.
+""")
+
+if st.toggle("Zobrazit kód", key="ukol_3_kod"):
+    st.code("""
+    for datum in slovnik_datumu:
+        if datum.minute == 30:
+            st.write(datum)
+    """)
+
+st.markdown("""
 ### Úkol 4
 Vypište všechny datumy, které mají nejsou starší více než 2 týdny.
+""")
+
+if st.toggle("Zobrazit kód", key="ukol_4_kod"):
+    st.code("""
+    for datum in slovnik_datumu:
+        if dt.datetime.now() - datum < dt.timedelta(weeks=2):
+            st.write(datum)
+    """)
+
+st.markdown("""
 ### Úkol 5
 Vypište všechny datumy, které jsou starší než dnešní datum.
+""")
+
+if st.toggle("Zobrazit kód", key="ukol_5_kod"):
+    st.code("""
+    for datum in slovnik_datumu:
+        if datum < dt.datetime.now():
+            st.write(datum)
+    """)
+
+st.markdown("""
 ### Úkol 6
 Spočítejte, jaký je rozdíl mezi nejstarším a nejmladším datem a vypište výsledek:
 - ve dnech a sekundách
 - v minutách
 - v měsících *(zaokrouhlete na 1 desetinné místo)*
+""")
+
+if st.toggle("Zobrazit kód", key="ukol_6_kod"):
+    st.code("""
+    nejstarsi_datum = min(slovnik_datumu)
+    nejmladsi_datum = max(slovnik_datumu)
+    rozdil = nejmladsi_datum - nejstarsi_datum
+
+    st.write(f"Rozdíl ve dnech a sekundách: {rozdil.days} dní a {rozdil.seconds} sekund.")
+    st.write(f"Rozdíl v minutách: {rozdil.total_seconds() / 60} minut.")
+    st.write(f"Rozdíl v měsících: {round(rozdil.days / 30, 1)} měsíců.")
+    """)
+
+st.markdown("""
 ### Úkol 7
 Vyspiště pro každý datum ve slovníku, kolik let by bylo člověku, který se narodil 1.4.2024.
+""")
+
+if st.toggle("Zobrazit kód", key="ukol_7_kod"):
+    st.code("""
+    datum_narozeni = dt.datetime(2024, 4, 1)
+    for datum in slovnik_datumu:
+        st.write(f"Když se narodíte 1.4.2024, tak v tomto datu vám bude {round((datum - datum_narozeni).days / 365, 2)} let.")
+    """)
+
+st.markdown("""
 ### Úkol 8
 Vytvořte pomocí `st.form` formulář, kam uživatel zadá své datum narození a po stisknutí tlačítka se vypíše, kolik let mu je dnes a za kolik dní bude mít narozeniny.
+""")
+
+st.markdown("""
 ### Úkol 9
 Převeďte následující datumy do formátu DD.MM.YYYY a vypište je:
 ```python
