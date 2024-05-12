@@ -188,6 +188,42 @@ Vytvořte pomocí `st.form` formulář, kam uživatel zadá své datum narození
 *Pozor si dejte na to, že pokud budete využívat k dělení počet dní v roce, tak rok má 365.25 dní.*
 """)
 
+if st.toggle("Zobrazit řešení", key="ukol_8_reseni"):
+    with st.form(key="datum_narozeni"):
+        datum_narozeni = st.date_input("Datum narození:", value=None, min_value=dt.datetime(1900, 1, 1), max_value=dt.datetime.now())   
+
+        if st.form_submit_button("Odeslat"):
+            dnesni_datum = dt.datetime.today().date()
+            vek = int((dnesni_datum - datum_narozeni).days / 365.25)
+            narozeniny = dt.datetime(dnesni_datum.year, datum_narozeni.month, datum_narozeni.day).date()
+
+            if narozeniny < dnesni_datum:
+                narozeniny = narozeniny.replace(year=narozeniny.year + 1)
+
+            pocet_dni_do_narozenin = int((narozeniny - dnesni_datum).days)
+
+            st.write(f"Dnes je vám {vek} let.")
+            st.write(f"Do narozenin zbývá {pocet_dni_do_narozenin} dní.")
+
+    if st.toggle("Zobrazit kód", key="ukol_8_kod"):
+        st.code("""
+        with st.form(key="datum_narozeni"):
+            datum_narozeni = st.date_input("Datum narození:", value=None, min_value=dt.datetime(1900, 1, 1), max_value=dt.datetime.now())   
+
+            if st.form_submit_button("Odeslat"):
+                dnesni_datum = dt.datetime.today().date()
+                vek = int((dnesni_datum - datum_narozeni).days / 365.25)
+                narozeniny = dt.datetime(dnesni_datum.year, datum_narozeni.month, datum_narozeni.day).date()
+
+                if narozeniny < dnesni_datum:
+                    narozeniny = narozeniny.replace(year=narozeniny.year + 1)
+
+                pocet_dni_do_narozenin = int((narozeniny - dnesni_datum).days)
+
+                st.write(f"Dnes je vám {vek} let.")
+                st.write(f"Do narozenin zbývá {pocet_dni_do_narozenin} dní.")
+        """)
+
 st.markdown("""
 ### Úkol 9
 Převeďte následující datumy do formátu DD.MM.YYYY a vypište je:
