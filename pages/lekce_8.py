@@ -238,38 +238,51 @@ if st.toggle("Zobrazit řešení:"):
             import json
             import time    
 
+            # Načtení json souboru
             with open("uzivatele.json", "r", encoding="utf-8") as f:
                 uzivatele = json.load(f)
 
+            # Inicializace session state
             if "prihlasen" not in st.session_state:
-                st.session_state["prihlasen"] = False
+                st.session_state["prihlasen"] = False # Status přihlášení uživatele
             if "jmeno" not in st.session_state:
-                st.session_state["jmeno"] = None
+                st.session_state["jmeno"] = None # Jméno přihlášeného uživatele
             if "email" not in st.session_state:
-                st.session_state["email"] = None
-
+                st.session_state["email"] = None # Email přihlášeného uživatele
+            
+            # Pokud je status přihlášení False (Nepravda), zobrazí se formulář pro přihlášení
             if not st.session_state["prihlasen"]:
+
+                # Formulář pro přihlášení
                 with st.form("prihlaseni", clear_on_submit=True):
                     prihlasovaci_jmeno = st.text_input("Přihlašovací jméno:")
                     heslo = st.text_input("Heslo:", type="password")
 
+                    # Proces přihlášení
                     if st.form_submit_button("Přihlásit se", use_container_width=True):
+                
+                        # Podíváme se přes for loop na každého uživatele v json souboru a zkontrolujem, zda se zadané přihlašovací jméno a heslo nachází shoďují s některým uživatelem
                         for uzivatel in uzivatele["uzivatele"]:
+                            # Pokud najdeme shodu, tak uložíme jméno a email uživatele do session state, změníme status přihlášení na True a přerušíme smyčku přes break, protože už nemá cenu hledat dál
                             if prihlasovaci_jmeno == uzivatel["prihlasovaci_jmeno"] and heslo == uzivatel["heslo"]:
                                 st.session_state["jmeno"] = uzivatel["jmeno"]
                                 st.session_state["email"] = uzivatel["email"]
                                 st.session_state["prihlasen"] = True
                                 break
+                        # Pokud je status přihlášení True (Pravda), zobrazí se zpráva o úspěšném přihlášení a aplikace se restartuje
                         if st.session_state["prihlasen"]:
                             st.success("Přihlášení proběhlo úspěšně.")
                             time.sleep(3)
                             st.rerun()
+                        # Pokud je status přihlášení False (Nepravda), zobrazí se chybová zpráva
                         else:
                             st.error("Špatné přihlašovací údaje.")
-                    
+
+            # Pokud je status přihlášení True (Pravda), zobrazí se pozdrav uživatele s jeho jménem a emailem a tlačítko pro odhlášení    
             if st.session_state["prihlasen"]:
                 st.write(f"Ahoj {st.session_state['jmeno']}")
                 st.write(f"Tvůj email je: {st.session_state['email']}")
+                # Tlačítko pro odhlášení, pokud je stisknuto, tak se status přihlášení změní na False, jméno a email se vymažou a zobrazí se zpráva o úspěšném odhlášení a aplikace se restartuje
                 if st.button("Odhlásit se"):
                     st.session_state["prihlasen"] = False
                     st.session_state["jmeno"] = None
