@@ -178,7 +178,8 @@ Vytvořte si json soubr `uzivatele.json` a do něj si zkopírujte následující
 }
 Vytvořte si na stránce `prihlaseni.py` formulář, kde uživatel zadá své přihlašovací jméno, heslo a po stisknutí tlačítka se zkontroluje,
 zda se uživatel nachází v json souboru a zda zadal správné heslo. 
-*Nezapomeňte si nejdříve načíst json do Vaší aplikace a ve funkci `open()` zadejte parametr `encoding="utf-8"`,
+*Nezapomeňte si nejdříve načíst json do Vaší aplikace a ve funkci `open()`
+zadejte parametr `encoding="utf-8"`,
 aby aplikace správně české znaky.*\\
 Pokud ano, uložte jméno (`jmeno`) a email uživatele do session states `jmeno` a `email` a skryjte přihlašovací formulář a místo něj
 zobrazte pozdrav uživatele s jeho jménem, emailem a zobrazte tlačítko pro odhlášení, které bude viditelné pouze pokud je uživatel přihlášený.
