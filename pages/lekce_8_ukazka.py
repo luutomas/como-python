@@ -13,7 +13,7 @@ odstranit_jmeno = st.selectbox("Vyber jméno k odstranění:", st.session_state.
 if st.button("Odstraň jméno", use_container_width=True) and odstranit_jmeno:
     st.session_state.jmena.remove(odstranit_jmeno)
 
-st.markdown("Session State `jmena`:")
+st.markdown("Session state `jmena`:")
 st.write(st.session_state.jmena)
 
 st.markdown("---")
@@ -29,6 +29,6 @@ odstranit_jmeno = st.selectbox("Vyber jméno k odstranění:", st.session_state.
 if st.button("Odstraň jméno", use_container_width=True) and odstranit_jmeno:
     st.session_state.jmena.remove(odstranit_jmeno)
 
-st.markdown("Session State `jmena`:")
+st.markdown("Session state `jmena`:")
 st.write(st.session_state.jmena)
 """)

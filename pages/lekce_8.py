@@ -5,7 +5,7 @@ st.header("Lekce č. 8")
 st.subheader("Streamlit session state")
 st.markdown("""
 Streamlit session state je dalším důležitým prvkem pro psaní aplikací ve Streamlitu. \\
-Streamlit po každé interakci s komponentou aplikace znovu načte celý kód a ztratí tak veškeré změny proměnných, které uživatel svou interakcí provedl. \\
+Streamlit po každé interakci s komponentou aplikace znovu načte celý kód a ztratí tak veškeré změny proměnných, které uživatel svou interakcí provedl.
 """)
 
 with st.container(border=True):
@@ -53,7 +53,7 @@ with st.container(border=True):
     if st.button("Odstraň jméno", use_container_width=True) and odstranit_jmeno:
         st.session_state.jmena.remove(odstranit_jmeno)
 
-    st.markdown("Session State `jmena`:")
+    st.markdown("Session state `jmena`:")
     st.write(st.session_state.jmena)
 
     st.markdown("---")
@@ -69,7 +69,7 @@ with st.container(border=True):
     if st.button("Odstraň jméno", use_container_width=True) and odstranit_jmeno:
         st.session_state.jmena.remove(odstranit_jmeno)
 
-    st.markdown("Session State `jmena`:")
+    st.markdown("Session state `jmena`:")
     st.write(st.session_state.jmena)
     """)
 
@@ -80,36 +80,35 @@ Session state se obvykle definuje na začátku aplikace a definuje se v rámci p
 aby při opětovném spouštení kódu, způsobeným interakcí uživatele, nedošlo k jeho přepsání.
 """)
 
-st.error("Chybná definice session state:")
-st.session_state.chybny_pocet = 0
-if st.button("Zvyš chybný počet"):
-    st.session_state.chybny_pocet += 1
-st.write(f"Chybný počet: {st.session_state.chybny_pocet}")
-st.code("""
-st.session_state.chybny_pocet = 0
-if st.button("Zvyš chybný počet"):
-    st.session_state.chybny_pocet += 1
-st.write(f"Chybný počet: {st.session_state.chybny_pocet}")
-""")
+with st.container(border=True):
+    st.error("Chybná definice session state:")
+    st.session_state.chybny_pocet = 0
+    if st.button("Zvyš chybný počet"):
+        st.session_state.chybny_pocet += 1
+    st.write(f"Chybný počet: {st.session_state.chybny_pocet}")
+    st.code("""
+    st.session_state.chybny_pocet = 0
+    if st.button("Zvyš chybný počet"):
+        st.session_state.chybny_pocet += 1
+    st.write(f"Chybný počet: {st.session_state.chybny_pocet}")
+    """)
 
-st.markdown("---")
+with st.container(border=True):
+    st.success("Správná definice session state:")
+    if "spravny_pocet" not in st.session_state:
+        st.session_state.spravny_pocet = 0
+    if st.button("Zvyš správný počet"):
+        st.session_state.spravny_pocet += 1
+    st.write(f"Správný počet: {st.session_state.spravny_pocet}")
+    st.code("""
+    if "spravny_pocet" not in st.session_state:
+        st.session_state.spravny_pocet = 0
+    if st.button("Zvyš správný počet"):
+        st.session_state.spravny_pocet += 1
+    st.write(f"Správný počet: {st.session_state.spravny_pocet}")
+    """)
 
-st.success("Správná definice session state:")
-if "spravny_pocet" not in st.session_state:
-    st.session_state.spravny_pocet = 0
-if st.button("Zvyš správný počet"):
-    st.session_state.spravny_pocet += 1
-st.write(f"Správný počet: {st.session_state.spravny_pocet}")
-st.code("""
-if "spravny_pocet" not in st.session_state:
-    st.session_state.spravny_pocet = 0
-if st.button("Zvyš správný počet"):
-    st.session_state.spravny_pocet += 1
-st.write(f"Správný počet: {st.session_state.spravny_pocet}")
-""")
-
-st.markdown("---")
-st.subheader("Jak přistupovat k hodnotám session state a jak je měnit")
+st.subheader("Jak přistupovat k hodnotám session state, jak je měnit a případně i mazat")
 
 st.markdown("""
 Máme definovaný session state `nazev_kurzu` a máme 3 možnosti, jak z něj získat hodnotu a 2 možnosti, jak hodnotu změnit.
