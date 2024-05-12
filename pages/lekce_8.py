@@ -1,4 +1,6 @@
 import streamlit as st
+import json
+import time 
 st.set_page_config(page_title="COMO Python", page_icon=":snake:", layout="centered", initial_sidebar_state="collapsed")
 st.header("Lekce č. 8")
 
@@ -188,6 +190,50 @@ if st.toggle("Nápověda"):
     1. Pro kontrolu přihlašovacích údajů budete muset využít for loop a podívat se, jestli se zadaná kombinace jména a hesla nachází v json souboru.
     2. Pro zobrazení/skytí formuláře a tlačítka pro odhlášení budete muset použít pomocný session state (např. `prihlasen`), pro ukladání informace, zda je uživatel přihlášený a použít if podmínku, pro zobrazní formuláře, nebo pozdravu s tlačítkem pro odhlášení.
 """)
+    
+if st.toggle("Zobrazit řešení:"):
+    with open("uzivatele.json", "r", encoding="utf-8") as f:
+        uzivatele = json.load(f)
+
+    if "prihlasen" not in st.session_state:
+        st.session_state["prihlasen"] = False
+    if "jmeno" not in st.session_state:
+        st.session_state["jmeno"] = None
+    if "email" not in st.session_state:
+        st.session_state["email"] = None
+
+    if not st.session_state["prihlasen"]:
+        with st.form("prihlaseni", clear_on_submit=True):
+            prihlasovaci_jmeno = st.text_input("Přihlašovací jméno:")
+            heslo = st.text_input("Heslo:", type="password")
+
+            if st.form_submit_button("Přihlásit se", use_container_width=True):
+                for uzivatel in uzivatele["uzivatele"]:
+                    if prihlasovaci_jmeno == uzivatel["prihlasovaci_jmeno"] and heslo == uzivatel["heslo"]:
+                        st.session_state["jmeno"] = uzivatel["jmeno"]
+                        st.session_state["email"] = uzivatel["email"]
+                        st.session_state["prihlasen"] = True
+                        break
+                if st.session_state["prihlasen"]:
+                    st.success("Přihlášení proběhlo úspěšně.")
+                    time.sleep(3)
+                    st.rerun()
+                else:
+                    st.error("Špatné přihlašovací údaje.")
+            
+    if st.session_state["prihlasen"]:
+        st.write(f"Ahoj {st.session_state['jmeno']}")
+        st.write(f"Tvůj email je: {st.session_state['email']}")
+        if st.button("Odhlásit se"):
+            st.session_state["prihlasen"] = False
+            st.session_state["jmeno"] = None
+            st.session_state["email"] = None
+            st.success("Odhlášení proběhlo úspěšně.")
+            time.sleep(3)
+            st.rerun()
+
+        
+
 
 
 

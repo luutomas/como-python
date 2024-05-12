@@ -1,0 +1,10 @@
+{
+    "uzivatele": [
+        {
+            "prihlasovaci_jmeno": "admin",
+            "heslo": "como123",
+            "jmeno": "Admin",
+            "email": "admin@coworking-most.cz"
+        }
+    ]
+}
