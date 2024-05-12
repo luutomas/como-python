@@ -175,7 +175,6 @@ Vytvořte si json soubr `uzivatele.json` a do něj si zkopírujte následující
     ]
 }
 ```
-}
 Vytvořte si na stránce `prihlaseni.py` formulář, kde uživatel zadá své přihlašovací jméno, heslo a po stisknutí tlačítka se zkontroluje,
 zda se uživatel nachází v json souboru a zda zadal správné heslo. 
 *Nezapomeňte si nejdříve načíst json do Vaší aplikace a ve funkci `open()` \\
