@@ -85,12 +85,12 @@ with st.container(border=True):
     st.session_state["chybny_pocet"] = 0
     if st.button("Zvyš chybný počet"):
         st.session_state["chybny_pocet"] += 1
-    st.write(f"Chybný počet: {st.session_state["chybny_pocet"]}")
+    st.write(f"Chybný počet: {st.session_state['chybny_pocet']}")
     st.code("""
-    st.session_state.chybny_pocet = 0
+    st.session_state["chybny_pocet"] = 0
     if st.button("Zvyš chybný počet"):
-        st.session_state.chybny_pocet += 1
-    st.write(f"Chybný počet: {st.session_state.chybny_pocet}")
+        st.session_state["chybny_pocet"] += 1
+    st.write(f"Chybný počet: {st.session_state['chybny_pocet']}")
     """)
 
 with st.container(border=True):
