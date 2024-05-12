@@ -51,4 +51,12 @@ Spočítejte, jaký je rozdíl mezi nejstarším a nejmladším datem a vypište
 Vyspiště pro každý datum ve slovníku, kolik let by bylo člověku, který se narodil 1.4.2024.
 ### Úkol 8
 Vytvořte pomocí `st.form` formulář, kam uživatel zadá své datum narození a po stisknutí tlačítka se vypíše, kolik let mu je dnes a za kolik dní bude mít narozeniny.
+### Úkol 9
+Převeďte následující datumy do formátu DD.MM.YYYY a vypište je:
+```python
+datum_1 = "2024-04-30 13:00:00"
+datum_2 = "1/4/2024"
+datum_3 = "1.5.2024 12:00"
+datum_4 = "12/5/24 9:30"
+```
 """)
