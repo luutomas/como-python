@@ -129,11 +129,21 @@ if "nazev_kurzu" not in st.session_state:
 
 st.markdown("""
 Možnost 1 a 2 jsou ekvivalentní a obě vrátí hodnotu z session state. \\
-Možnost 3 je bezpečnější, protože pokud klíč v session state neexistuje, tak vrátí `None` místo chyby, ale v praxi se moc nepoužívá. \\
+Možnost 3 je bezpečnější, protože pokud klíč v session state neexistuje, tak vrátí `None` místo chyby, ale v praxi se moc nepoužívá.
 
-Pro změnu hodnoty v session state můžeme použít 1. a 2. možnost, stačí pouze pomocí `=` přiřadit novou hodnotu. \\
+Pro změnu hodnoty v session state můžeme použít 1. a 2. možnost, stačí pouze pomocí `=` přiřadit novou hodnotu.
 Pokud session state klíč již existuje, tak se hodnota přepíše, pokud neexistuje, tak se vytvoří nový klíč s hodnotou.
+            
+Smazání session state je velice jednoduché, stačí pouze použít výraz `del` a hned za ním se odkázat na session state, který chceme smazat.
 """)
+
+with st.container(border=True):
+    del st.session_state.nazev_kurzu
+    st.write(st.session_state.get("nazev_kurzu", "Session state nebyl nalezen.")) # Pro demonstraci použijeme .get() aby se nevyvolala chyba
+    st.code("""
+    del st.session_state.nazev_kurzu
+    st.write(st.session_state.get("nazev_kurzu", "Session state nebyl nalezen.")) # Pro demonstraci použijeme .get() aby se nevyvolala chyba
+    """)
 
 
 
