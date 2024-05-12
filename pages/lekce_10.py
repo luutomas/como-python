@@ -79,36 +79,58 @@ st.markdown("""
 Vypište všechny datumy, které mají na pozici minut 30.
 """)
 
-if st.toggle("Zobrazit kód", key="ukol_3_kod"):
-    st.code("""
-    for datum in slovnik_datumu:
-        if datum.minute == 30:
-            st.write(datum)
+if st.toggle("Zobrazit řešení", key="ukol_3_reseni"):
+    st.markdown("""
+    Řešení:
+    - 2024-04-19 09:30:00
+    - 2025-06-17 03:30:00
+    - 2023-12-31 19:30:00
+    - 2024-05-10 12:30:00
     """)
+
+    if st.toggle("Zobrazit kód", key="ukol_3_kod"):
+        st.code("""
+        for datum in slovnik_datumu:
+            if datum.minute == 30:
+                st.write(datum)
+        """)
 
 st.markdown("""
 ### Úkol 4
-Vypište všechny datumy, které mají nejsou starší více než 2 týdny.
+Vypište všechny datumy, které jsou v rozmezí 2 týdnů od dnešního data do dnešního data.
 """)
 
-if st.toggle("Zobrazit kód", key="ukol_4_kod"):
-    st.code("""
-    for datum in slovnik_datumu:
-        if dt.datetime.now() - datum < dt.timedelta(weeks=2):
-            st.write(datum)
+if st.toggle("Zobrazit řešení", key="ukol_4_reseni"):
+    st.markdown("""
+    Řešení:
+    - 2024-04-30 13:00:00
+    - 2024-05-10 12:30:00
     """)
+
+    if st.toggle("Zobrazit kód", key="ukol_4_kod"):
+        st.code("""
+        for datum in slovnik_datumu:
+            if dt.datetime.now() - dt.timedelta(weeks=2) <= datum <= dt.datetime.now():
+                st.write(datum)
+        """)
 
 st.markdown("""
 ### Úkol 5
 Vypište všechny datumy, které jsou starší než dnešní datum.
 """)
 
-if st.toggle("Zobrazit kód", key="ukol_5_kod"):
-    st.code("""
-    for datum in slovnik_datumu:
-        if datum < dt.datetime.now():
-            st.write(datum)
+if st.toggle("Zobrazit řešení", key="ukol_5_reseni"):
+    st.markdown("""
+    Řešení:
+    - 2025-06-17 03:30:00
     """)
+
+    if st.toggle("Zobrazit kód", key="ukol_5_kod"):
+        st.code("""
+        for datum in slovnik_datumu:
+            if datum > dt.datetime.now():
+                st.write(datum)
+        """)
 
 st.markdown("""
 ### Úkol 6
@@ -118,16 +140,24 @@ Spočítejte, jaký je rozdíl mezi nejstarším a nejmladším datem a vypište
 - v měsících *(zaokrouhlete na 1 desetinné místo)*
 """)
 
-if st.toggle("Zobrazit kód", key="ukol_6_kod"):
-    st.code("""
-    nejstarsi_datum = min(slovnik_datumu)
-    nejmladsi_datum = max(slovnik_datumu)
-    rozdil = nejmladsi_datum - nejstarsi_datum
-
-    st.write(f"Rozdíl ve dnech a sekundách: {rozdil.days} dní a {rozdil.seconds} sekund.")
-    st.write(f"Rozdíl v minutách: {rozdil.total_seconds() / 60} minut.")
-    st.write(f"Rozdíl v měsících: {round(rozdil.days / 30, 1)} měsíců.")
+if st.toggle("Zobrazit řešení", key="ukol_6_reseni"):
+    st.markdown("""
+    Řešení:
+    - Rozdíl ve dnech a sekundách: 533 dní a 28800 sekund.
+    - Rozdíl v minutách: 768000.0 minut.
+    - Rozdíl v měsících: 17.8 měsíců.
     """)
+
+    if st.toggle("Zobrazit kód", key="ukol_6_kod"):
+        st.code("""
+        nejstarsi_datum = min(slovnik_datumu)
+        nejmladsi_datum = max(slovnik_datumu)
+        rozdil = nejmladsi_datum - nejstarsi_datum
+
+        st.write(f"Rozdíl ve dnech a sekundách: {rozdil.days} dní a {rozdil.seconds} sekund.")
+        st.write(f"Rozdíl v minutách: {rozdil.total_seconds() / 60} minut.")
+        st.write(f"Rozdíl v měsících: {round(rozdil.days / 30, 1)} měsíců.")
+        """)
 
 st.markdown("""
 ### Úkol 7
