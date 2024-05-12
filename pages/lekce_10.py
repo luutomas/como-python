@@ -32,6 +32,7 @@ slovnik_datumu = [
     dt.datetime.strptime("2024-05-10 12:30:00", "%Y-%m-%d %H:%M:%S")
 ]
 ```
+Datumy už máte rovnou definové jako datetime objekty, takže se převodem nemusíte zabývat a rovnou začít porovnávat.
 ### Úkol 1
 Vypište všechy datumy, které nejsou starší více než 1 měsíc (30 dnů).
 """)
