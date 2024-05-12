@@ -164,12 +164,23 @@ st.markdown("""
 Vyspiště pro každý datum ve slovníku, kolik let by bylo člověku, který se narodil 1.4.2000.
 """)
 
-if st.toggle("Zobrazit kód", key="ukol_7_kod"):
-    st.code("""
-    datum_narozeni = dt.datetime(2000, 4, 1)
-    for datum in slovnik_datumu:
-        st.write(f"Když se narodíte 1.4.2000, tak vám {datum.date()} bude {int((datum - datum_narozeni).days / 365)} let.")
+if st.toggle("Zobrazit řešení", key="ukol_7_reseni"):
+    st.markdown("""
+    Řešení:
+    - Když se narodíte 1.4.2000, tak vám 2024-04-30 bude 24 let.
+    - Když se narodíte 1.4.2000, tak vám 2024-04-19 bude 24 let.
+    - Když se narodíte 1.4.2000, tak vám 2024-03-28 bude 24 let.
+    - Když se narodíte 1.4.2000, tak vám 2025-06-17 bude 25 let.
+    - Když se narodíte 1.4.2000, tak vám 2023-12-31 bude 23 let.
+    - Když se narodíte 1.4.2000, tak vám 2024-05-10 bude 24 let.
     """)
+    
+    if st.toggle("Zobrazit kód", key="ukol_7_kod"):
+        st.code("""
+        datum_narozeni = dt.datetime(2000, 4, 1)
+        for datum in slovnik_datumu:
+            st.write(f"Když se narodíte 1.4.2000, tak vám {datum.date()} bude {int((datum - datum_narozeni).days / 365)} let.")
+        """)
 
 st.markdown("""
 ### Úkol 8
