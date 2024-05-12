@@ -33,28 +33,46 @@ slovnik_datumu = [
 ]
 ```
 Datumy už máte rovnou definové jako datetime objekty, takže se převodem nemusíte zabývat a rovnou začít porovnávat.
+""")
+
+st.markdown("""        
 ### Úkol 1
 Vypište všechny datumy, které nejsou starší více než 1 měsíc (30 dnů).
 """)
 
-if st.toggle("Zobrazit kód", key="ukol_1_kod"):
-    st.code("""
-    for datum in slovnik_datumu:
-        if dt.datetime.now() - datum < dt.timedelta(days=30):
-            st.write(datum)
+if st.toggle("Zobrazit řešení", key="ukol_1_reseni"):
+    st.markdown("""
+    Řešení:
+    - 2024-04-30 13:00:00
+    - 2024-04-19 09:30:00
+    - 2025-06-17 03:30:00
+    - 2024-05-10 12:30:00
     """)
+
+    if st.toggle("Zobrazit kód", key="ukol_1_kod"):
+        st.code("""
+        for datum in slovnik_datumu:
+            if dt.datetime.now() - datum < dt.timedelta(days=30):
+                st.write(datum)
+        """)
 
 st.markdown("""
 ### Úkol 2
 Vypište všechny datumy, které jsou v rozmezí od 1.1.2024 do 31.3.2024.
 """)
 
-if st.toggle("Zobrazit kód", key="ukol_2_kod"):
-    st.code("""
-    for datum in slovnik_datumu:
-        if dt.datetime(2024, 1, 1) <= datum <= dt.datetime(2024, 3, 31):
-            st.write(datum)
+if st.toggle("Zobrazit řešení", key="ukol_2_reseni"):
+    st.markdown("""
+    Řešení:
+    - 2024-03-28 15:00:00
     """)
+
+    if st.toggle("Zobrazit kód", key="ukol_2_kod"):
+        st.code("""
+        for datum in slovnik_datumu:
+            if dt.datetime(2024, 1, 1) <= datum <= dt.datetime(2024, 3, 31):
+                st.write(datum)
+        """)
 
 st.markdown("""
 ### Úkol 3
@@ -120,7 +138,7 @@ if st.toggle("Zobrazit kód", key="ukol_7_kod"):
     st.code("""
     datum_narozeni = dt.datetime(2000, 4, 1)
     for datum in slovnik_datumu:
-        st.write(f"Když se narodíte 1.4.2000, tak v tomto datu vám bude {round((datum - datum_narozeni).days / 365, 2)} let.")
+        st.write(f"Když se narodíte 1.4.2000, tak vám {datum.date()} bude {int((datum - datum_narozeni).days / 365)} let.")
     """)
 
 st.markdown("""
