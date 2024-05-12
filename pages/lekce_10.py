@@ -52,7 +52,7 @@ if st.toggle("Zobrazit řešení", key="ukol_1_reseni"):
     if st.toggle("Zobrazit kód", key="ukol_1_kod"):
         st.code("""
         for datum in slovnik_datumu:
-            if dt.datetime.now() - datum < dt.timedelta(days=30):
+            if dt.datetime.utcnow() - datum < dt.timedelta(days=30):
                 st.write(datum)
         """)
 
@@ -110,7 +110,7 @@ if st.toggle("Zobrazit řešení", key="ukol_4_reseni"):
     if st.toggle("Zobrazit kód", key="ukol_4_kod"):
         st.code("""
         for datum in slovnik_datumu:
-            if dt.datetime.now() - dt.timedelta(weeks=2) <= datum <= dt.datetime.now():
+            if dt.datetime.utcnow() - dt.timedelta(weeks=2) <= datum <= dt.datetime.utcnow():
                 st.write(datum)
         """)
 
@@ -128,7 +128,7 @@ if st.toggle("Zobrazit řešení", key="ukol_5_reseni"):
     if st.toggle("Zobrazit kód", key="ukol_5_kod"):
         st.code("""
         for datum in slovnik_datumu:
-            if datum > dt.datetime.now():
+            if datum > dt.datetime.utcnow():
                 st.write(datum)
         """)
 
@@ -190,10 +190,10 @@ Vytvořte pomocí `st.form` formulář, kam uživatel zadá své datum narození
 
 if st.toggle("Zobrazit řešení", key="ukol_8_reseni"):
     with st.form(key="datum_narozeni"):
-        datum_narozeni = st.date_input("Datum narození:", value=None, min_value=dt.datetime(1900, 1, 1), max_value=dt.datetime.now())   
+        datum_narozeni = st.date_input("Datum narození:", value=None, min_value=dt.datetime(1900, 1, 1), max_value=dt.datetime.utcnow)   
 
         if st.form_submit_button("Odeslat"):
-            dnesni_datum = dt.datetime.today().date()
+            dnesni_datum = dt.datetime.utcnow().date()
             vek = int((dnesni_datum - datum_narozeni).days / 365.25)
             narozeniny = dt.datetime(dnesni_datum.year, datum_narozeni.month, datum_narozeni.day).date()
 
@@ -208,10 +208,10 @@ if st.toggle("Zobrazit řešení", key="ukol_8_reseni"):
     if st.toggle("Zobrazit kód", key="ukol_8_kod"):
         st.code("""
         with st.form(key="datum_narozeni"):
-            datum_narozeni = st.date_input("Datum narození:", value=None, min_value=dt.datetime(1900, 1, 1), max_value=dt.datetime.now())   
+            datum_narozeni = st.date_input("Datum narození:", value=None, min_value=dt.datetime(1900, 1, 1), max_value=dt.datetime.utcnow())   
 
             if st.form_submit_button("Odeslat"):
-                dnesni_datum = dt.datetime.today().date()
+                dnesni_datum = dt.datetime.utcnow().date()
                 vek = int((dnesni_datum - datum_narozeni).days / 365.25)
                 narozeniny = dt.datetime(dnesni_datum.year, datum_narozeni.month, datum_narozeni.day).date()
 
