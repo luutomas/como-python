@@ -46,7 +46,7 @@ if st.toggle("Zobrazit kód", key="ukol_1_kod"):
 
 st.markdown("""
 ### Úkol 2
-Vypišty všechy datumy, které jsou v rozmezí od 1.1.2024 do 31.3.2024.
+Vypište všechy datumy, které jsou v rozmezí od 1.1.2024 do 31.3.2024.
 """)
 
 if st.toggle("Zobrazit kód", key="ukol_2_kod"):
