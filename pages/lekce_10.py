@@ -185,7 +185,7 @@ if st.toggle("Zobrazit řešení", key="ukol_7_reseni"):
 st.markdown("""
 ### Úkol 8
 Vytvořte pomocí `st.form` formulář, kam uživatel zadá své datum narození a po stisknutí tlačítka se vypíše, kolik let mu je dnes a za kolik dní bude mít narozeniny. \\
-Pozor si dejte na to, že pokud budete využívat k dělení počet dní v roce, tak rok je 365.25 dní.
+*Pozor si dejte na to, že pokud budete využívat k dělení počet dní v roce, tak rok je 365.25 dní.*
 """)
 
 st.markdown("""
