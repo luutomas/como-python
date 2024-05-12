@@ -174,7 +174,7 @@ if st.toggle("Zobrazit řešení", key="ukol_7_reseni"):
     - Když se narodíte 1.4.2000, tak vám 2023-12-31 bude 23 let.
     - Když se narodíte 1.4.2000, tak vám 2024-05-10 bude 24 let.
     """)
-    
+
     if st.toggle("Zobrazit kód", key="ukol_7_kod"):
         st.code("""
         datum_narozeni = dt.datetime(2000, 4, 1)
@@ -197,3 +197,24 @@ datum_3 = "1.5.2024 12:00"
 datum_4 = "12/5/24 9:30"
 ```
 """)
+
+if st.toggle("Zobrazit řešení", key="ukol_9_reseni"):
+    st.markdown("""
+    Řešení:
+    - 30.04.2024
+    - 01.04.2024
+    - 01.05.2024
+    - 12.05.2024
+    """)
+
+    if st.toggle("Zobrazit kód", key="ukol_9_kod"):
+        st.code("""
+        datum_1 = dt.datetime.strptime(datum_1, "%Y-%m-%d %H:%M:%S")
+        st.write(datum_1.strftime("%d.%m.%Y"))
+        datum_2 = dt.datetime.strptime(datum_2, "%d/%m/%Y")
+        st.write(datum_2.strftime("%d.%m.%Y"))
+        datum_3 = dt.datetime.strptime(datum_3, "%d.%m.%Y %H:%M")
+        st.write(datum_3.strftime("%d.%m.%Y"))
+        datum_4 = dt.datetime.strptime(datum_4, "%d/%m/%y %H:%M")
+        st.write(datum_4.strftime("%d.%m.%Y"))
+        """)
