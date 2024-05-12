@@ -114,18 +114,21 @@ Máme definovaný session state `nazev_kurzu` a máme 3 možnosti, jak z něj z�
 1. `st.session_state["nazev_kurzu"]`
 2. `st.session_state.nazev_kurzu`
 3. `st.session_state.get("nazev_kurzu")`
+            
+A výsledkem všech tří moožností bude `COMO Python`.
+""")
+
+st.code("""
+if "nazev_kurzu" not in st.session_state:
+    st.session_state.nazev_kurzu = "COMO Python"
 """)
 
 if "nazev_kurzu" not in st.session_state:
     st.session_state.nazev_kurzu = "COMO Python"
 
-st.write(f"1. {st.session_state['nazev_kurzu']}")
-st.write(f"2. {st.session_state.nazev_kurzu}")
-st.write(f"3. {st.session_state.get('nazev_kurzu')}")
-
 st.markdown("""
-1. a 2. možnost jsou ekvivalentní a obě vrátí hodnotu z session state. \\
-3. možnost je bezpečnější, protože pokud klíč v session state neexistuje, tak vrátí `None` místo chyby.
+Možnost 1 a 2 jsou ekvivalentní a obě vrátí hodnotu z session state. \\
+Možnost 3 je bezpečnější, protože pokud klíč v session state neexistuje, tak vrátí `None` místo chyby, ale v praxi se moc nepoužívá. \\
 
 Pro změnu hodnoty v session state můžeme použít 1. a 2. možnost, stačí pouze pomocí `=` přiřadit novou hodnotu. \\
 Pokud session state klíč již existuje, tak se hodnota přepíše, pokud neexistuje, tak se vytvoří nový klíč s hodnotou.
