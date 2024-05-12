@@ -37,7 +37,7 @@ with st.container(border=True):
 
 st.markdown("""
 Se session state tedy můžeme pracovat stejně jako se slovníkem a můžeme na něj volat metody jako `.get()`, `.keys()`, `.values()`, `.items()`, ... ale v praxi se spíše nevyužívají. \\
-Oproti slovníkům má ale jednu výhodu a to, že k hodnotám v session state můžeme přistupovat i pomocí tečkové notace: `st.session_state.moje_hodnota`. \\
+Oproti slovníkům má ale jeden rozdíl a to, že k hodnotám v session state můžeme přistupovat i pomocí tečkové notace: `st.session_state.moje_hodnota`. \\
 Další klíčovou vlastností Streamlit session state je možnost sdílení proměnné mezi jednotlivýmí stránkami aplikace (pages).
 """)
 
