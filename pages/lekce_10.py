@@ -118,9 +118,9 @@ Vyspiště pro každý datum ve slovníku, kolik let by bylo člověku, který s
 
 if st.toggle("Zobrazit kód", key="ukol_7_kod"):
     st.code("""
-    datum_narozeni = dt.datetime(2024, 4, 1)
+    datum_narozeni = dt.datetime(2000, 4, 1)
     for datum in slovnik_datumu:
-        st.write(f"Když se narodíte 1.4.2024, tak v tomto datu vám bude {round((datum - datum_narozeni).days / 365, 2)} let.")
+        st.write(f"Když se narodíte 1.4.2000, tak v tomto datu vám bude {round((datum - datum_narozeni).days / 365, 2)} let.")
     """)
 
 st.markdown("""
