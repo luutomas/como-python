@@ -6,14 +6,14 @@ st.header("Lekce č. 10")
 st.subheader("Datum a čas")
 st.markdown("""
 Abychom mohli pracovat s datem a časem, musíme importovat knihovnu `datetime`. \\
-V praxi je více populárnější importovat tuto knihovnu jako `dt`. \\
+V praxi je více populárnější importovat tuto knihovnu jako `dt`.
 """)
 st.code("""
 import datetime as dt
 """)
 st.markdown("""
 Při práci s datumem a časem si také musíme uvědomit, že máme čas lokální a čas UTC. \\
-UTC je koordinovaný světový čas, který je vždy stejný, bez ohledu na to, kde se nacházíte. \\
+UTC je koordinovaný světový čas, který je vždy stejný, bez ohledu na to, kde se nacházíte.
 """)
 
 
@@ -40,5 +40,15 @@ Vypiště klíče všech datumů, které jsou v rozmezí od 1.1.2024 do 31.3.202
 Vypiště klíče všech datumů, které mají na pozici minut 30.
 ### Úkol 4
 Vypiště klíče všech datumů, které mají nejsou starší více než 2 týdny.
-
+### Úkol 5
+Vypiště klíče všech datumů, které jsou starší než dnešní datum.
+### Úkol 6
+Spočítejte, jaký je rozdíl mezi nejstarším a nejmladším datem a vypište výsledek:
+- ve dnech a sekundách
+- v minutách
+- v měsících *(zaokrouhlete na 1 desetinné místo)*
+### Úkol 7
+Vyspiště pro každý datum, kolik let by bylo člověku, který se narodil 1.4.2024.
+### Úkol 8
+Vytvořte pomocí `st.form` formulář, kam uživatel zadá své datum narození a po stisknutí tlačítka se vypíše, kolik let mu je dnes a za kolik dní bude mít narozeniny.
 """)
