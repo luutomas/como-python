@@ -6,11 +6,11 @@ st.subheader("Streamlit session state")
 st.markdown("""
 Streamlit session state je dalším důležitým prvkem pro psaní aplikací ve Streamlitu. \\
 Streamlit po každé interakci s komponentou aplikace znovu načte celý kód a ztratí tak veškeré změny proměnných, které uživatel svou interakcí provedl. \\
-Jednoduchým příkladem je tento seznam, který po stisknutí tlačíka přidá jméno z `st.text_input` do seznamu.
 """)
 
 with st.container(border=True):
     st.markdown("""
+    Jednoduchým příkladem je tento seznam, který po stisknutí tlačíka přidá jméno z `st.text_input` do seznamu.
     ```json
     ["Tomáš", "Honza", "David"]
     ```
@@ -31,50 +31,48 @@ Po restartu (vypnutí a zapnutí aplikace), nebo aktualizaci stránky se všechn
 Session state je nám dostupný stejně jako ostatní komponenty, tedy pomocí `st.session_state` a při vypsání si můžeme všimout, že je to obyčejný slovník.
 """)
 
-st.code("st.write(st.session_state)")
-st.write(st.session_state)
+with st.container(border=True):
+    st.code("st.write(st.session_state)")
+    st.write(st.session_state)
 
 st.markdown("""
-Se session state tedy můžeme pracovat stejně jako se slovníkem a můžeme na něj volat metody jako `.get()`, `.keys()`, `.values()`, `.items()` atd. \\
-Oproti slovníkům má ale jednu výhodu a to, že k hodnotám v session state můžeme přistupovat i pomocí tečkové notace - `st.session_state.moje_hodnota`.
-""")
-
-st.markdown("""
+Se session state tedy můžeme pracovat stejně jako se slovníkem a můžeme na něj volat metody jako `.get()`, `.keys()`, `.values()`, `.items()`, ... ale v praxi se spíše nevyužívají. \\
+Oproti slovníkům má ale jednu výhodu a to, že k hodnotám v session state můžeme přistupovat i pomocí tečkové notace: `st.session_state.moje_hodnota`. \\
 Další klíčovou vlastností Streamlit session state je možnost sdílení proměnné mezi jednotlivýmí stránkami aplikace (pages).
 """)
 
-if "jmena" not in st.session_state:
-    st.session_state.jmena = []
+with st.container(border=True):
+    if "jmena" not in st.session_state:
+        st.session_state.jmena = []
 
-nove_jmeno = st.text_input("Zadej nové jméno:", key="zadej_nove_jmeno_2")
-if st.button("Přidej jméno", use_container_width=True):
-    st.session_state.jmena.append(nove_jmeno)
+    nove_jmeno = st.text_input("Zadej nové jméno:", key="zadej_nove_jmeno_2")
+    if st.button("Přidej jméno", use_container_width=True):
+        st.session_state.jmena.append(nove_jmeno)
 
-odstranit_jmeno = st.selectbox("Vyber jméno k odstranění:", st.session_state.jmena, index=None, placeholder="Vyber jméno")
-if st.button("Odstraň jméno", use_container_width=True) and odstranit_jmeno:
-    st.session_state.jmena.remove(odstranit_jmeno)
+    odstranit_jmeno = st.selectbox("Vyber jméno k odstranění:", st.session_state.jmena, index=None, placeholder="Vyber jméno")
+    if st.button("Odstraň jméno", use_container_width=True) and odstranit_jmeno:
+        st.session_state.jmena.remove(odstranit_jmeno)
 
-st.markdown("Session State `jmena`:")
-st.write(st.session_state.jmena)
+    st.markdown("Session State `jmena`:")
+    st.write(st.session_state.jmena)
 
-st.markdown("---")
-st.code("""
-if "jmena" not in st.session_state:
-    st.session_state.jmena = []
+    st.markdown("---")
+    st.code("""
+    if "jmena" not in st.session_state:
+        st.session_state.jmena = []
 
-nove_jmeno = st.text_input("Zadej nové jméno:")
-if st.button("Přidej jméno", use_container_width=True):
-    st.session_state.jmena.append(nove_jmeno)
+    nove_jmeno = st.text_input("Zadej nové jméno:")
+    if st.button("Přidej jméno", use_container_width=True):
+        st.session_state.jmena.append(nove_jmeno)
 
-odstranit_jmeno = st.selectbox("Vyber jméno k odstranění:", st.session_state.jmena, index=None, placeholder="Vyber jméno")
-if st.button("Odstraň jméno", use_container_width=True) and odstranit_jmeno:
-    st.session_state.jmena.remove(odstranit_jmeno)
+    odstranit_jmeno = st.selectbox("Vyber jméno k odstranění:", st.session_state.jmena, index=None, placeholder="Vyber jméno")
+    if st.button("Odstraň jméno", use_container_width=True) and odstranit_jmeno:
+        st.session_state.jmena.remove(odstranit_jmeno)
 
-st.markdown("Session State `jmena`:")
-st.write(st.session_state.jmena)
-""")
+    st.markdown("Session State `jmena`:")
+    st.write(st.session_state.jmena)
+    """)
 
-st.markdown("---")
 st.subheader("Inicializace session state")
 
 st.markdown("""
