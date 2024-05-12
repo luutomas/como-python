@@ -151,10 +151,10 @@ Další vlastností session state je přistupování k hodnotám ostatních komp
 
 with st.container(border=True):
     st.text_input("Zadejte Vaše jméno:", key="vase_jmeno")
-    st.write(st.session_state["vase_jmeno"])
+    st.write(f"Vaše jméno: {st.session_state['vase_jmeno']}")
     st.code("""
-    st.text_input("Zadej jméno:", key="jmeno")
-    st.write(st.session_state.get("jmeno", "Jméno nebylo zadáno."))
+    st.text_input("Zadejte Vaše jméno:", key="vase_jmeno")
+    st.write(f"Vaše jméno: {st.session_state['vase_jmeno']}")
     """)
 
 
