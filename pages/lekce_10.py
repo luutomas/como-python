@@ -21,35 +21,30 @@ UTC je koordinovaný světový čas, který je vždy stejný, bez ohledu na to, 
 st.markdown("""
 ---
 # Úkoly
-Zkopírujte si následující slovník do svého kódu:
+Zkopírujte si následující seznam do svého kódu:
 ```python
-slovnik_datumu = {
-    "1": "2024-04-30 13:00:00",
-    "2": "2024-04-19 9:30:00",
-    "3": "2024-03-28 15:00:00",
-    "4": "2025-06-17 03:30:00",
-    "5": "2023-12-31 19:30:00",
-    "6": "2024-05-10 12:30:00",
-}
+slovnik_datumu = [
+    dt.datetime.strptime(2024-04-30 13:00:00, "%Y-%m-%d %H:%M:%S"),
+    dt.datetime.strptime(2024-04-19 9:30:00, "%Y-%m-%d %H:%M:%S"),
+    dt.datetime.strptime(2024-03-28 15:00:00, "%Y-%m-%d %H:%M:%S"),
+    dt.datetime.strptime(2025-06-17 03:30:00, "%Y-%m-%d %H:%M:%S"),
+    dt.datetime.strptime(2023-12-31 19:30:00, "%Y-%m-%d %H:%M:%S"),
+    dt.datetime.strptime(2024-05-10 12:30:00, "%Y-%m-%d %H:%M:%S")
+]
 ```
 ### Úkol 1
-Vypište klíče všech datumů, které nejsou starší více než 1 měsíc (30 dnů).
+Vypište všechy datumy, které nejsou starší více než 1 měsíc (30 dnů).
 """)
-if st.toggle("Zobrazit výsledek:", key="ukol_1_vysledek"):
-    st.write("1, 2", "4", "6")
-    if st.toggle("Zobrazit kód:", key="ukoly_1_kod"):
-        for datum in slovnik_datumu.values():
-            if dt.datetime.now() - slovnik_datumu[datum] <= dt.timedelta(days=30):
-                st.write(datum)
+
 st.markdown("""
 ### Úkol 2
-Vypiště klíče všech datumů, které jsou v rozmezí od 1.1.2024 do 31.3.2024.
+Vypišty všechy datumy, které jsou v rozmezí od 1.1.2024 do 31.3.2024.
 ### Úkol 3
-Vypiště klíče všech datumů, které mají na pozici minut 30.
+Vypište všechny datumy, které mají na pozici minut 30.
 ### Úkol 4
-Vypiště klíče všech datumů, které mají nejsou starší více než 2 týdny.
+Vypište všechny datumy, které mají nejsou starší více než 2 týdny.
 ### Úkol 5
-Vypiště klíče všech datumů, které jsou starší než dnešní datum.
+Vypište všechny datumy, které jsou starší než dnešní datum.
 ### Úkol 6
 Spočítejte, jaký je rozdíl mezi nejstarším a nejmladším datem a vypište výsledek:
 - ve dnech a sekundách
