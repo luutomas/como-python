@@ -7,19 +7,23 @@ st.markdown("""
 Streamlit session state je dalším důležitým prvkem pro psaní aplikací ve Streamlitu. \\
 Streamlit po každé interakci s komponentou aplikace znovu načte celý kód a ztratí tak veškeré změny proměnných, které uživatel svou interakcí provedl. \\
 Jednoduchým příkladem je tento seznam, který po stisknutí tlačíka přidá jméno z `st.text_input` do seznamu.
-```json
-["Tomáš", "Honza", "David"]
-```
 """)
 
-jmena = ["Tomáš", "Honza", "David"]
-st.write("Jména před přidáním:")
-st.write(jmena)
-nove_jmeno = st.text_input("Zadej nové jméno:")
-if st.button("Přidej jméno"):
-    jmena.append(nove_jmeno)
-st.write("Jména po přidání:")
-st.write(jmena)
+with st.container(border=True):
+    st.markdown("""
+    ```json
+    ["Tomáš", "Honza", "David"]
+    ```
+    """)
+
+    jmena = ["Tomáš", "Honza", "David"]
+    st.write("Jména před přidáním:")
+    st.write(jmena)
+    nove_jmeno = st.text_input("Zadej nové jméno:")
+    if st.button("Přidej jméno"):
+        jmena.append(nove_jmeno)
+    st.write("Jména po přidání:")
+    st.write(jmena)
 
 st.markdown("""
 Streamlit session state je vlastně jen slovník, který si Streamlit uchovává v paměti a který je dostupný po celou dobu běhu aplikace. \\
