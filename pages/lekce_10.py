@@ -21,16 +21,29 @@ Pro získání aktuálního data a času můžeme použít metody:
             
 ZÍskáme tak objekt `datetime`, který obsahuje datum a čas a z něj můžeme získat různé informace, jako jsou rok, měsíc, den, hodiny, minuty, sekundy a mikrosekundy. \\
 Můžeme získat ale i jen datum nebo jen čas.
+
+Definujeme si proměnnou `utc_cas_nyni` a na ní si ukážeme jak můžeme dané hodnoty získat
 """)
 
-utc_now = dt.datetime.utcnow()
-st.write(f"Datum i čas: {utc_now}")
+with st.echo():
+    utc_cas_nyni = dt.datetime.utcnow()
+    st.write(utc_cas_nyni)
 
-st.write("Datum:", utc_now.date()) 
+st.markdown(f"""
+| Kód | Výsledek | Popis výsledku |
+| --- | -------- | -------------- |
+| `utc_cas_nyni.time()` | {utc_cas_nyni.time()} | Vrátí nám čas |
+| `utc_cas_nyni.date()` | {utc_cas_nyni.date()} | Vrátí nám datum |
+| `utc_cas_nyni.year` | {utc_cas_nyni.year} | Vrátí nám rok |
+| `utc_cas_nyni.month` | {utc_cas_nyni.month} | Vrátí nám měsíc |
+| `utc_cas_nyni.day` | {utc_cas_nyni.day} | Vrátí nám den |
+| `utc_cas_nyni.hour` | {utc_cas_nyni.hour} | Vrátí nám hodiny |
+| `utc_cas_nyni.minute` | {utc_cas_nyni.minute} | Vrátí nám minuty |
+| `utc_cas_nyni.second` | {utc_cas_nyni.second} | Vrátí nám sekundy |
+| `utc_cas_nyni.microsecond` | {utc_cas_nyni.microsecond} | Vrátí nám mikrosekundy |
 
-st.write("Čas:", utc_now.time())
+""")
 
-st.write("Rok:", utc_now.year)
 
 
 st.markdown("""
