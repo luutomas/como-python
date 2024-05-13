@@ -42,6 +42,7 @@ st.markdown(f"""
 | `utc_cas_nyni.second` | {utc_cas_nyni.second} | Vrátí nám sekundy |
 | `utc_cas_nyni.microsecond` | {utc_cas_nyni.microsecond} | Vrátí nám mikrosekundy |
 
+
 Také si všimněte rodzílu mezi objektem `datetime` a datumem ve formátu `"2024-01-01 13:00:00"`. \\
 """)
 
@@ -54,7 +55,7 @@ with columns[0]:
         st.write(datum)
 
 with columns[1]:
-    st.error("Toto je pouze string, nikoliv datum, i když to tak vypadá.")
+    st.error("Toto je pouze string.")
     with st.echo():
         datum = "2024-01-01 13:00:00"
         st.write(datum)
