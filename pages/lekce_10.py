@@ -13,8 +13,19 @@ import datetime as dt
 """)
 st.markdown("""
 Při práci s datumem a časem si také musíme uvědomit, že máme čas lokální a čas UTC. \\
-UTC je koordinovaný světový čas, který je vždy stejný, bez ohledu na to, kde se nacházíte.
+UTC je koordinovaný světový čas, který je vždy stejný, bez ohledu na to, kde se nacházíte, proto je také v praxi lepší pracovat s ním. \\
+            
+Pro získání aktuálního data a času můžeme použít metody:
+- pro lokální čas: `dt.datetime.now()`
+- pro UTC: `dt.datetime.utcnow()`
+            
+ZÍskáme tak objekt `datetime`, který obsahuje datum a čas a z něj můžeme získat různé informace, jako jsou rok, měsíc, den, hodiny, minuty, sekundy a mikrosekundy. \\
+Můžeme získat ale i jen datum nebo jen čas.
 """)
+
+utc_now = dt.datetime.utcnow()
+st.write(f"Datum i čas: {utc_now}")
+
 
 
 
