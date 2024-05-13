@@ -30,6 +30,8 @@ st.write("Datum:", utc_now.date())
 
 st.write("Čas:", utc_now.time())
 
+st.write("Rok:", utc_now.year)
+
 
 st.markdown("""
 ---
