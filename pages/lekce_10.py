@@ -40,10 +40,9 @@ st.markdown(f"""
 | `utc_cas_nyni.hour` | {utc_cas_nyni.hour} | Vrátí nám hodiny |
 | `utc_cas_nyni.minute` | {utc_cas_nyni.minute} | Vrátí nám minuty |
 | `utc_cas_nyni.second` | {utc_cas_nyni.second} | Vrátí nám sekundy |
-| `utc_cas_nyni.microsecond` | {utc_cas_nyni.microsecond} | Vrátí nám mikrosekundy |
+| `utc_cas_nyni.microsecond` | {utc_cas_nyni.microsecond} | Vrátí nám mikrosekundy | \\
 
-
-Také si všimněte rodzílu mezi objektem `datetime` a datumem ve formátu `"2024-01-01 13:00:00"`. \\
+Také si všimněte rodzílu mezi objektem `datetime` a datumem ve formátu `"2024-01-01 13:00:00"`. 
 """)
 
 columns = st.columns(2)
