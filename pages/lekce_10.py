@@ -98,7 +98,7 @@ st.markdown("""
 | %H | Hodina |
 | %M | Minuta |
 | %S | Sekunda |
-            
+---
 Více formátovacích značek a o jejich používání můžete najít například na [Programiz.com](https://www.programiz.com/python-programming/datetime/strftime).
 """)
 
