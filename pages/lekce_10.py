@@ -47,13 +47,13 @@ Také si všimněte rodzílu mezi objektem `datetime` a datumem ve formátu `"20
 
 columns = st.columns(2)
 
-with st.columns[0]:
+with columns[0]:
     st.success("Toto je objekt datetime - tedy datum a čas.")
     with st.echo():
         datum = dt.datetime(year=2024, month=1, day=1, hour=13, minute=0, second=0)
         st.write(datum)
 
-with st.columns[1]:
+with columns[1]:
     st.error("Toto je pouze string, nikoliv datum, i když to tak vypadá.")
     with st.echo():
         datum = "2024-01-01 13:00:00"
