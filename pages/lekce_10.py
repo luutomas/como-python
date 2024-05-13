@@ -26,7 +26,9 @@ Můžeme získat ale i jen datum nebo jen čas.
 utc_now = dt.datetime.utcnow()
 st.write(f"Datum i čas: {utc_now}")
 
+st.write("Datum:", utc_now.date()) 
 
+st.write("Čas:", utc_now.time())
 
 
 st.markdown("""
