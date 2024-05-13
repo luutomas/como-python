@@ -42,16 +42,146 @@ st.markdown(f"""
 | `utc_cas_nyni.second` | {utc_cas_nyni.second} | Vrátí nám sekundy |
 | `utc_cas_nyni.microsecond` | {utc_cas_nyni.microsecond} | Vrátí nám mikrosekundy |
 
+Také si všimněte rodzílu mezi objektem `datetime` a datumem ve formátu `"2024-01-01 13:00:00"`. \\
 """)
 
+columns = st.columns(2)
 
+with st.columns[0]:
+    st.success("Toto je objekt datetime - tedy datum a čas.")
+    with st.echo():
+        datum = dt.datetime(year=2024, month=1, day=1, hour=13, minute=0, second=0)
+        st.write(datum)
+
+with st.columns[1]:
+    st.error("Toto je pouze string, nikoliv datum, i když to tak vypadá.")
+    with st.echo():
+        datum = "2024-01-01 13:00:00"
+        st.write(datum)
+    
+st.markdown("""
+---
+# Jak definovat datum a čas
+
+Pokud chceme definovat datum a čas, můžeme to udělat několika způsoby:
+- přímo jako objekt `dt.datetime()`, jak je uvedeno výše a jako parametry musíme zadat rok, měsíc a den a dále můžeme, ale nemusíme zadat hodiny, minuty, sekundy a i mikrosekundy.
+- pomocí metod `dt.datetime.now()` nebo `dt.datetime.utcnow()`, které nám vrátí aktuální datum a čas.
+- pomocí metody `dt.datetime.strptime()`, která nám umožní převést string (text) na objekt `datetime` a jako parametry musíme zadat string a formát pomocí speciálních značek, ve kterém je datum zapsán.
+
+Například pokud bychom chtěli převést string `"1.1.2024 13:00:00"` na objekt `datetime`, tak bychom provedli následujícím způsobem:
+""")
+
+with st.echo():
+    datum_string = "1.1.2024 13:00:00"
+    format_datumu = "%d.%m.%Y %H:%M:%S"
+    datum = dt.datetime.strptime(datum_string, format_datumu)
+    st.write(datum)
+
+st.markdown("""
+A datum `"2024-01-01 13:00:00"` bychom převedli následujícím způsobem:
+""")
+
+with st.echo():
+    datum_string = "2024-01-01 13:00:00"
+    format_datumu = "%Y-%m-%d %H:%M:%S"
+    datum = dt.datetime.strptime(datum_string, format_datumu)
+    st.write(datum)
+
+st.markdown("""
+### Tabulka nejpoužívanějších formátovacích značek
+| Značka | Popis |
+| ------ | ----- |
+| %Y | Rok ve čtyřech číslicích |
+| %y | Rok ve dvou číslicích |
+| %m | Měsíc v číslech |
+| %d | Den v měsíci |
+| %H | Hodina |
+| %M | Minuta |
+| %S | Sekunda |
+            
+Více formátovacích značek a o jejich používání můžete najít například na [Programiz.com](https://www.programiz.com/python-programming/datetime/strftime).
+""")
+
+st.markdown("""
+---
+# Matematické operace s datem a časem
+
+S datem a časem můžeme provádět různé matematické operace, jako je sčítání, odčítání, porovnávání a další. \\
+K opreacím sčítání a odčítání se používá další objekt a tím je `timedelta`. \\
+Objekt `timedelta` nám umožňuje přičítat nebo odečítat určitý počet sekund, minut, hodnin, dní a týdnů k objektu `datetime` a definujeme ho následujícím způsobem:
+""")
+
+with st.echo():
+    timedelta_priklad = dt.timedelta(days=1, hours=12, minutes=30)
+
+st.markdown("""
+A nyní můžeme pomocí proměnné `timedelta_priklad` přičíst i odečíst 1 den, 12 hodin a 30 minut k našemu lokálnímu času:
+""")
+
+with st.echo():
+    lokalni_cas_nyni = dt.datetime.now()
+    lokalni_cas_plus = lokalni_cas_nyni + timedelta_priklad
+    lokalni_cas_minus = lokalni_cas_nyni - timedelta_priklad
+    st.write(f"Akuální datum a čas: {lokalni_cas_nyni}.")
+    st.write(f"Datum a čas po přičtení: {lokalni_cas_plus}.")
+    st.write(f"Datum a čas po odečtení: {lokalni_cas_minus}.")
+
+st.markdown("""
+Dejte si pozor, že nemůžeme přímo sčítat dva objekty `datetime`. To by vlastně nedávalo ani smysl že? Co by mělo výsledkem součtu dnešního a zítřejšího dne? \\
+Můžeme ale od sebe odečítat dva objekty `datetime` a jako výsledek dostaneme objekt `timedelta`, ze kterého můžeme získat pouze počet dní (`.days`) a počet sekund (`.seconds`).
+Pokud bychom chtěli znát například počet hodin, tak bychom museli převést sekundy na hodiny, pomocí jednoduchého dělení tak, jako bychom tu udělali v běžném životě. \\
+*Pozor ale na to, že výsledek odčítání bucou celé dny a co nepůjde převést na celé dny, bude v sekundách. Můžeme si ale zavolat metodu `.total_seconds()`, která nám vrátí celkový rozdíl v sekundách.*
+""")
+
+with st.echo():
+    dnesni_datum = dt.datetime.now()
+    zitrek = dnesni_datum + dt.timedelta(days=1)
+
+    st.write(f"Dnešní datum: {dnesni_datum}.")
+    st.write(f"Zítřejší datum: {zitrek}.")
+
+    rozdil = zitrek - dnesni_datum
+    st.write(f"Rozdíl je {rozdil.days} den a {rozdil.seconds} sekund.")
+
+    rozdil_v_hodinach = rozdil.total_seconds() / 3600
+    st.write(f"Rozdíl je {rozdil_v_hodinach} hodin.")
+
+st.markdown("""
+A datumy mezi sebou můžeme porovnávat pomocí porovnávacích operátorů, jako jsou `==`, `!=`, `>`, `<`, `>=` a `<=`. \\
+Pozor si dejte na to, že pokud porovnáváme dva objekty `datetime`, tak se porovnává i čas, pokud si nezavoláte metodu `.date()`, která vrátí pouze datum. \\  
+Například:
+""")
+
+with st.echo():
+    dnesni_datum = dt.datetime.now()
+    zitrek = dnesni_datum + dt.timedelta(days=1)
+
+    st.write(f"Dnešní datum: {dnesni_datum}.")
+    st.write(f"Zítřejší datum: {zitrek}.")
+
+    if zitrek > dnesni_datum:
+        st.write("Zítřejší datum je větší než dnešní datum.")
+
+    if dnesni_datum < zitrek:
+        st.write("Dnešní datum je menší než zítřejší datum.")
+
+    if dnesni_datum.date() == zitrek.date():
+        st.write("Dnešní datum a zítřejší datum jsou stejné.")
+    elif dnesni_datum.date() != zitrek.date():
+        st.write("Dnešní datum a zítřejší datum nejsou stejné.")
+
+    zacatek_roku_datum = dt.datetime(2024, 1, 1)
+    konec_roku_datum = dt.datetime(2024, 12, 31)
+
+    if zacatek_roku_datum <= dnesni_datum <= konec_roku_datum:
+        st.write("Dnešní datum je v roce 2024.")
 
 st.markdown("""
 ---
 # Úkoly
 Zkopírujte si následující seznam do svého kódu:
 ```python
-slovnik_datumu = [
+seznam_datumu = [
     dt.datetime.strptime("2024-04-30 13:00:00", "%Y-%m-%d %H:%M:%S"),
     dt.datetime.strptime("2024-04-19 9:30:00", "%Y-%m-%d %H:%M:%S"),
     dt.datetime.strptime("2024-03-28 15:00:00", "%Y-%m-%d %H:%M:%S"),
@@ -79,7 +209,7 @@ if st.toggle("Zobrazit řešení", key="ukol_1_reseni"):
 
     if st.toggle("Zobrazit kód", key="ukol_1_kod"):
         st.code("""
-        for datum in slovnik_datumu:
+        for datum in seznam_datumu:
             if dt.datetime.utcnow() - datum < dt.timedelta(days=30):
                 st.write(datum)
         """)
@@ -97,7 +227,7 @@ if st.toggle("Zobrazit řešení", key="ukol_2_reseni"):
 
     if st.toggle("Zobrazit kód", key="ukol_2_kod"):
         st.code("""
-        for datum in slovnik_datumu:
+        for datum in seznam_datumu:
             if dt.datetime(2024, 1, 1) <= datum <= dt.datetime(2024, 3, 31):
                 st.write(datum)
         """)
@@ -118,7 +248,7 @@ if st.toggle("Zobrazit řešení", key="ukol_3_reseni"):
 
     if st.toggle("Zobrazit kód", key="ukol_3_kod"):
         st.code("""
-        for datum in slovnik_datumu:
+        for datum in seznam_datumu:
             if datum.minute == 30:
                 st.write(datum)
         """)
@@ -137,7 +267,7 @@ if st.toggle("Zobrazit řešení", key="ukol_4_reseni"):
 
     if st.toggle("Zobrazit kód", key="ukol_4_kod"):
         st.code("""
-        for datum in slovnik_datumu:
+        for datum in seznam_datumu:
             if dt.datetime.utcnow() - dt.timedelta(weeks=2) <= datum <= dt.datetime.utcnow():
                 st.write(datum)
         """)
@@ -155,7 +285,7 @@ if st.toggle("Zobrazit řešení", key="ukol_5_reseni"):
 
     if st.toggle("Zobrazit kód", key="ukol_5_kod"):
         st.code("""
-        for datum in slovnik_datumu:
+        for datum in seznam_datumu:
             if datum > dt.datetime.utcnow():
                 st.write(datum)
         """)
@@ -178,8 +308,8 @@ if st.toggle("Zobrazit řešení", key="ukol_6_reseni"):
 
     if st.toggle("Zobrazit kód", key="ukol_6_kod"):
         st.code("""
-        nejstarsi_datum = min(slovnik_datumu)
-        nejmladsi_datum = max(slovnik_datumu)
+        nejstarsi_datum = min(seznam_datumu)
+        nejmladsi_datum = max(seznam_datumu)
         rozdil = nejmladsi_datum - nejstarsi_datum
 
         st.write(f"Rozdíl ve dnech a sekundách: {rozdil.days} dní a {rozdil.seconds} sekund.")
@@ -206,7 +336,7 @@ if st.toggle("Zobrazit řešení", key="ukol_7_reseni"):
     if st.toggle("Zobrazit kód", key="ukol_7_kod"):
         st.code("""
         datum_narozeni = dt.datetime(2000, 4, 1)
-        for datum in slovnik_datumu:
+        for datum in seznam_datumu:
             st.write(f"Když se narodíte 1.4.2000, tak vám {datum.date()} bude {int((datum - datum_narozeni).days / 365)} let.")
         """)
 
