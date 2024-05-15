@@ -1,5 +1,5 @@
 import streamlit as st
-
+st.set_page_config(page_title="COMO Python", page_icon=":snake:", layout="centered", initial_sidebar_state="collapsed")
 st.header("JSON")
 st.markdown("""
 Struktura slovníků je velmi podobná JSON, který je zkratkou pro JavaScript Object Notation. \\
