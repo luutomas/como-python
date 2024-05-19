@@ -1,0 +1,6 @@
+id_klienta,typ_zaplaceni,sleva
+1,kartou,0.2
+2,hotově,0.1
+3,dobírkou,0.05
+4,dobírkou,0.1
+5,kartou,0.15
