@@ -56,10 +56,9 @@ Dávejte taky pozor, že pokud texty.json bude prázdný tak tam žádný klíč
 Tato úloha patří v k velmi náročným a pravdpěodobně budete muset hledat i mimo naší lekce. \\
 Budete muset používat i for cyklus a podmínky pro hledání textu. \\
 Na hodině se k této úloze vyjádřím, pokud zbyde čas poté, co probereme cykly. \\
-Pokud to bude na vás příliš těžké tak stačí udělat jenom body: 
+Pokud to bude na vás příliš těžké tak stačí udělat jenom body: \\
+1., 2. a 5. což jsou tedy zápis a výmaz textu.
 
-1., 2. a 5.  \\
-Tedy zápis a výmaz textu.
 ---
 """)
 
