@@ -1,13 +1,13 @@
 import streamlit as st
+st.set_page_config(page_title="COMO Python", page_icon="icon.png", layout="centered")
 
 st.header("Vítejte na kurzu Naučte se programovat a vytvořte si svojí aplikaci za 6 dní")
 st.subheader("Jsme MOST pro Budoucnost")
-st.write("Místo, kde se spolu setkáváme, sdílíme zkušenosti a snažíme se posouvat dál.")
-st.write("Zde můžete najít informace o kurzu COMO Python, který se koná od 4.5. na 3 týdny.")
-
-st.markdown("""---""")
-
 st.markdown("""
+Místo, kde se spolu setkávání, sdílíme zkušenosti a snažíme se posouvat dál. \\
+Zde můžete najít informace o kurzu COMO Python, který se pravidelně koná v prostorech COMO.
+--- 
+
 Nejhezčí, nejčtivější, nejčistnější a nejlepší jazyk na světě.
 
 Python vyniká právě tím, že je velmi čitelný a jednoduchý na pochopení.
