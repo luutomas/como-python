@@ -1,6 +1,7 @@
 import streamlit as st
 
-st.set_page_config(page_title="COMO Python", page_icon=":snake:", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="COMO Python", page_icon="icon.png", layout="centered")
+
 
 st.markdown("""
 ## Git a Github
@@ -8,12 +9,10 @@ Abychom mohli naší aplikaci sdílet s ostatními, je potřeba ji nahrát na in
 Github je postavené na Gitu, což je verzovací systém. Git nám umožňuje sledovat změny v kódu, vytvářet nové větve, spojovat je a mnoho dalšího.
 My se tady budeme zabývat pouze základními příkazy, které nám pomohou nahrát náš kód na Github.
 
-### Instalace Gitu
+### Instalace Gitu a vytvoření účtu na Github
 1. Stáhněte si instalační soubor z [Git](https://git-scm.com/downloads)
 2. Spusťte instalační soubor a postupujte podle pokynů
-
-### Vytvoření účtu na Github
-1. Otevřete si stránku github.com
+3. Otevřete si stránku github.com
 
 Každé prvotní nastavení může být trochu jiné, ale základní princip je stejný.
 1. Nastavíte si jméno a email

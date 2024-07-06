@@ -1,6 +1,7 @@
 import streamlit as st
 import json
-st.set_page_config(page_title="COMO Python", page_icon=":snake:", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="COMO Python", page_icon="icon.png", layout="centered")
+
 st.header("Lekce č.5")
 
 st.subheader("Seznamy, sety a n-tice")
