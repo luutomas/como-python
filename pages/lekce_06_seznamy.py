@@ -297,12 +297,20 @@ Pokud uživatel vybere typ platby `kupon`, tak přepočítejte celkovou cenu obj
 """)
 
 if st.toggle("Ukázat řešení"):
-    with open("nove_menu.json", "r") as f:
-        menu = json.load(f)
+    # Pro načtení json do listu se slovníky použijeme json.load()
+    # Upozornění: Pokud by byl soubor nove_menu.json prázdný, tak by json.load() vyhodil chybu
+    # Je tedy potřeba ošetřit, aby soubor nebyl prázdný
+    try:
+        with open("data/json/nove_menu.json", "r") as f:
+            nove_menu_list = json.load(f)
+    except json.JSONDecodeError:
+        nove_menu_list = []
 
-    jidla = list(menu["jídla"].keys())
-    napoje = list(menu["nápoje"].keys())
-    typ_platby = menu["typ platby"]
+    st.write("Aktuální stav menu načtený ze souboru:")
+
+    jidla = list(nove_menu_list["jídla"].keys())
+    napoje = list(nove_menu_list["nápoje"].keys())
+    typ_platby = nove_menu_list["typ platby"]
 
     vybrane_jidlo = st.selectbox("Vyber jídlo", jidla, index = None, key="vybrane_jidlo", placeholder="Vyber jídlo")
     vybrany_napoj = st.selectbox("Vyber nápoj", napoje, index = None, key="vybrany_napoj", placeholder="Vyber nápoj")
@@ -312,7 +320,7 @@ if st.toggle("Ukázat řešení"):
     st.write(f"Vybral jsi nápoj: {vybrany_napoj}")
     st.write(f"Vybral jsi platbu: {vybrana_platba}")
 
-    cena = menu["jídla"].get(vybrane_jidlo, 0) + menu["nápoje"].get(vybrany_napoj, 0)
+    cena = nove_menu_list["jídla"].get(vybrane_jidlo, 0) + nove_menu_list["nápoje"].get(vybrany_napoj, 0)
     st.write(f"Celková cena objednávky je {cena}")
 
     if vybrana_platba == "kupon":
@@ -321,12 +329,12 @@ if st.toggle("Ukázat řešení"):
 
     if st.toggle("Ukázat kód"):
         st.code("""
-            with open("nove_menu.json", "r") as f:
-                menu = json.load(f)
+            with open("data/json/nove_menu.json", "r") as f:
+                nove_menu_list = json.load(f)
 
-            jidla = list(menu["jídla"].keys())
-            napoje = list(menu["nápoje"].keys())
-            typ_platby = menu["typ platby"]
+            jidla = list(nove_menu_list["jídla"].keys())
+            napoje = list(nove_menu_list["nápoje"].keys())
+            typ_platby = nove_menu_list["typ platby"]
 
             vybrane_jidlo = st.selectbox("Vyber jídlo", jidla, index = None, key="vybrane_jidlo", placeholder="Vyber jídlo")
             vybrany_napoj = st.selectbox("Vyber nápoj", napoje, index = None, key="vybrany_napoj", placeholder="Vyber nápoj")
@@ -336,7 +344,7 @@ if st.toggle("Ukázat řešení"):
             st.write(f"Vybral jsi nápoj: {vybrany_napoj}")
             st.write(f"Vybral jsi platbu: {vybrana_platba}")
 
-            cena = menu["jídla"].get(vybrane_jidlo, 0) + menu["nápoje"].get(vybrany_napoj, 0)
+            cena = nove_menu_list["jídla"].get(vybrane_jidlo, 0) + nove_menu_list["nápoje"].get(vybrany_napoj, 0)
             st.write(f"Celková cena objednávky je {cena}")
 
             if vybrana_platba == "kupon":

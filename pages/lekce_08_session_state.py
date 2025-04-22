@@ -193,7 +193,7 @@ if st.toggle("Nápověda"):
 """)
     
 if st.toggle("Zobrazit řešení:"):
-    with open("uzivatele.json", "r", encoding="utf-8") as f:
+    with open("data/json/uzivatele.json", "r", encoding="utf-8") as f:
         uzivatele = json.load(f)
 
     if "prihlasen" not in st.session_state:
@@ -240,7 +240,7 @@ if st.toggle("Zobrazit řešení:"):
             import time    
 
             # Načtení json souboru
-            with open("uzivatele.json", "r", encoding="utf-8") as f:
+            with open("data/json/uzivatele.json", "r", encoding="utf-8") as f:
                 uzivatele = json.load(f)
 
             # Inicializace session state
@@ -292,6 +292,23 @@ if st.toggle("Zobrazit řešení:"):
                     time.sleep(3)
                     st.rerun()
         """)
+
+def uloz_uzivatele(uzivatele):
+    # Uložení uživatelů do souboru
+    try:
+        with open("data/json/uzivatele.json", "w", encoding="utf-8") as f:
+            json.dump(uzivatele, f, indent=4, ensure_ascii=False)
+        st.success("Uživatelé byli úspěšně uloženi!")
+    except Exception as e:
+        st.error(f"Chyba při ukládání uživatelů: {e}")
+
+def nacti_uzivatele():
+    # Načtení uživatelů ze souboru
+    try:
+        with open("data/json/uzivatele.json", "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
 
 
         

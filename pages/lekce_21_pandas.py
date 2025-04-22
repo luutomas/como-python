@@ -36,7 +36,7 @@ df_objednavky =  pd.read_csv("objednavky.csv", sep = ",", encoding = "utf-8")
 st.dataframe(df_objednavky)
 ```
 """)
-df_objednavky =  pd.read_csv("objednavky.csv", sep = ",")
+df_objednavky =  pd.read_csv("data/csv/objednavky.csv", sep = ",")
 st.dataframe(df_objednavky)
 
 st.markdown("""

@@ -22,7 +22,7 @@ jidla = {
     "pizza": 149,
     "sendvič": 59
     }
-with open("jidla.json", "w") as f:
+with open("data/json/jidla.json", "w") as f:
     json.dump(jidla, f)
 ```
 """)
@@ -32,21 +32,21 @@ jidla = {
     "pizza": 149,
     "sendvič": 59
     }
-with open("jidla.json", "w") as f:
+with open("data/json/jidla.json", "w") as f:
     json.dump(jidla, f)
 
 st.markdown("""
 ---
 Nově budeme mít soubor `jidla.json` a můžeme si ho načíst pomocí:
 ```
-with open("jidla.json", "r") as f:
+with open("data/json/jidla.json", "r") as f:
     nactena_jidla = json.load(f)
 st.write(nactena_jidla)
 ```
 Viz výsledek:
 """)
 
-with open("jidla.json", "r") as f:
+with open("data/json/jidla.json", "r") as f:
     nactena_jidla = json.load(f)
 st.write(nactena_jidla)
 
@@ -55,12 +55,12 @@ st.markdown("""
 Nyní přidáme do našeho menu nové jídlo a uložíme to zpět do souboru:
 ```
 nactena_jidla["kebab"] = 89
-with open("jidla.json", "w") as f:
+with open("data/json/jidla.json", "w") as f:
     json.dump(nactena_jidla, f)
 ``` 
 """)
 nactena_jidla["kebab"] = 89
-with open("jidla.json", "w") as f:
+with open("data/json/jidla.json", "w") as f:
     json.dump(nactena_jidla, f)
 
 st.markdown("""
@@ -94,9 +94,9 @@ if st.toggle("Zobrazit řešení", False, key = "reseni_1"):
         "řízek": 119,
         "knedlo-vepřo-zelo": 139
         }
-    with open("menu.json", "w") as f:
+    with open("data/json/menu.json", "w") as f:
         json.dump(menu, f)
-    with open("menu.json", "r") as f:
+    with open("data/json/menu.json", "r") as f:
         nactene_menu = json.load(f)
     st.write(nactene_menu)
     if st.toggle("Zobrazit kód", False, key = "kod_1"):
@@ -110,7 +110,7 @@ if st.toggle("Zobrazit řešení", False, key = "reseni_1"):
             "řízek": 119,
             "knedlo-vepřo-zelo": 139
             }
-        with open("menu.json", "w") as f:
+        with open("data/json/menu.json", "w") as f:
             json.dump(menu, f)
         """)
 
@@ -121,20 +121,20 @@ Přidejte do menu položku kuřecí nudle za 99 a uložte to zpět do souboru `m
 Ověřte, že se změna provedla správně i v souboru.
 """)
 if st.toggle("Zobrazit řešení", False, key = "reseni_9"):
-    with open("menu.json", "r") as f:
+    with open("data/json/menu.json", "r") as f:
         menu = json.load(f)
     menu["kuřecí nudle"] = 99
-    with open("menu.json", "w") as f:
+    with open("data/json/menu.json", "w") as f:
         json.dump(menu, f)
-    with open("menu.json", "r") as f:
+    with open("data/json/menu.json", "r") as f:
         nactene_menu = json.load(f)
     st.write(nactene_menu)
     if st.toggle("Zobrazit kód", False, key = "kod_9"):
         st.code("""
-        with open("menu.json", "r") as f:
+        with open("data/json/menu.json", "r") as f:
             menu = json.load(f)
         menu["kuřecí nudle"] = 99
-        with open("menu.json", "w") as f:
+        with open("data/json/menu.json", "w") as f:
             json.dump(menu, f)
         """)
 
@@ -146,28 +146,28 @@ Přidejte ho do menu poté, co zmáčknou tlačítko přidat do menu. \\
 Ověřte, že se změna provedla správně i v souboru.
 """)
 if st.toggle("Zobrazit řešení", False, key = "reseni_3"):
-    with open("menu.json", "r") as f:
+    with open("data/json/menu.json", "r") as f:
         menu = json.load(f)
     nove_jidlo = st.text_input("Název jídla")
     cena = st.number_input("Cena")
     if st.button("Přidat do menu"):
         menu[nove_jidlo] = cena
-        with open("menu.json", "w") as f:
+        with open("data/json/menu.json", "w") as f:
             json.dump(menu, f)
-        with open("menu.json", "r") as f:
+        with open("data/json/menu.json", "r") as f:
             nactene_menu = json.load(f)
         st.write(nactene_menu)
     if st.toggle("Zobrazit kód", False, key = "kod_3"):
         st.code("""
-        with open("menu.json", "r") as f:
+        with open("data/json/menu.json", "r") as f:
             menu = json.load(f)
         nove_jidlo = st.text_input("Název jídla")
         cena = st.number_input("Cena")
         if st.button("Přidat do menu"):
             menu[nove_jidlo] = cena
-            with open("menu.json", "w") as f:
+            with open("data/json/menu.json", "w") as f:
                 json.dump(menu, f)
-            with open("menu.json", "r") as f:
+            with open("data/json/menu.json", "r") as f:
                 nactene_menu = json.load(f)
             st.write(nactene_menu)
         """)
@@ -184,7 +184,7 @@ Toto si ukážeme úplně nejlépe na tomto příkladu:
 3. Načtěte tento soubor pomocí tohoto příkazu:
 ```
 try:
-    with open("znamky.json", "r") as f:
+    with open("data/json/znamky.json", "r") as f:
         znamky = json.load(f)
 except:
     znamky = {}
@@ -197,7 +197,7 @@ except:
 """)
 if st.toggle("Zobrazit řešení", False, key = "reseni_4"):
     try:
-        with open("znamky.json", "r") as f:
+        with open("data/json/znamky.json", "r") as f:
             znamky = json.load(f)
     except:
         znamky = {}
@@ -205,24 +205,24 @@ if st.toggle("Zobrazit řešení", False, key = "reseni_4"):
     znamka = st.number_input("Znamka")
     if st.button("Přidat znamku"):
         znamky[jmeno] = znamka
-        with open("znamky.json", "w") as f:
+        with open("data/json/znamky.json", "w") as f:
             json.dump(znamky, f)
-        with open("znamky.json", "r") as f:
+        with open("data/json/znamky.json", "r") as f:
             nactene_znamky = json.load(f)
         st.write(nactene_znamky)
     if st.toggle("Zobrazit kód", False, key = "kod_4"):
         st.code("""
-        with open("znamky.json", "w") as f:
+        with open("data/json/znamky.json", "w") as f:
             json.dump({}, f)
-        with open("znamky.json", "r") as f:
+        with open("data/json/znamky.json", "r") as f:
             znamky = json.load(f)
         jmeno = st.text_input("Jméno")
         znamka = st.number_input("Znamka")
         if st.button("Přidat znamku"):
             znamky[jmeno] = znamka
-            with open("znamky.json", "w") as f:
+            with open("data/json/znamky.json", "w") as f:
                 json.dump(znamky, f)
-            with open("znamky.json", "r") as f:
+            with open("data/json/znamky.json", "r") as f:
                 nactene_znamky = json.load(f)
             st.write(nactene_znamky)
         """)

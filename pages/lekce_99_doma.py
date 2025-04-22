@@ -64,7 +64,7 @@ Pokud to bude na vás příliš těžké tak stačí udělat jenom body: \\
 """)
 
 if st.toggle("Ukázat řešení"):
-    with open("texty.json", "r") as f:
+    with open("data/json/texty.json", "r") as f:
             data = json.load(f)
     text = st.text_input("Textové pole pro zadání textu")
     btn_add_text = st.button("Uložit text")
@@ -74,7 +74,7 @@ if st.toggle("Ukázat řešení"):
         except:
             posledni_klic = 0
         data[posledni_klic] = text
-        with open("texty.json", "w") as f:
+        with open("data/json/texty.json", "w") as f:
             json.dump(data, f)
         st.success("Text byl uložen")
     st.write("---")
@@ -94,13 +94,13 @@ if st.toggle("Ukázat řešení"):
     st.write("---")
     btn_delete = st.button("Vymazat texty")
     if btn_delete:
-        with open("texty.json", "w") as f:
+        with open("data/json/texty.json", "w") as f:
             json.dump({}, f)
         st.success("Texty byly vymazány")
     
     if st.toggle("Ukázat kód"):
         st.code("""
-    with open("texty.json", "r") as f:
+    with open("data/json/texty.json", "r") as f:
             data = json.load(f)
     text = st.text_input("Textové pole pro zadání textu")
     btn_add_text = st.button("Uložit text")
@@ -110,7 +110,7 @@ if st.toggle("Ukázat řešení"):
         except:
             posledni_klic = 0
         data[posledni_klic] = text
-        with open("texty.json", "w") as f:
+        with open("data/json/texty.json", "w") as f:
             json.dump(data, f)
         st.success("Text byl uložen")
     st.write("---")
@@ -130,7 +130,125 @@ if st.toggle("Ukázat řešení"):
     st.write("---")
     btn_delete = st.button("Vymazat texty")
     if btn_delete:
-        with open("texty.json", "w") as f:
+        with open("data/json/texty.json", "w") as f:
             json.dump({}, f)
         st.success("Texty byly vymazány")
         """)
+
+def nacti_texty():
+    """Načte texty ze souboru JSON."""
+    try:
+        with open("data/json/texty.json", "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return [] # Vrátí prázdný seznam, pokud soubor neexistuje
+
+def uloz_texty(texty):
+    """Uloží texty do souboru JSON."""
+    with open("data/json/texty.json", "w") as f:
+        json.dump(texty, f, indent=4)
+
+# --- Hlavní část aplikace ---
+if st.toggle("Ukázat řešení"):
+    texty = nacti_texty()
+    text = st.text_input("Textové pole pro zadání textu")
+    btn_add_text = st.button("Uložit text")
+    if btn_add_text:
+        texty.append(text)
+        uloz_texty(texty) # Uložení aktualizovaného seznamu
+        st.success("Text byl úspěšně přidán!")
+        st.rerun() # Znovu načte stránku, aby se zobrazil nový text
+
+    st.write("---")
+    search_text = st.text_input("Textové pole pro vyhledání textu")
+    btn_search = st.button("Vyhledat text")
+    if btn_search:
+        nalezen = False
+        for k, v in texty:
+            if search_text.lower() in v.lower():
+                nalezen = True
+                st.write(f"Text: {v}")
+        if nalezen:
+            st.success("Text nalezen")
+        else:
+            st.error("Text nebyl nalezen")
+
+    st.write("---")
+    index_textu = st.number_input("Index textu pro úpravu", min_value=0, max_value=len(texty)-1, value=0)
+    btn_upravit = st.button("Upravit text")
+    if btn_upravit:
+        upraveny_text = st.text_input("Upravený text")
+        texty[index_textu] = upraveny_text
+        uloz_texty(texty) # Uložení aktualizovaného seznamu
+        st.success(f"Text na indexu {index_textu} byl upraven!")
+        st.rerun()
+
+    st.write("---")
+    index_textu_ke_smazani = st.number_input("Index textu pro smazání", min_value=0, max_value=len(texty)-1, value=0)
+    btn_smazat = st.button("Smazat text")
+    if btn_smazat:
+        del texty[index_textu_ke_smazani]
+        uloz_texty(texty) # Uložení aktualizovaného seznamu
+        st.success(f"Text na indexu {index_textu_ke_smazani} byl smazán!")
+        st.rerun()
+
+    if st.toggle("Ukázat kód"):
+        st.code("""
+def nacti_texty():
+    '''Načte texty ze souboru JSON.'''
+    try:
+        with open("data/json/texty.json", "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return [] # Vrátí prázdný seznam, pokud soubor neexistuje
+
+def uloz_texty(texty):
+    '''Uloží texty do souboru JSON.'''
+    with open("data/json/texty.json", "w") as f:
+        json.dump(texty, f, indent=4)
+
+# --- Hlavní část aplikace ---
+if st.toggle("Ukázat řešení"):
+    texty = nacti_texty()
+    text = st.text_input("Textové pole pro zadání textu")
+    btn_add_text = st.button("Uložit text")
+    if btn_add_text:
+        texty.append(text)
+        uloz_texty(texty) # Uložení aktualizovaného seznamu
+        st.success("Text byl úspěšně přidán!")
+        st.rerun() # Znovu načte stránku, aby se zobrazil nový text
+
+    st.write("---")
+    search_text = st.text_input("Textové pole pro vyhledání textu")
+    btn_search = st.button("Vyhledat text")
+    if btn_search:
+        nalezen = False
+        for k, v in texty:
+            if search_text.lower() in v.lower():
+                nalezen = True
+                st.write(f"Text: {v}")
+        if nalezen:
+            st.success("Text nalezen")
+        else:
+            st.error("Text nebyl nalezen")
+
+    st.write("---")
+    index_textu = st.number_input("Index textu pro úpravu", min_value=0, max_value=len(texty)-1, value=0)
+    btn_upravit = st.button("Upravit text")
+    if btn_upravit:
+        upraveny_text = st.text_input("Upravený text")
+        texty[index_textu] = upraveny_text
+        uloz_texty(texty) # Uložení aktualizovaného seznamu
+        st.success(f"Text na indexu {index_textu} byl upraven!")
+        st.rerun()
+
+    st.write("---")
+    index_textu_ke_smazani = st.number_input("Index textu pro smazání", min_value=0, max_value=len(texty)-1, value=0)
+    btn_smazat = st.button("Smazat text")
+    if btn_smazat:
+        del texty[index_textu_ke_smazani]
+        uloz_texty(texty) # Uložení aktualizovaného seznamu
+        st.success(f"Text na indexu {index_textu_ke_smazani} byl smazán!")
+        st.rerun()
+        """
+        )
