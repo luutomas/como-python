@@ -46,19 +46,20 @@ if st.toggle("Zobrazit nápovědu", key="napoveda_cena_jizdenky"):
     6. Nakonec zobrazte cenu jízdenky pomocí `st.write()`.
     """)
 
-    if st.toggle("Zobrazit řešení"):
-        vek = st.number_input("Zadejte svůj věk:", min_value=0, max_value=120, value=25, step=1, key="vek")
-        je_student = st.checkbox("Držitel studentského průkazu", key="je_student")
-        je_ztp = st.checkbox("Držitel průkazu ZTP / ZTP-P", key="je_ztp")
+    if st.toggle("Zobrazit řešení", key="reseni_cena_jizdenky"):
+        with st.container(key="container_cena_jizdenky", border=True):
+            vek = st.number_input("Zadejte svůj věk:", min_value=0, max_value=120, value=25, step=1, key="vek")
+            je_student = st.checkbox("Držitel studentského průkazu", key="je_student")
+            je_ztp = st.checkbox("Držitel průkazu ZTP / ZTP-P", key="je_ztp")
 
-        if je_student or je_ztp or vek < 6:
-            st.write("Vaše jízdenka stojí: 0 Kč")
-        elif vek >= 6 and vek < 15:
-            st.write("Vaše jízdenka stojí: 15 Kč")
-        elif vek >= 15 and vek < 65:
-            st.write("Vaše jízdenka stojí: 40 Kč")
-        else:
-            st.write("Vaše jízdenka stojí: 20 Kč")
+            if je_student or je_ztp or vek < 6:
+                st.write("Vaše jízdenka stojí: 0 Kč")
+            elif vek >= 6 and vek < 15:
+                st.write("Vaše jízdenka stojí: 15 Kč")
+            elif vek >= 15 and vek < 65:
+                st.write("Vaše jízdenka stojí: 40 Kč")
+            else:
+                st.write("Vaše jízdenka stojí: 20 Kč")
 
         if st.toggle("Zobrazit kód", key="kod_cena_jizdenky"):
             st.code("""
@@ -117,27 +118,28 @@ if st.toggle("Zobrazit nápovědu", key="napoveda_bmi_kalkulacka"):
     """)
 
     if st.toggle("Zobrazit řešení", key="reseni_bmi_kalkulacka"):
-        vaha = st.number_input("Zadejte svou váhu (kg):", min_value=10.0, max_value=200.0, value=70.0, step=0.1, key="vaha")
-        vyska = st.number_input("Zadejte svou výšku (cm):", min_value=100, max_value=250, value=170, step=1, key="vyska")
+        with st.container(key="container_bmi_kalkulacka", border=True):
+            vaha = st.number_input("Zadejte svou váhu (kg):", min_value=10.0, max_value=200.0, value=70.0, step=0.1, key="vaha")
+            vyska = st.number_input("Zadejte svou výšku (cm):", min_value=100, max_value=250, value=170, step=1, key="vyska")
 
-        bmi = vaha / ((vyska * vyska) / 10000)
-        bmi_zaokrouhlene = round(bmi, 2)
+            bmi = vaha / ((vyska * vyska) / 10000)
+            bmi_zaokrouhlene = round(bmi, 2)
 
-        if st.button("Spočítat BMI", key="spocitat_bmi"):
-            st.write(f"Vaše BMI je: {bmi_zaokrouhlene}")
+            if st.button("Spočítat BMI", key="spocitat_bmi"):
+                st.write(f"Vaše BMI je: {bmi_zaokrouhlene}")
 
-            if bmi_zaokrouhlene < 18.5:
-                st.write("Kategorie: Podváha")
-            elif 18.5 <= bmi_zaokrouhlene < 24.9:
-                st.write("Kategorie: Normální váha")
-            elif 25 <= bmi_zaokrouhlene < 29.9:
-                st.write("Kategorie: Nadváha")
-            elif 30 <= bmi_zaokrouhlene < 34.9:
-                st.write("Kategorie: Obezita 1. stupně")
-            elif 35 <= bmi < 39.9:
-                st.write("Kategorie: Obezita 2. stupně")
-            else:
-                st.write("Kategorie: Obezita 3. stupně")
+                if bmi_zaokrouhlene < 18.5:
+                    st.write("Kategorie: Podváha")
+                elif 18.5 <= bmi_zaokrouhlene < 24.9:
+                    st.write("Kategorie: Normální váha")
+                elif 25 <= bmi_zaokrouhlene < 29.9:
+                    st.write("Kategorie: Nadváha")
+                elif 30 <= bmi_zaokrouhlene < 34.9:
+                    st.write("Kategorie: Obezita 1. stupně")
+                elif 35 <= bmi < 39.9:
+                    st.write("Kategorie: Obezita 2. stupně")
+                else:
+                    st.write("Kategorie: Obezita 3. stupně")
 
         if st.toggle("Zobrazit kód", key="kod_bmi_kalkulacka"):
             st.code("""
