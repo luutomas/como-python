@@ -24,7 +24,11 @@ pages = {
     "99: Ostatní užitečné informace":
         [
             st.Page("pages/lekce_91_git.py", title="Lekce č. 91 - Git"),
-        ]
+        ],
+    "100: Opakování":
+        [
+            st.Page("pages/opakovani_01.py", title="Opakování č. 1 - Základy"),
+        ],
 }
 pg = st.navigation(pages)
 pg.run()
