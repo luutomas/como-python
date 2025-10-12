@@ -80,6 +80,31 @@ menu = {
     "knedlo-vepřo-zelo": 139
     }
 ```
+---
+Takhle nějak by pak mohla vypadat vaše aplikace, která by umožňovala přidávat jídla do menu a ukládat je do souboru `jidla.json`.
+""")
+
+st.code("""
+try:
+    with open("jidla.json", "r") as f:
+            jidla = json.load(f)
+except:
+     jidla = {}
+st.write(jidla)
+
+nazev_jidla = st.text_input("Název jídla", key = "nazev_jidla")
+cena_jidla = st.number_input("Cena jídla", key = "cena_jidla")
+tlacitko_ulozit = st.button("Uložit do jsonu", key = "tlacitko_ulozit")
+if tlacitko_ulozit:
+    jidla[nazev_jidla] = cena_jidla
+    st.write(f"Přidal jsem nové jidlo {nazev_jidla} za {cena_jidla}")
+    with open("jidla.json", "w") as f: # jidlo.json měnit na název souboru
+        json.dump(jidla, f, ensure_ascii=False,indent=4) # jidla měnit na název relevatního slovníku
+    st.write("Uložil jsem data")
+    st.rerun() # Automaticky udělá refresh stránky, aby se načetla nová data
+""", language="python")
+
+st.markdown("""
 ### Úkol 1
 Uložte tento slovník do souboru `menu.json` a poté ho načtěte a vypište. \\
 Ověřte, že existuje soubor `menu.json` a že obsahuje správná data.
