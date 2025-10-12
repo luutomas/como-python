@@ -38,12 +38,8 @@ if st.toggle("Zobrazit nápovědu", key="napoveda_cena_jizdenky"):
     pomocí `st.number_input()` a nastavte jí příslušné parametry jako `min_value`, `max_value`, `value` a `step`.
     2. Vytvořte si proměnné `je_student` a `je_ztp`, do kterých uložíte hodnoty ze zaškrtávacích polí
     pomocí `st.checkbox()` a nastavte jim příslušné popisky.
-    3. Vytvořte si proměnnou `cena`, kterou inicializujete na hodnotu 0.
-    4. Vytvořte podmínku `if`, která zkontroluje, zda je uživatel držitelem studentského průkazu nebo průkazu ZTP / ZTP-P.
-    Pokud ano, nastaví cenu na 0 a zobrazí ji pomocí `st.write()`.
-    5. Vytvořte podmínku `else`, která bude obsahovat další podmínky `if`, `elif` a `else`,
-    které podle hodnoty věku uživatele nastaví cenu podle tabulky výše.
-    6. Nakonec zobrazte cenu jízdenky pomocí `st.write()`.
+    3. Vytvořte podmínky `if`, `elif` a `else`, které podle hodnoty `vek`, `je_student` a `je_ztp`
+    zobrazí příslušnou cenu jízdenky pomocí `st.write()`.
     """)
 
     if st.toggle("Zobrazit řešení", key="reseni_cena_jizdenky"):
