@@ -29,4 +29,5 @@ jobs:
             set -e
             cd /var/www/python_coworking/
             git -C como-python pull --ff-only origin main
-            docker compose up -d --build
+            # The server has the standalone docker-compose binary, not the compose plugin
+            docker-compose up -d --build
